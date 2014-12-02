@@ -46,6 +46,12 @@ namespace GMap.NET.MapProviders
         GMapProviders()
         {
         }
+        public static readonly AMapProvider AMapProvider = AMapProvider.Instance;
+        public static readonly AMapSateliteProvider AMapSateliteProvider = AMapSateliteProvider.Instance;
+        public static readonly SosoMapProvider SosoMapProvider = SosoMapProvider.Instance;
+        public static readonly SosoMapSateliteProvider SosoMapSateliteProvider = SosoMapSateliteProvider.Instance;
+        
+
 
         public static readonly EmptyProvider EmptyProvider = EmptyProvider.Instance;
 

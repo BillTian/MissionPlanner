@@ -6474,7 +6474,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>cd $(ProjectDir)
-"C:\Program Files (x86)\Git\bin\git.exe" rev-parse HEAD &gt; "$(ProjectDir)\githash.txt"</PreBuildEvent>
+"d:\Program Files (x86)\Git\bin\git.exe" rev-parse HEAD &gt; "$(ProjectDir)\githash.txt"</PreBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -120,6 +120,8 @@
     <Compile Include="GMap.NET.Internals\SocksProxySocket\Socks5Handler.cs" />
     <Compile Include="GMap.NET.Internals\SocksProxySocket\SocksHandler.cs" />
     <Compile Include="GMap.NET.Internals\TileHttpHost.cs" />
+    <Compile Include="GMap.NET.MapProviders\AMap\AMapProvider.cs" />
+    <Compile Include="GMap.NET.MapProviders\AMap\AMapSateliteProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\ArcGIS\ArcGIS_DarbAE_Q2_2011_NAVTQ_Eng_V5_MapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\Bing\BingMapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\Bing\BingSatelliteMapProvider.cs" />
@@ -157,6 +159,8 @@
     <Compile Include="GMap.NET.MapProviders\OpenStreetMap\OpenStreetMapQuestProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\OpenStreetMap\OpenCycleTransportMapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\OpenStreetMap\OpenCycleLandscapeMapProvider.cs" />
+    <Compile Include="GMap.NET.MapProviders\soso\SosoMapProvider.cs" />
+    <Compile Include="GMap.NET.MapProviders\soso\SosoMapSateliteProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\Yandex\YandexHybridMapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\Yandex\YandexSatelliteMapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\Yandex\YandexMapProvider.cs" />
@@ -188,6 +192,7 @@
     <Compile Include="GMap.NET.MapProviders\OpenStreetMap\OpenStreetOsmProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\OpenStreetMap\OpenStreetMapProvider.cs" />
     <Compile Include="GMap.NET.MapProviders\GMapProvider.cs" />
+    <Compile Include="GMap.NET.Projections\AMapProjection.cs" />
     <Compile Include="GMap.NET.Projections\PlateCarreeProjectionDarbAe.cs" />
     <Compile Include="GMap.NET\GDirections.cs" />
     <Compile Include="GMap.NET\DirectionsProvider.cs" />

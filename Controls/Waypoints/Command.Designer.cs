@@ -48,14 +48,14 @@
             this.CMB_missioncommand.FormattingEnabled = true;
             this.CMB_missioncommand.Location = new System.Drawing.Point(3, 3);
             this.CMB_missioncommand.Name = "CMB_missioncommand";
-            this.CMB_missioncommand.Size = new System.Drawing.Size(100, 21);
+            this.CMB_missioncommand.Size = new System.Drawing.Size(100, 20);
             this.CMB_missioncommand.TabIndex = 0;
             // 
             // txt_param1
             // 
             this.txt_param1.Location = new System.Drawing.Point(109, 3);
             this.txt_param1.Name = "txt_param1";
-            this.txt_param1.Size = new System.Drawing.Size(30, 20);
+            this.txt_param1.Size = new System.Drawing.Size(30, 21);
             this.txt_param1.TabIndex = 2;
             // 
             // tableLayoutPanel1
@@ -88,56 +88,56 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(568, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(568, 24);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // txtz
             // 
             this.txtz.Location = new System.Drawing.Point(385, 3);
             this.txtz.Name = "txtz";
-            this.txtz.Size = new System.Drawing.Size(60, 20);
+            this.txtz.Size = new System.Drawing.Size(60, 21);
             this.txtz.TabIndex = 8;
             // 
             // txty
             // 
             this.txty.Location = new System.Drawing.Point(319, 3);
             this.txty.Name = "txty";
-            this.txty.Size = new System.Drawing.Size(60, 20);
+            this.txty.Size = new System.Drawing.Size(60, 21);
             this.txty.TabIndex = 7;
             // 
             // txtx
             // 
             this.txtx.Location = new System.Drawing.Point(253, 3);
             this.txtx.Name = "txtx";
-            this.txtx.Size = new System.Drawing.Size(60, 20);
+            this.txtx.Size = new System.Drawing.Size(60, 21);
             this.txtx.TabIndex = 6;
             // 
             // txt_param4
             // 
             this.txt_param4.Location = new System.Drawing.Point(217, 3);
             this.txt_param4.Name = "txt_param4";
-            this.txt_param4.Size = new System.Drawing.Size(30, 20);
+            this.txt_param4.Size = new System.Drawing.Size(30, 21);
             this.txt_param4.TabIndex = 5;
             // 
             // txt_param3
             // 
             this.txt_param3.Location = new System.Drawing.Point(181, 3);
             this.txt_param3.Name = "txt_param3";
-            this.txt_param3.Size = new System.Drawing.Size(30, 20);
+            this.txt_param3.Size = new System.Drawing.Size(30, 21);
             this.txt_param3.TabIndex = 4;
             // 
             // txt_param2
             // 
             this.txt_param2.Location = new System.Drawing.Point(145, 3);
             this.txt_param2.Name = "txt_param2";
-            this.txt_param2.Size = new System.Drawing.Size(30, 20);
+            this.txt_param2.Size = new System.Drawing.Size(30, 21);
             this.txt_param2.TabIndex = 3;
             // 
             // BUT_del
             // 
             this.BUT_del.Location = new System.Drawing.Point(451, 3);
             this.BUT_del.Name = "BUT_del";
-            this.BUT_del.Size = new System.Drawing.Size(20, 20);
+            this.BUT_del.Size = new System.Drawing.Size(20, 18);
             this.BUT_del.TabIndex = 9;
             this.BUT_del.Text = "X";
             this.BUT_del.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             // 
             this.BUT_UP.Location = new System.Drawing.Point(477, 3);
             this.BUT_UP.Name = "BUT_UP";
-            this.BUT_UP.Size = new System.Drawing.Size(37, 20);
+            this.BUT_UP.Size = new System.Drawing.Size(37, 18);
             this.BUT_UP.TabIndex = 10;
             this.BUT_UP.Text = "Up";
             this.BUT_UP.UseVisualStyleBackColor = true;
@@ -157,7 +157,7 @@
             // 
             this.BUT_DOWN.Location = new System.Drawing.Point(520, 3);
             this.BUT_DOWN.Name = "BUT_DOWN";
-            this.BUT_DOWN.Size = new System.Drawing.Size(37, 20);
+            this.BUT_DOWN.Size = new System.Drawing.Size(37, 18);
             this.BUT_DOWN.TabIndex = 11;
             this.BUT_DOWN.Text = "Down";
             this.BUT_DOWN.UseVisualStyleBackColor = true;
@@ -165,11 +165,11 @@
             // 
             // Command
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Command";
-            this.Size = new System.Drawing.Size(568, 26);
+            this.Size = new System.Drawing.Size(568, 24);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
