@@ -257,7 +257,7 @@ namespace MissionPlanner.Log
 
                 if (DFLog.logformat.Count == 0)
                 {
-                    CustomMessageBox.Show("Log Browse will not function correctly without FMT messages in your log.\nThese appear to be missing from your log.", "Error");
+                    CustomMessageBox.Show(Strings.WarningLogBrowseFMTMissing, Strings.ERROR);
                     this.Close();
                     return;
                 }
@@ -551,13 +551,13 @@ namespace MissionPlanner.Log
         {
             if (dataGridView1 == null || dataGridView1.RowCount == 0 || dataGridView1.ColumnCount == 0)
             {
-                CustomMessageBox.Show("Please load a valid file", "Error");
+                CustomMessageBox.Show(Strings.PleaseLoadValidFile, Strings.ERROR);
                 return;
             }
 
             if (dataGridView1.CurrentCell == null)
             {
-                CustomMessageBox.Show("Please select a cell first", "Error");
+                CustomMessageBox.Show(Strings.PleaseSelectCell, Strings.ERROR);
                 return;
             }
 
@@ -567,25 +567,25 @@ namespace MissionPlanner.Log
 
             if (col == 0)
             {
-                CustomMessageBox.Show("Please pick another column, Highlight the cell you wish to graph", "Error");
+                CustomMessageBox.Show("Please pick another column, Highlight the cell you wish to graph", Strings.ERROR);
                 return;
             }
 
             if (!DFLog.logformat.ContainsKey(type))
             {
-                CustomMessageBox.Show("Your log file doesnt contain the required FMT messages","Error");
+                CustomMessageBox.Show(Strings.NoFMTMessage + type, Strings.ERROR);
                 return;
             }
 
             if ((col - typecoloum - 1) < 0)
             {
-                CustomMessageBox.Show("Cannot graph this field", "Error");
+                CustomMessageBox.Show(Strings.CannotGraphField, Strings.ERROR);
                 return;
             }
 
             if (DFLog.logformat[type].FieldNames.Length <= (col - typecoloum - 1))
             {
-                CustomMessageBox.Show("Invalid Field (not in FMT)", "Error");
+                CustomMessageBox.Show(Strings.InvalidField, Strings.ERROR);
                 return;
             }
 
@@ -617,7 +617,7 @@ namespace MissionPlanner.Log
 
             if (!DFLog.logformat.ContainsKey(type))
             {
-                CustomMessageBox.Show("No FMT message for "+type + " - " + fieldname,"Error");
+                CustomMessageBox.Show(Strings.NoFMTMessage + type + " - " + fieldname, Strings.ERROR);
                 return;
             }
 
@@ -1105,20 +1105,23 @@ namespace MissionPlanner.Log
         /// <param name="e"></param>
         private void dataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            var grid = sender as DataGridView;
-            var rowIdx = grid.Rows[e.RowIndex].Cells[0].Value.ToString();
-
-            var centerFormat = new StringFormat()
+            try
             {
-                // right alignment might actually make more sense for numbers
-                Alignment = StringAlignment.Center,
-                LineAlignment = StringAlignment.Center
-            };
+                var grid = sender as DataGridView;
+                var rowIdx = grid.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-            var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
-            e.Graphics.DrawString(rowIdx, this.Font, new SolidBrush(this.ForeColor), headerBounds, centerFormat);
+                var centerFormat = new StringFormat()
+                {
+                    // right alignment might actually make more sense for numbers
+                    Alignment = StringAlignment.Center,
+                    LineAlignment = StringAlignment.Center
+                };
 
-            //
+                var headerBounds = new Rectangle(e.RowBounds.Left, e.RowBounds.Top, grid.RowHeadersWidth, e.RowBounds.Height);
+                e.Graphics.DrawString(rowIdx, this.Font, new SolidBrush(this.ForeColor), headerBounds, centerFormat);
+
+            }
+            catch { }
         }
 
         private void BUT_Graphit_R_Click(object sender, EventArgs e)
@@ -1535,10 +1538,6 @@ namespace MissionPlanner.Log
 
             if (movemap)
             {
-                //double z = myGMAP1.Zoom;
-                //myGMAP1.ZoomAndCenterMarkers(markeroverlay.Id);
-                //myGMAP1.MarkersEnabled = true;
-                //myGMAP1.Zoom = z;
                 myGMAP1.Position = pt1;
             }
 
@@ -1575,12 +1574,16 @@ namespace MissionPlanner.Log
 
             if (movegrid)
             {
-                scrollGrid(dataGridView1, SampleID);
-                dataGridView1.CurrentCell = dataGridView1.Rows[SampleID].Cells[1];
+                try
+                {
+                    scrollGrid(dataGridView1, SampleID);
+                    dataGridView1.CurrentCell = dataGridView1.Rows[SampleID].Cells[1];
 
-                dataGridView1.ClearSelection();
-                dataGridView1.Rows[(int)SampleID].Selected = true;
-                dataGridView1.Rows[(int)SampleID].Cells[1].Selected = true;
+                    dataGridView1.ClearSelection();
+                    dataGridView1.Rows[(int)SampleID].Selected = true;
+                    dataGridView1.Rows[(int)SampleID].Cells[1].Selected = true;
+                }
+                catch { }
             }
 
 

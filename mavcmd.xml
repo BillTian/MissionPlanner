@@ -23,7 +23,7 @@
     <LOITER_TURNS>
       <P1>Turns</P1>
       <P2></P2>
-      <P3>Dir 1=CW</P3>
+      <P3>Radius</P3>
       <P4></P4>
       <X>Lat</X>
       <Y>Long</Y>
@@ -252,7 +252,7 @@
     <LOITER_TURNS>
       <P1>Turns</P1>
       <P2></P2>
-      <P3>Dir 1=CW</P3>
+      <P3>Radius</P3>
       <P4></P4>
       <X>Lat</X>
       <Y>Long</Y>
@@ -330,6 +330,15 @@
       <Y></Y>
       <Z></Z>
     </CONDITION_YAW>
+    <DO_LAND_START>
+      <P1></P1>
+      <P2></P2>
+      <P3></P3>
+      <P4></P4>
+      <X>Lat</X>
+      <Y>Long</Y>
+      <Z></Z>
+    </DO_LAND_START>
     <DO_INVERTED_FLIGHT>
       <P1>0=normal, 1=inverted</P1>
       <P2></P2>
@@ -480,7 +489,7 @@
     <LOITER_TURNS>
       <P1>Turns</P1>
       <P2></P2>
-      <P3>Dir 1=CW</P3>
+      <P3>Radius</P3>
       <P4></P4>
       <X>Lat</X>
       <Y>Long</Y>
