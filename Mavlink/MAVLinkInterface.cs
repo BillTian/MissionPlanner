@@ -17,6 +17,7 @@ using MissionPlanner.Comms;
 using MissionPlanner.Utilities;
 using System.Windows.Forms;
 using MissionPlanner.HIL;
+using MissionPlanner.Mavlink;
 
 namespace MissionPlanner
 {
@@ -226,7 +227,9 @@ namespace MissionPlanner
             frmProgressReporter = new ProgressReporterDialogue
                                       {
                                           StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                                          Text = "连接 Mavlink"
+
+                                          Text = MAVLinkT.ConnectingMavlink
+
                                       };
 
             if (getparams)
@@ -237,7 +240,9 @@ namespace MissionPlanner
             {
                 frmProgressReporter.DoWork += FrmProgressReporterDoWorkNOParams;
             }
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink 连接中...");
+
+            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.MavlinkConnecting);
+
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -260,7 +265,9 @@ namespace MissionPlanner
 
         private void OpenBg(object PRsender, bool getparams, ProgressWorkerEventArgs progressWorkerEventArgs)
         {
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink 连接中...");
+
+            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.MavlinkConnecting);
+
 
             giveComport = true;
 
@@ -297,7 +304,9 @@ namespace MissionPlanner
                 countDown.Elapsed += (sender, e) =>
                 {
                     int secondsRemaining = (deadline - e.SignalTime).Seconds;
-                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format("尝试连接.\n超时 {0}", secondsRemaining));
+
+                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format(MAVLinkT.Trying, secondsRemaining));
+
                     if (secondsRemaining > 0) countDown.Start();
                 };
                 countDown.Start();
@@ -327,8 +336,8 @@ namespace MissionPlanner
 
                         if (hbseen)
                         {
-                            progressWorkerEventArgs.ErrorMessage = "Only 1 Heatbeat Received";
-                            throw new Exception("Only 1 Mavlink Heartbeat Packets was read from this port - Verify your hardware is setup correctly\nMission Planner waits for 2 valid heartbeat packets before connecting");
+                            progressWorkerEventArgs.ErrorMessage = MAVLinkT.Only1Hb;
+                            throw new Exception(MAVLinkT.Only1HbD);
                         }
                         else
                         {
@@ -419,13 +428,17 @@ Please check the following
                 catch { }
                 giveComport = false;
                 if (string.IsNullOrEmpty(progressWorkerEventArgs.ErrorMessage))
-                    progressWorkerEventArgs.ErrorMessage = "连接失败";
+
+                    progressWorkerEventArgs.ErrorMessage = MAVLinkT.ConnectFailed;
+
                 log.Error(e);
                 throw;
             }
             //frmProgressReporter.Close();
             giveComport = false;
-            frmProgressReporter.UpdateProgressAndStatus(100, "完成.");
+
+            frmProgressReporter.UpdateProgressAndStatus(100, MAVLinkT.Done);
+
             log.Info("Done open " + MAV.sysid + " " + MAV.compid);
             MAV.packetslost = 0;
             MAV.synclost = 0;
@@ -729,11 +742,13 @@ Please check the following
             frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                Text = "获取参数"
+
+                Text = MAVLinkT.GettingParams
             };
 
             frmProgressReporter.DoWork += FrmProgressReporterGetParams;
-            frmProgressReporter.UpdateProgressAndStatus(-1, "获取参数中...");
+            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.GettingParamsD);
+
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -747,7 +762,7 @@ Please check the following
             foreach (string item in MAV.param.Keys)
             {
                 if (float.IsNaN((float)MAV.param[item]))
-                    CustomMessageBox.Show("BAD PARAM, "+item+" = NAN \n Fix this NOW!!","Error");
+                    CustomMessageBox.Show("BAD PARAM, " + item + " = NAN \n Fix this NOW!!", Strings.ERROR);
             }
         }
 
@@ -790,6 +805,8 @@ Please check the following
 
             //hires.Stopwatch stopwatch = new hires.Stopwatch();
             int packets = 0;
+            bool onebyone = false;
+            DateTime lastonebyone = DateTime.MinValue;
 
             do
             {
@@ -804,69 +821,55 @@ Please check the following
                 // 4 seconds between valid packets
                 if (!(start.AddMilliseconds(4000) > DateTime.Now) && !logreadmode)
                 {
-                    log.Info("Get param 1 by 1 - got " + indexsreceived.Count + " of " + param_total);
-                    // try getting individual params
-                    for (short i = 0; i <= (param_total - 1); i++)
+                    onebyone = true;
+
+                    if (lastonebyone.AddMilliseconds(600) < DateTime.Now)
                     {
-                        if (!indexsreceived.Contains(i))
+                        log.Info("Get param 1 by 1 - got " + indexsreceived.Count + " of " + param_total);
+
+                        int queued = 0;
+                        // try getting individual params
+                        for (short i = 0; i <= (param_total - 1); i++)
                         {
-                            if (frmProgressReporter.doWorkArgs.CancelRequested)
+                            if (!indexsreceived.Contains(i))
                             {
-                                frmProgressReporter.doWorkArgs.CancelAcknowledged = true;
-                                giveComport = false;
-                                frmProgressReporter.doWorkArgs.ErrorMessage = "User Canceled";
-                                return MAV.param;
-                            }
+                                if (frmProgressReporter.doWorkArgs.CancelRequested)
+                                {
+                                    frmProgressReporter.doWorkArgs.CancelAcknowledged = true;
+                                    giveComport = false;
+                                    frmProgressReporter.doWorkArgs.ErrorMessage = "User Canceled";
+                                    return MAV.param;
+                                }
 
-                            // prevent dropping out of this get params loop
-                            try
-                            {
-                                GetParam(i);
-                                param_count++;
-                                indexsreceived.Add(i);
-
-                                this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, "Got param index " + i);
-                            }
-                            catch (Exception excp)
-                            {
-                                log.Info("GetParam Failed index: " + i + " " + excp);
+                                // prevent dropping out of this get params loop
                                 try
                                 {
-                                   // GetParam(i);
-                                   // param_count++;
-                                   // indexsreceived.Add(i);
+                                    queued++;
+
+                                    mavlink_param_request_read_t req2 = new mavlink_param_request_read_t();
+                                    req2.target_system = MAV.sysid;
+                                    req2.target_component = MAV.compid;
+                                    req2.param_index = i;
+                                    req2.param_id = new byte[] { 0x0 };
+
+                                    Array.Resize(ref req2.param_id, 16);
+
+                                    generatePacket((byte)MAVLINK_MSG_ID.PARAM_REQUEST_READ, req2);
+
+                                    if (queued >= 10)
+                                    {
+                                        lastonebyone = DateTime.Now;
+                                        break;
+                                    }
                                 }
-                                catch { }
-                                // fail over to full list
-                                //break;
+                                catch (Exception excp)
+                                {
+                                    log.Info("GetParam Failed index: " + i + " " + excp);
+                                    throw excp;
+                                }
                             }
                         }
                     }
-
-                    if (retrys == 4)
-                    {
-                        requestDatastream(MAVLink.MAV_DATA_STREAM.ALL, 1);
-                    }
-
-                    if (retrys > 0)
-                    {
-                        log.InfoFormat("getParamList Retry {0} sys {1} comp {2}", retrys, MAV.sysid, MAV.compid);
-                        generatePacket((byte)MAVLINK_MSG_ID.PARAM_REQUEST_LIST, req);
-                        start = DateTime.Now;
-                        retrys--;
-                        continue;
-                    }
-                    giveComport = false;
-                    if (packets > 0 && param_total == 1)
-                    {
-                        throw new Exception("Timeout on read - getParamList\n" + packets + " Packets where received, but no paramater packets where received\n");
-                    }
-                    if (packets == 0)
-                    {
-                        throw new Exception("Timeout on read - getParamList\nNo Packets where received\n");
-                    }
-
-                    throw new Exception("Timeout on read - getParamList\nReceived: " + indexsreceived.Count + " of " + param_total + " after 6 retrys\n\nPlease Check\n1. Link Speed\n2. Link Quality\n3. Hardware hasn't hung");
                 }
 
                 //Console.WriteLine(DateTime.Now.Millisecond + " gp0 ");
@@ -880,7 +883,9 @@ Please check the following
                     if (buffer[5] == (byte)MAVLINK_MSG_ID.PARAM_VALUE)
                     {
                         restart = DateTime.Now;
-                        start = DateTime.Now;
+                        // if we are doing one by one dont update start time
+                        if (!onebyone)
+                            start = DateTime.Now;
 
                         mavlink_param_value_t par = buffer.ByteArrayToStructure<mavlink_param_value_t>(6);
 
@@ -921,7 +926,9 @@ Please check the following
 
                         //Console.WriteLine(DateTime.Now.Millisecond + " gp3 ");
 
-                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, "获取参数 " + paramID);
+
+                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, MAVLinkT.Gotparam + paramID);
+
 
                         // we hit the last param - lets escape eq total = 176 index = 0-175
                         if (par.param_index == (param_total - 1))
@@ -2123,8 +2130,7 @@ Please check the following
             req.shot = (shot == true) ? (byte)1 : (byte)0;
 
             generatePacket((byte)MAVLINK_MSG_ID.DIGICAM_CONTROL, req);
-            System.Threading.Thread.Sleep(20);
-            generatePacket((byte)MAVLINK_MSG_ID.DIGICAM_CONTROL, req);
+
             //MAVLINK_MSG_ID.CAMERA_FEEDBACK;
 
                 //mavlink_camera_feedback_t

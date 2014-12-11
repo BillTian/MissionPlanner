@@ -216,7 +216,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!MainV2.comPort.BaseStream.IsOpen)
                 return;
 
-            if (DialogResult.OK == CustomMessageBox.Show("Update Params\nDON'T DO THIS IF YOU ARE IN THE AIR\n", "Error", MessageBoxButtons.OKCancel))
+            if (DialogResult.OK == CustomMessageBox.Show(Strings.WarningUpdateParamList, Strings.ERROR, MessageBoxButtons.OKCancel))
             {
                 ((Control)sender).Enabled = false;
 
@@ -227,7 +227,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch (Exception ex)
                 {
                     log.Error("Exception getting param list", ex);
-                    CustomMessageBox.Show("Error: getting param list", "Error");
+                    CustomMessageBox.Show(Strings.ErrorReceivingParams, Strings.ERROR);
                 }
 
 
@@ -505,12 +505,16 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         {
             if (CustomMessageBox.Show("Reset all parameters to default\nAre you sure!!", "Reset", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                MainV2.comPort.setParam(new string[] {"FORMAT_VERSION","SYSID_SW_MREV"}, 0);
-                System.Threading.Thread.Sleep(1000);
-                MainV2.comPort.doReboot(false);
-                MainV2.comPort.BaseStream.Close();
+                try
+                {
+                    MainV2.comPort.setParam(new string[] { "FORMAT_VERSION", "SYSID_SW_MREV" }, 0);
+                    System.Threading.Thread.Sleep(1000);
+                    MainV2.comPort.doReboot(false);
+                    MainV2.comPort.BaseStream.Close();
 
-                CustomMessageBox.Show("Your board is now rebooting, You will be required to reconnect to the autopilot.");
+                    CustomMessageBox.Show("Your board is now rebooting, You will be required to reconnect to the autopilot.");
+                }
+                catch { CustomMessageBox.Show(Strings.ErrorCommunicating, Strings.ERROR); }
             }
         }
 

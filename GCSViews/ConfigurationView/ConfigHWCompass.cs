@@ -52,7 +52,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 if (MainV2.comPort.MAV.param["COMPASS_DEC"] == null)
                 {
-                    CustomMessageBox.Show("Not Available", "Error");
+                    CustomMessageBox.Show(Strings.ErrorFeatureNotEnabled, Strings.ERROR);
                 }
                 else
                 {
@@ -67,10 +67,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                         MainV2.comPort.setParam("COMPASS_DEC", dec * deg2rad);
                     }
-                    catch { CustomMessageBox.Show("Invalid input!", "Error"); return; }
+                    catch { CustomMessageBox.Show(Strings.InvalidNumberEntered, Strings.ERROR); return; }
                 }
             }
-            catch { CustomMessageBox.Show("Set COMPASS_DEC Failed", "Error"); }
+            catch { CustomMessageBox.Show(String.Format(Strings.ErrorSetValueFailed, "COMPASS_DEC"), Strings.ERROR); }
         }
 
 
@@ -95,14 +95,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             {
                 if (MainV2.comPort.MAV.param["MAG_ENABLE"] == null)
                 {
-                    CustomMessageBox.Show("Not Available", "Error");
+                    CustomMessageBox.Show(Strings.ErrorFeatureNotEnabled, Strings.ERROR);
                 }
                 else
                 {
                     MainV2.comPort.setParam("MAG_ENABLE", ((CheckBox)sender).Checked == true ? 1 : 0);
                 }
             }
-            catch { CustomMessageBox.Show("Set MAG_ENABLE Failed", "Error"); }
+            catch { CustomMessageBox.Show(String.Format(Strings.ErrorSetValueFailed, "MAG_ENABLE"), Strings.ERROR); }
         }
 
  
@@ -190,43 +190,55 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void linkLabel1_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=DmsueBS0J3E");
+            try
+            {
+                System.Diagnostics.Process.Start("https://www.youtube.com/watch?v=DmsueBS0J3E");
+            }
+            catch 
+            {
+                CustomMessageBox.Show(Strings.ERROR + " https://www.youtube.com/watch?v=DmsueBS0J3E");
+            }
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             if (!MainV2.comPort.BaseStream.IsOpen)
             {
-                CustomMessageBox.Show("you are not connected");
+                CustomMessageBox.Show(Strings.ErrorNotConnected);
                 MainV2.View.Reload();
                 return;
             }
 
-            if (radioButton_onboard.Checked && sender == radioButton_onboard)
+            try
             {
-                CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_NONE;
-                MainV2.comPort.setParam("COMPASS_EXTERNAL", 0);
-            }
 
-            if (radioButton_external.Checked && sender == radioButton_external)
-            {
-                CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_ROLL_180;
-                MainV2.comPort.setParam("COMPASS_EXTERNAL", 1);
-            }
-
-            if (rb_px4pixhawk.Checked && sender == rb_px4pixhawk)
-            {
-                if (CustomMessageBox.Show("is the FW version greater than APM:copter 3.01 or APM:Plane 2.74?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (radioButton_onboard.Checked && sender == radioButton_onboard)
                 {
                     CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_NONE;
-                }
-                else
-                {
-                    CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_ROLL_180;
                     MainV2.comPort.setParam("COMPASS_EXTERNAL", 0);
                 }
 
+                if (radioButton_external.Checked && sender == radioButton_external)
+                {
+                    CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_ROLL_180;
+                    MainV2.comPort.setParam("COMPASS_EXTERNAL", 1);
+                }
+
+                if (rb_px4pixhawk.Checked && sender == rb_px4pixhawk)
+                {
+                    if (CustomMessageBox.Show("is the FW version greater than APM:copter 3.01 or APM:Plane 2.74?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_NONE;
+                    }
+                    else
+                    {
+                        CMB_compass_orient.SelectedIndex = (int)Common.Rotation.ROTATION_ROLL_180;
+                        MainV2.comPort.setParam("COMPASS_EXTERNAL", 0);
+                    }
+
+                }
             }
+            catch (Exception) { CustomMessageBox.Show(Strings.ErrorSettingParameter,Strings.ERROR); }
         }
     }
 }

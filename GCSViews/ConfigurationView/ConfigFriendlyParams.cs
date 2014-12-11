@@ -84,7 +84,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch
                 {
                     errorThrown = true;
-                    CustomMessageBox.Show("Set " + x.Key + " Failed", "Error");
+                    CustomMessageBox.Show(String.Format(Strings.ErrorSetValueFailed,x.Key), Strings.ERROR);
                 }
             });
             if (!errorThrown)
@@ -104,7 +104,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!MainV2.comPort.BaseStream.IsOpen)
                 return;
 
-            if (DialogResult.OK == CustomMessageBox.Show("Update Params\nDON'T DO THIS IF YOU ARE IN THE AIR\n", "Error", MessageBoxButtons.OKCancel))
+            if (DialogResult.OK == CustomMessageBox.Show(Strings.WarningUpdateParamList, Strings.ERROR, MessageBoxButtons.OKCancel))
             {
 
                 ((Control)sender).Enabled = false;
@@ -116,7 +116,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch (Exception ex)
                 {
                     log.Error("Exception getting param list", ex);
-                    CustomMessageBox.Show("Error: getting param list", "Error");
+                    CustomMessageBox.Show(Strings.ErrorReceivingParams, Strings.ERROR);
                 }
 
 
@@ -419,12 +419,12 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (!String.IsNullOrEmpty(units))
             {
-                returnDescription.Append(String.Format("Units: {0}{1}", units, Environment.NewLine));
+                returnDescription.Append(String.Format(ExtTranslations.ConfigFriendlyParamsT.Units, units, Environment.NewLine));
             }
 
             if (!String.IsNullOrEmpty(description))
             {
-                returnDescription.Append("Description: ");
+                returnDescription.Append(ExtTranslations.ConfigFriendlyParamsT.Desc);
                 var descriptionParts = description.Split(new char[] { ' ' });
                 for (int i = 0; i < descriptionParts.Length; i++)
                 {

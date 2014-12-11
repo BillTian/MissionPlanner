@@ -20,18 +20,23 @@ namespace MissionPlanner
         PointPairList list1 = new PointPairList();
         PointPairList list2 = new PointPairList();
         PointPairList list3 = new PointPairList();
+
+        PointPairList list4terrain = new PointPairList();
         int distance = 0;
         double homealt = 0;
+        GCSViews.FlightPlanner.altmode altmode = GCSViews.FlightPlanner.altmode.Relative;
 
-        public ElevationProfile(List<PointLatLngAlt> locs, double homealt)
+        public ElevationProfile(List<PointLatLngAlt> locs, double homealt, GCSViews.FlightPlanner.altmode altmode)
         {
             InitializeComponent();
+
+            this.altmode = altmode;
 
             planlocs = locs;
 
             if (planlocs.Count <= 1)
             {
-                CustomMessageBox.Show("Please plan something first", "Error");
+                CustomMessageBox.Show("Please plan something first", Strings.ERROR);
                 return;
             }
 
@@ -99,7 +104,23 @@ namespace MissionPlanner
                     a += planloc.GetDistance(lastloc);
                 }
 
-                list1.Add(a, planloc.Alt / CurrentState.multiplierdist, 0, planloc.Tag); // homealt
+                // deal with at mode
+                if (altmode == GCSViews.FlightPlanner.altmode.Terrain)
+                {
+                    list1 = list4terrain;
+                    break;
+                }
+                else if (altmode == GCSViews.FlightPlanner.altmode.Relative)
+                {
+                    // already includes the home alt
+                    list1.Add(a, (planloc.Alt / CurrentState.multiplierdist), 0, planloc.Tag);
+                }
+                else
+                {
+                    // abs
+                    // already absolute
+                    list1.Add(a, (planloc.Alt / CurrentState.multiplierdist), 0, planloc.Tag);
+                }
 
                 lastloc = planloc;
                 count++;
@@ -150,7 +171,11 @@ namespace MissionPlanner
 
                     disttotal += subdist;
 
-                    list3.Add(disttotal, newpoint.Alt);
+                    // srtm alts
+                    list3.Add(disttotal, newpoint.Alt / CurrentState.multiplierdist);
+
+                    // terrain alt
+                    list4terrain.Add(disttotal, (newpoint.Alt - homealt + loc.Alt) / CurrentState.multiplierdist);
 
                     lastpnt = newpoint;
                 }
@@ -188,7 +213,7 @@ namespace MissionPlanner
 
             if (list.Count < 2 || coords.Length > (2048 - 256))
             {
-                CustomMessageBox.Show("Too many/few WP's or to Big a Distance " + (distance / 1000) + "km", "Error");
+                CustomMessageBox.Show("Too many/few WP's or to Big a Distance " + (distance / 1000) + "km", Strings.ERROR);
                 return answer;
             }
 
@@ -220,7 +245,7 @@ namespace MissionPlanner
                     }
                 }
             }
-            catch { CustomMessageBox.Show("Error getting GE data", "Error"); }
+            catch { CustomMessageBox.Show("Error getting GE data", Strings.ERROR); }
 
             return answer;
         }
