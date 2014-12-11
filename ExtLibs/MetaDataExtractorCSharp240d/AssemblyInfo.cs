@@ -2,9 +2,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 
 //
-// Les informations générales relatives à un assembly dépendent de 
+// Les informations générales relatives ?un assembly dépendent de 
 // l'ensemble d'attributs suivant. Pour modifier les informations
-// associées à un assembly, changez les valeurs de ces attributs.
+// associées ?un assembly, changez les valeurs de ces attributs.
 //
 [assembly: AssemblyTitle("MetaDataExtractor")]
 [assembly: AssemblyDescription("Extract metadata from JPEG")]
@@ -16,7 +16,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyCulture("")]		
 
 //
-// Les informations de version pour un assembly se composent des quatre valeurs suivantes :
+// Les informations de version pour un assembly se composent des quatre valeurs suivantes?
 //
 //      Version principale
 //      Version secondaire 
@@ -29,20 +29,20 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyVersion("2.4.0.*")]
 
 //
-// Pour signer votre assembly, vous devez spécifier la clé à utiliser. Consultez 
+// Pour signer votre assembly, vous devez spécifier la cl??utiliser. Consultez 
 // la documentation Microsoft .NET Framework pour plus d'informations sur la signature d'un assembly.
 //
-// Utilisez les attributs ci-dessous pour contrôler la clé utilisée lors de la signature. 
+// Utilisez les attributs ci-dessous pour contrôler la cl?utilisée lors de la signature. 
 //
-// Remarques : 
-//   (*) Si aucune clé n'est spécifiée, l'assembly n'est pas signé.
-//   (*) KeyName fait référence à une clé installée dans le fournisseur de
-//       services cryptographiques (CSP) de votre ordinateur. KeyFile fait référence à un fichier qui contient
-//       une clé.
+// Remarques? 
+//   (*) Si aucune cl?n'est spécifiée, l'assembly n'est pas sign?
+//   (*) KeyName fait référence ?une cl?installée dans le fournisseur de
+//       services cryptographiques (CSP) de votre ordinateur. KeyFile fait référence ?un fichier qui contient
+//       une cl?
 //   (*) Si les valeurs de KeyFile et de KeyName sont spécifiées, le 
-//       traitement suivant se produit :
-//       (1) Si KeyName se trouve dans le CSP, la clé est utilisée.
-//       (2) Si KeyName n'existe pas mais que KeyFile existe, la clé 
+//       traitement suivant se produit?
+//       (1) Si KeyName se trouve dans le CSP, la cl?est utilisée.
+//       (2) Si KeyName n'existe pas mais que KeyFile existe, la cl?
 //           de KeyFile est installée dans le CSP et utilisée.
 //   (*) Pour créer KeyFile, vous pouvez utiliser l'utilitaire sn.exe (Strong Name, Nom fort).
 //        Lors de la spécification de KeyFile, son emplacement doit être

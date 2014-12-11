@@ -172,4 +172,7 @@
   <data name="groupBox2.Text" xml:space="preserve">
     <value>上传</value>
   </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>丢失的包</value>
+  </data>
 </root>

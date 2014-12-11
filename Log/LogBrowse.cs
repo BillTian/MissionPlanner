@@ -121,7 +121,7 @@ namespace MissionPlanner.Log
              mapoverlay = new GMapOverlay("overlay");
              markeroverlay = new GMapOverlay("markers");
 
-            myGMAP1.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+             myGMAP1.MapProvider = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
 
             myGMAP1.Overlays.Add(mapoverlay);
 			myGMAP1.Overlays.Add(markeroverlay);

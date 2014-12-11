@@ -226,7 +226,7 @@ namespace MissionPlanner
             frmProgressReporter = new ProgressReporterDialogue
                                       {
                                           StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                                          Text = "Connecting Mavlink"
+                                          Text = "连接 Mavlink"
                                       };
 
             if (getparams)
@@ -237,7 +237,7 @@ namespace MissionPlanner
             {
                 frmProgressReporter.DoWork += FrmProgressReporterDoWorkNOParams;
             }
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink Connecting...");
+            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink 连接中...");
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -260,7 +260,7 @@ namespace MissionPlanner
 
         private void OpenBg(object PRsender, bool getparams, ProgressWorkerEventArgs progressWorkerEventArgs)
         {
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink Connecting...");
+            frmProgressReporter.UpdateProgressAndStatus(-1, "Mavlink 连接中...");
 
             giveComport = true;
 
@@ -297,7 +297,7 @@ namespace MissionPlanner
                 countDown.Elapsed += (sender, e) =>
                 {
                     int secondsRemaining = (deadline - e.SignalTime).Seconds;
-                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format("Trying to connect.\nTimeout in {0}", secondsRemaining));
+                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format("尝试连接.\n超时 {0}", secondsRemaining));
                     if (secondsRemaining > 0) countDown.Start();
                 };
                 countDown.Start();
@@ -395,7 +395,7 @@ Please check the following
 
                 countDown.Stop();
 
-                frmProgressReporter.UpdateProgressAndStatus(0, "Getting Params.. (sysid " + MAV.sysid + " compid " + MAV.compid + ") ");
+                frmProgressReporter.UpdateProgressAndStatus(0, "获取参数.. (sysid " + MAV.sysid + " compid " + MAV.compid + ") ");
 
                 if (getparams)
                 {
@@ -419,13 +419,13 @@ Please check the following
                 catch { }
                 giveComport = false;
                 if (string.IsNullOrEmpty(progressWorkerEventArgs.ErrorMessage))
-                    progressWorkerEventArgs.ErrorMessage = "Connect Failed";
+                    progressWorkerEventArgs.ErrorMessage = "连接失败";
                 log.Error(e);
                 throw;
             }
             //frmProgressReporter.Close();
             giveComport = false;
-            frmProgressReporter.UpdateProgressAndStatus(100, "Done.");
+            frmProgressReporter.UpdateProgressAndStatus(100, "完成.");
             log.Info("Done open " + MAV.sysid + " " + MAV.compid);
             MAV.packetslost = 0;
             MAV.synclost = 0;
@@ -729,11 +729,11 @@ Please check the following
             frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                Text = "Getting Params"
+                Text = "获取参数"
             };
 
             frmProgressReporter.DoWork += FrmProgressReporterGetParams;
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Getting Params...");
+            frmProgressReporter.UpdateProgressAndStatus(-1, "获取参数中...");
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -921,7 +921,7 @@ Please check the following
 
                         //Console.WriteLine(DateTime.Now.Millisecond + " gp3 ");
 
-                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, "Got param " + paramID);
+                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, "获取参数 " + paramID);
 
                         // we hit the last param - lets escape eq total = 176 index = 0-175
                         if (par.param_index == (param_total - 1))

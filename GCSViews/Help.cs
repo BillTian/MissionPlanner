@@ -61,5 +61,10 @@ namespace MissionPlanner.GCSViews
             MissionPlanner.Utilities.Update.dobeta = true;
             MissionPlanner.Utilities.Update.DoUpdate();
         }
+
+        private void linkPlayUAV_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.playuav.com");
+        }
     }
 }

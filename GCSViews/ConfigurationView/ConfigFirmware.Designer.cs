@@ -43,7 +43,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private Controls.ImageLabel pictureBoxY6;
         private System.Windows.Forms.Label lbl_status;
         private System.Windows.Forms.ProgressBar progress;
-        private System.Windows.Forms.Label label2;
         private Controls.ImageLabel pictureBoxHeli;
         private PictureBox pictureBoxHilimage;
         private PictureBox pictureBoxAPHil;
@@ -63,7 +62,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.pictureBoxY6 = new MissionPlanner.Controls.ImageLabel();
             this.lbl_status = new System.Windows.Forms.Label();
             this.progress = new System.Windows.Forms.ProgressBar();
-            this.label2 = new System.Windows.Forms.Label();
             this.pictureBoxHeli = new MissionPlanner.Controls.ImageLabel();
             this.pictureBoxHilimage = new System.Windows.Forms.PictureBox();
             this.pictureBoxAPHil = new System.Windows.Forms.PictureBox();
@@ -146,11 +144,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             resources.ApplyResources(this.progress, "progress");
             this.progress.Name = "progress";
             this.progress.Step = 1;
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // pictureBoxHeli
             // 
@@ -300,7 +293,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.Controls.Add(this.pictureBoxRover);
             this.Controls.Add(this.CMB_history);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lbl_status);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.pictureBoxACHHil);

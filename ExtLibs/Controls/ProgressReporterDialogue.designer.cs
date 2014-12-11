@@ -77,7 +77,7 @@ namespace MissionPlanner.Controls
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Text = "取消";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -100,7 +100,7 @@ namespace MissionPlanner.Controls
             this.linkLabel1.Size = new System.Drawing.Size(48, 13);
             this.linkLabel1.TabIndex = 4;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Details...";
+            this.linkLabel1.Text = "详细...";
             this.linkLabel1.Visible = false;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
@@ -111,7 +111,7 @@ namespace MissionPlanner.Controls
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 5;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "关闭";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btn_Close_Click);
             // 
@@ -138,7 +138,7 @@ namespace MissionPlanner.Controls
             this.Name = "ProgressReporterDialogue";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Progress";
+            this.Text = "进度";
             this.Load += new System.EventHandler(this.ProgressReporterDialogue_Load);
             ((System.ComponentModel.ISupportInitialize)(this.imgWarning)).EndInit();
             this.ResumeLayout(false);

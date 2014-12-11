@@ -1109,35 +1109,35 @@ namespace MissionPlanner.Controls
                         disp = disp % 360;
                         if (disp == 0)
                         {
-                            drawstring(graphicsObject, "N".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "北".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 45)
                         {
-                            drawstring(graphicsObject, "NE".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "东北".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 90)
                         {
-                            drawstring(graphicsObject, "E".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "东".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 135)
                         {
-                            drawstring(graphicsObject, "SE".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "东南".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 180)
                         {
-                            drawstring(graphicsObject, "S".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "南".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 225)
                         {
-                            drawstring(graphicsObject, "SW".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "西南".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 270)
                         {
-                            drawstring(graphicsObject, "W".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "西".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else if (disp == 315)
                         {
-                            drawstring(graphicsObject, "NW".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
+                            drawstring(graphicsObject, "西北".PadLeft(2), font, fontsize + 4, whiteBrush, headbg.Left - 5 + space * (a - start) - fontoffset, headbg.Bottom - 24 - (int)(fontoffset * 1.7));
                         }
                         else
                         {
@@ -1303,20 +1303,20 @@ namespace MissionPlanner.Controls
 
                 if (_lowairspeed)
                 {
-                    drawstring(graphicsObject, "AS " + _airspeed.ToString("0.0"), font, fontsize, (SolidBrush)Brushes.Red, 1, scrollbg.Bottom + 5);
+                    drawstring(graphicsObject, "空速 " + _airspeed.ToString("0.0"), font, fontsize, (SolidBrush)Brushes.Red, 1, scrollbg.Bottom + 5);
                 }
                 else
                 {
-                    drawstring(graphicsObject, "AS " + _airspeed.ToString("0.0"), font, fontsize, whiteBrush, 1, scrollbg.Bottom + 5);
+                    drawstring(graphicsObject, "空速 " + _airspeed.ToString("0.0"), font, fontsize, whiteBrush, 1, scrollbg.Bottom + 5);
                 }
 
                 if (_lowgroundspeed)
                 {
-                    drawstring(graphicsObject, "GS " + _groundspeed.ToString("0.0"), font, fontsize, (SolidBrush)Brushes.Red, 1, scrollbg.Bottom + fontsize + 2 + 10);
+                    drawstring(graphicsObject, "地速 " + _groundspeed.ToString("0.0"), font, fontsize, (SolidBrush)Brushes.Red, 1, scrollbg.Bottom + fontsize + 2 + 10);
                 }
                 else
                 {
-                    drawstring(graphicsObject, "GS " + _groundspeed.ToString("0.0"), font, fontsize, whiteBrush, 1, scrollbg.Bottom + fontsize + 2 + 10);
+                    drawstring(graphicsObject, "地速 " + _groundspeed.ToString("0.0"), font, fontsize, whiteBrush, 1, scrollbg.Bottom + fontsize + 2 + 10);
                 }
 
                 //drawstring(e,, new Font("Arial", fontsize + 2), whiteBrush, 1, scrollbg.Bottom + fontsize + 2 + 10);
@@ -1589,7 +1589,7 @@ namespace MissionPlanner.Controls
                 {
                     //if ((armedtimer.AddSeconds(8) > DateTime.Now))
                     {
-                        drawstring(graphicsObject, "DISARMED", font, fontsize + 10, (SolidBrush)Brushes.Red, -85, halfheight / -3);
+                        drawstring(graphicsObject, "未解锁", font, fontsize + 10, (SolidBrush)Brushes.Red, -85, halfheight / -3);
                         statuslast = status;
                     }
                 }
@@ -1597,14 +1597,14 @@ namespace MissionPlanner.Controls
                 {
                     if ((armedtimer.AddSeconds(8) > DateTime.Now))
                     {
-                        drawstring(graphicsObject, "ARMED", font, fontsize + 20, (SolidBrush)Brushes.Red, -70, halfheight / -3);
+                        drawstring(graphicsObject, "已解锁", font, fontsize + 20, (SolidBrush)Brushes.Red, -70, halfheight / -3);
                         statuslast = status;
                     }
                 }
 
                 if (failsafe == true)
                 {
-                    drawstring(graphicsObject, "FAILSAFE", font, fontsize + 20, (SolidBrush)Brushes.Red, -85, halfheight / -5);
+                    drawstring(graphicsObject, "失控保护", font, fontsize + 20, (SolidBrush)Brushes.Red, -85, halfheight / -5);
                     statuslast = status;
                 }
 

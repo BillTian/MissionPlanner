@@ -92,8 +92,8 @@ namespace MissionPlanner.Utilities
 
             string path = Path.GetDirectoryName(Application.ExecutablePath);
 
-            path = path + Path.DirectorySeparatorChar + "version.txt";
-
+            path = path + Path.DirectorySeparatorChar + "version.txt"; 
+             
             ServicePointManager.ServerCertificateValidationCallback =
 new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate, chain, policyErrors) => { return true; });
 
@@ -188,7 +188,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
         {
             ProgressReporterDialogue frmProgressReporter = new ProgressReporterDialogue()
             {
-                Text = "Check for Updates",
+                Text = "检查更新",
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
             };
 
@@ -196,7 +196,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
 
             frmProgressReporter.DoWork += new ProgressReporterDialogue.DoWorkEventHandler(DoUpdateWorker_DoWork);
 
-            frmProgressReporter.UpdateProgressAndStatus(-1, "Checking for Updates");
+            frmProgressReporter.UpdateProgressAndStatus(-1, "正在检查更新");
 
             frmProgressReporter.RunBackgroundOperationAsync();
         }
@@ -223,6 +223,8 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
             log.Info(((HttpWebResponse)response).StatusDescription);
             // Get the stream containing content returned by the server.
             dataStream = response.GetResponseStream();
+
+
             // Open the stream using a StreamReader for easy access.
             StreamReader reader = new StreamReader(dataStream);
             // Read the content.
@@ -258,7 +260,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                         if (!MD5File(file + ".new", hash))
                         {
                             if (frmProgressReporter != null)
-                                frmProgressReporter.UpdateProgressAndStatus(-1, "Getting " + file);
+                                frmProgressReporter.UpdateProgressAndStatus(-1, "获取 " + file);
 
                             string subdir = Path.GetDirectoryName(file) + Path.DirectorySeparatorChar;
 
@@ -278,7 +280,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                         log.Info("Same File " + file);
 
                         if (frmProgressReporter != null)
-                            frmProgressReporter.UpdateProgressAndStatus(-1, "Checking " + file);
+                            frmProgressReporter.UpdateProgressAndStatus(-1, "检查 " + file);
                     }
                 }
             }
@@ -303,6 +305,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
 
             return false;
         }
+             
 
         static void GetNewFile(ProgressReporterDialogue frmProgressReporter, string baseurl, string subdir, string file)
         {
@@ -350,7 +353,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
 
                         // update status
                         if (frmProgressReporter != null)
-                            frmProgressReporter.UpdateProgressAndStatus(-1, "Getting " + file);
+                            frmProgressReporter.UpdateProgressAndStatus(-1, "获取 " + file);
 
                         // from head
                         long bytes = response.ContentLength;
@@ -374,7 +377,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                                     if (dt.Second != DateTime.Now.Second)
                                     {
                                         if (frmProgressReporter != null)
-                                            frmProgressReporter.UpdateProgressAndStatus((int)(((double)(contlen - bytes) / (double)contlen) * 100), "Getting " + file + ": " + (((double)(contlen - bytes) / (double)contlen) * 100).ToString("0.0") + "%"); //+ Math.Abs(bytes) + " bytes");
+                                            frmProgressReporter.UpdateProgressAndStatus((int)(((double)(contlen - bytes) / (double)contlen) * 100), "获取 " + file + ": " + (((double)(contlen - bytes) / (double)contlen) * 100).ToString("0.0") + "%"); //+ Math.Abs(bytes) + " bytes");
                                         dt = DateTime.Now;
                                     }
                                 }
@@ -404,7 +407,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
         static void DoUpdateWorker_DoWork(object sender, ProgressWorkerEventArgs e, object passdata = null)
         {
             // TODO: Is this the right place?
-            #region Fetch Parameter Meta Data
+          /*  #region Fetch Parameter Meta Data
 
             var progressReporterDialogue = ((ProgressReporterDialogue)sender);
             progressReporterDialogue.UpdateProgressAndStatus(-1, "Getting Updated Parameters");
@@ -416,9 +419,9 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
             }
             catch (Exception ex) { log.Error(ex.ToString()); CustomMessageBox.Show("Error getting Parameter Information"); }
 
-            #endregion Fetch Parameter Meta Data
-
-            progressReporterDialogue.UpdateProgressAndStatus(-1, "Getting Base URL");
+            #endregion Fetch Parameter Meta Data*/
+            var progressReporterDialogue = ((ProgressReporterDialogue)sender);
+            progressReporterDialogue.UpdateProgressAndStatus(-1, "获取更新地址");
             // check for updates
             //  if (Debugger.IsAttached)
             {
@@ -529,7 +532,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                     continue;
                 }
                 if (frmProgressReporter != null)
-                    frmProgressReporter.UpdateProgressAndStatus(-1, "Checking " + file);
+                    frmProgressReporter.UpdateProgressAndStatus(-1, "检查中 " + file);
 
                 string path = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + subdir + file;
 
@@ -623,7 +626,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                                         }
                                     }
                                     if (frmProgressReporter != null)
-                                        frmProgressReporter.UpdateProgressAndStatus(-1, "Getting " + file);
+                                        frmProgressReporter.UpdateProgressAndStatus(-1, "获取 " + file);
 
                                     // from head
                                     long bytes = response.ContentLength;
@@ -646,7 +649,7 @@ new System.Net.Security.RemoteCertificateValidationCallback((sender, certificate
                                                 if (dt.Second != DateTime.Now.Second)
                                                 {
                                                     if (frmProgressReporter != null)
-                                                        frmProgressReporter.UpdateProgressAndStatus((int)(((double)(contlen - bytes) / (double)contlen) * 100), "Getting " + file + ": " + (((double)(contlen - bytes) / (double)contlen) * 100).ToString("0.0") + "%"); //+ Math.Abs(bytes) + " bytes");
+                                                        frmProgressReporter.UpdateProgressAndStatus((int)(((double)(contlen - bytes) / (double)contlen) * 100), "获取 " + file + ": " + (((double)(contlen - bytes) / (double)contlen) * 100).ToString("0.0") + "%"); //+ Math.Abs(bytes) + " bytes");
                                                     dt = DateTime.Now;
                                                 }
                                             }

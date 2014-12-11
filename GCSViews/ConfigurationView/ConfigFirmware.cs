@@ -68,10 +68,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (MainV2.Advanced)
             {
-                lbl_devfw.Visible = true;
+                lbl_devfw.Visible = false;
                 lbl_Custom_firmware_label.Visible = true;
                 lbl_dlfw.Visible = true;
-                CMB_history_label.Visible = true;
+                CMB_history_label.Visible = false;
             }
             else
             {
@@ -174,47 +174,47 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             }
             else if (temp.url2560.ToLower().Contains("ac2-quad-".ToLower()) || temp.url2560.ToLower().Contains("1-quad/ArduCopter".ToLower()))
             {
-                pictureBoxQuad.Text = temp.name += " Quad";
+                pictureBoxQuad.Text = temp.name;// += " Quad";
                 pictureBoxQuad.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-tri".ToLower()) || temp.url2560.ToLower().Contains("-tri/ArduCopter".ToLower()))
             {
-                pictureBoxTri.Text = temp.name += " Tri";
+                pictureBoxTri.Text = temp.name;// += " Tri";
                 pictureBoxTri.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-hexa".ToLower()) || temp.url2560.ToLower().Contains("-hexa/ArduCopter".ToLower()))
             {
-                pictureBoxHexa.Text = temp.name += " Hexa";
+                pictureBoxHexa.Text = temp.name;// += " Hexa";
                 pictureBoxHexa.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-y6".ToLower()) || temp.url2560.ToLower().Contains("-y6/ArduCopter".ToLower()))
             {
-                pictureBoxY6.Text = temp.name += " Y6";
+                pictureBoxY6.Text = temp.name;// += " Y6";
                 pictureBoxY6.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-heli-".ToLower()) || temp.url2560.ToLower().Contains("-heli/ArduCopter".ToLower()))
             {
-                pictureBoxHeli.Text = temp.name+= " heli";
+                pictureBoxHeli.Text = temp.name;//+= " heli";
                 pictureBoxHeli.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-helhil".ToLower()) || temp.url2560.ToLower().Contains("-heli-hil/ArduCopter".ToLower()))
             {
-                pictureBoxACHHil.Text = temp.name +=  " heli hil";
+                pictureBoxACHHil.Text = temp.name;// +=  " heli hil";
                 pictureBoxACHHil.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-quadhil".ToLower()) || temp.url2560.ToLower().Contains("-quad-hil/ArduCopter".ToLower()))
             {
-                pictureBoxACHil.Text = temp.name +=  " hil";
+                pictureBoxACHil.Text = temp.name;// +=  " hil";
                 pictureBoxACHil.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-octaquad-".ToLower()) || temp.url2560.ToLower().Contains("-octa-quad/ArduCopter".ToLower()))
             {
-                pictureBoxOctaQuad.Text = temp.name += " Octa Quad";
+                pictureBoxOctaQuad.Text = temp.name;// += " Octa Quad";
                 pictureBoxOctaQuad.Tag = temp;
             }
             else if (temp.url2560.ToLower().Contains("ac2-octa-".ToLower()) || temp.url2560.ToLower().Contains("-octa/ArduCopter".ToLower()))
             {
-                pictureBoxOcta.Text = temp.name += " Octa";
+                pictureBoxOcta.Text = temp.name;// += " Octa";
                 pictureBoxOcta.Tag = temp;
             }
             else if (temp.url2560_2.ToLower().Contains("antennatracker"))
@@ -230,7 +230,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         void findfirmware(Utilities.Firmware.software fwtoupload)
         {
-            DialogResult dr = CustomMessageBox.Show("Are you sure you want to upload " + fwtoupload.name + "?", "Continue", MessageBoxButtons.YesNo);
+            DialogResult dr = CustomMessageBox.Show("你确定要上传固件 " + fwtoupload.name + "?", "继续", MessageBoxButtons.YesNo);
             if (dr == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -249,10 +249,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
 
                     if (fwtoupload.url2560_2 != null && fwtoupload.url2560_2.ToLower().Contains("copter") && fwtoupload.name.ToLower().Contains("3.1"))
-                        CustomMessageBox.Show("Warning, as of AC 3.1 motors will spin when armed, configurable through the MOT_SPIN_ARMED parameter", "Warning");
+                        CustomMessageBox.Show("警告, 因为从 AC 3.1 固件开始，解锁时马达会自动启动, 可以通过 MOT_SPIN_ARMED 参数配置马达速度", "警告");
 
                     if (fwtoupload.url2560_2 != null && fwtoupload.url2560_2.ToLower().Contains("copter") && fwtoupload.name.ToLower().Contains("3.2"))
-                        CustomMessageBox.Show("Warning, if you are installing AC 3.2 for the first time you MUST redo a Compass calibration.", "Warning");
+                        CustomMessageBox.Show("警告, 如果你第一次安装 AC 3.2 固件, 你必须进行罗盘重新校准.", "警告");
                 }
                 else
                 {

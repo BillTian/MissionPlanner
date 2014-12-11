@@ -265,8 +265,8 @@ namespace MissionPlanner.Controls
       lookZ = cameraZ;
 
      // cameraZ += 0.04;
-            
-            GMapProvider type = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+
+            GMapProvider type = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
             PureProjection prj = type.Projection;
 
           

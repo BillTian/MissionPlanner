@@ -257,6 +257,7 @@ namespace MissionPlanner
         public GCSViews.FlightData FlightData;
         public GCSViews.FlightPlanner FlightPlanner;
         GCSViews.Simulation Simulation;
+        GCSViews.Share Share;
 
         private Form connectionStatsForm;
         private ConnectionStats _connectionStats;
@@ -475,7 +476,7 @@ namespace MissionPlanner
                 Simulation = new GCSViews.Simulation();
                 //Firmware = new GCSViews.Firmware();
                 //Terminal = new GCSViews.Terminal();
-
+                Share = new GCSViews.Share();
                 // preload
                 log.Info("Create Python");
                 Python.CreateEngine();
@@ -483,6 +484,8 @@ namespace MissionPlanner
                 FlightData.Width = MyView.Width;
                 FlightPlanner.Width = MyView.Width;
                 Simulation.Width = MyView.Width;
+                Share.Width = MyView.Width;
+
             }
             catch (ArgumentException e)
             {
@@ -712,7 +715,7 @@ namespace MissionPlanner
                     MaximizeBox = false,
                     MinimizeBox = false,
                     FormBorderStyle = FormBorderStyle.FixedDialog,
-                    Text = "Link Stats"
+                    Text = "连接状态"
                 };
                 // Change the connection stats control, so that when/if the connection stats form is showing,
                 // there will be something to see
@@ -768,6 +771,19 @@ namespace MissionPlanner
         {
             MyView.ShowScreen("Simulation");
         }
+
+        private void MenuShare_Click(object sender, EventArgs e)
+        {
+            if (Share.init == false)
+            {
+                Share.webBrowser1.Visible = true;
+                Share.init = true;
+                Share.webBrowser1.Url = new Uri("http://playuav.com");
+            }
+            MyView.ShowScreen("Share");
+
+        }
+
 
         private void MenuTuning_Click(object sender, EventArgs e)
         {
@@ -1533,7 +1549,7 @@ namespace MissionPlanner
                         {
                             this.MenuConnect.Image = diplayicons.disconnect;
                             this.MenuConnect.Image.Tag = "Disconnect";
-                            this.MenuConnect.Text = "DISCONNECT";
+                            this.MenuConnect.Text = "断开";
                             _connectionControl.IsConnected(true);
                         });
                     }
@@ -1546,7 +1562,7 @@ namespace MissionPlanner
                         {
                             this.MenuConnect.Image = diplayicons.connect;
                             this.MenuConnect.Image.Tag = "Connect";
-                            this.MenuConnect.Text = "CONNECT";
+                            this.MenuConnect.Text = "连接";
                             _connectionControl.IsConnected(false);
                             if (_connectionStats != null)
                             {
@@ -1980,6 +1996,7 @@ namespace MissionPlanner
             MyView.AddScreen(new MainSwitcher.Screen("HWConfig", new GCSViews.InitialSetup(), false));
             MyView.AddScreen(new MainSwitcher.Screen("SWConfig", new GCSViews.SoftwareConfig(), false));
             MyView.AddScreen(new MainSwitcher.Screen("Simulation", Simulation, true));
+            MyView.AddScreen(new MainSwitcher.Screen("Share", Share, true));
             MyView.AddScreen(new MainSwitcher.Screen("Terminal", new GCSViews.Terminal(), false));
             MyView.AddScreen(new MainSwitcher.Screen("Help", new GCSViews.Help(), false));
 

@@ -22,8 +22,8 @@ namespace MissionPlanner.Utilities
 
         public event ProgressEventHandler Progress;
 
-        string firmwareurl = "https://raw.github.com/diydrones/binary/master/Firmware/firmware2.xml";
-		
+        //string firmwareurl = "https://raw.github.com/diydrones/binary/master/Firmware/firmware2.xml";
+        string firmwareurl = "http://playuav.com/download/MissionPlanner/Firmware/firmware.xml";
 		//string firmwareurl = "http://www.radionav.it/portale/MissionPlanner/firmware2.xml";
 
         // ap 2.5 - ac 2.7
@@ -38,7 +38,7 @@ namespace MissionPlanner.Utilities
         string[] gholdurls = new string[] { };
         public List<KeyValuePair<string, string>> niceNames = new List<KeyValuePair<string, string>>();
 
-        int ingetapmversion = 0;
+     
 
         List<software> softwares = new List<software>();
 
@@ -175,9 +175,9 @@ namespace MissionPlanner.Utilities
 
             // this is for mono to a ssl server
             //ServicePointManager.CertificatePolicy = new NoCheckCertificatePolicy(); 
-            ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback((sender1, certificate, chain, policyErrors) => { return true; });
+           // ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback((sender1, certificate, chain, policyErrors) => { return true; });
 
-            updateProgress(-1, "Getting FW List");
+            updateProgress(-1, "获取固件列表");
 
             try
             {
@@ -248,30 +248,6 @@ namespace MissionPlanner.Utilities
                                     temp.urlvrherov10 = vrherov10;
                                     temp.urlvrubrainv51 = vrubrainv51;
                                     temp.k_format_version = k_format_version;
-
-                                    try
-                                    {
-                                        try
-                                        {
-                                            if (!url2560.Contains("github"))
-                                            {
-                                                //name = 
-
-                                                lock (this)
-                                                {
-                                                    ingetapmversion++;
-                                                }
-
-                                                System.Threading.ThreadPool.QueueUserWorkItem(getAPMVersion, temp);
-
-                                                //if (name != "")
-                                                //temp.name = name;
-                                            }
-                                        }
-                                        catch { }
-                                    }
-                                    catch { } // just in case
-
                                     softwares.Add(temp);
                                 }
                                 url = "";
@@ -303,12 +279,11 @@ namespace MissionPlanner.Utilities
                 throw;
             }
 
-            while (ingetapmversion > 0)
-                System.Threading.Thread.Sleep(100);
+           
 
             log.Info("load done");
 
-            updateProgress(-1, "Received List");
+            updateProgress(-1, "获取完毕");
 
             return softwares;
         }
@@ -353,56 +328,7 @@ namespace MissionPlanner.Utilities
         /// </summary>
         /// <param name="fwurl"></param>
         /// <returns></returns>
-        void getAPMVersion(object tempin)
-        {
-            try
-            {
-
-                software temp = (software)tempin;
-
-                Uri url = new Uri(new Uri(temp.url2560_2), "git-version.txt");
-
-                log.Info("Get url " + url.ToString());
-
-                updateProgress(-1, "Getting FW Version");
-
-                WebRequest wr = WebRequest.Create(url);
-                WebResponse wresp = wr.GetResponse();
-
-                StreamReader sr = new StreamReader(wresp.GetResponseStream());
-
-                while (!sr.EndOfStream)
-                {
-                    string line = sr.ReadLine();
-
-                    if (line.Contains("APMVERSION:"))
-                    {
-                        log.Info(line);
-
-                        // get index
-                        var index = softwares.IndexOf(temp);
-                        // get item to modify
-                        var item = softwares[index];
-                        // change name
-                        item.name = line.Substring(line.IndexOf(':') + 2);
-                        // save back to list
-                        softwares[index] = item;
-
-                        return;
-                    }
-                }
-
-                log.Info("no answer");
-            }
-            catch (Exception ex) { log.Error(ex); }
-            finally
-            {
-                lock (this)
-                {
-                    ingetapmversion--;
-                }
-            }
-        }
+       
 
         /// <summary>
         /// Do full update - get firmware from internet
@@ -415,7 +341,7 @@ namespace MissionPlanner.Utilities
 
             try
             {
-                updateProgress(-1, "Detecting Board Version");
+                updateProgress(-1, "检测硬件版本");
 
                 board = BoardDetect.DetectBoard(comport);
 
@@ -449,7 +375,7 @@ namespace MissionPlanner.Utilities
 
                 log.Info("Detected a " + board);
 
-                updateProgress(-1, "Detected a " + board);
+                updateProgress(-1, "检测到 " + board);
 
                 string baseurl = "";
                 if (board == BoardDetect.boards.b2560)
@@ -528,7 +454,7 @@ namespace MissionPlanner.Utilities
 
                 FileStream fs = new FileStream(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"firmware.hex", FileMode.Create);
 
-                updateProgress(0, "Downloading from Internet");
+                updateProgress(0, "从服务器下载固件");
 
                 dataStream.ReadTimeout = 30000;
 
@@ -536,7 +462,7 @@ namespace MissionPlanner.Utilities
                 {
                     try
                     {
-                        updateProgress(50, "Downloading from Internet");
+                        updateProgress(50, "从服务器下载固件");
                     }
                     catch { }
                     int len = dataStream.Read(buf1, 0, 1024);
@@ -550,10 +476,10 @@ namespace MissionPlanner.Utilities
                 dataStream.Close();
                 response.Close();
 
-                updateProgress(100, "Downloaded from Internet");
+                updateProgress(100, "下载完成");
                 log.Info("Downloaded");
             }
-            catch (Exception ex) { updateProgress(50, "Failed download"); CustomMessageBox.Show("Failed to download new firmware : " + ex.ToString()); return false; }
+            catch (Exception ex) { updateProgress(50, "下载失败"); CustomMessageBox.Show("未能下载新固件 : " + ex.ToString()); return false; }
 
             MissionPlanner.Utilities.Tracking.AddFW(temp.name, board.ToString());
 
@@ -585,7 +511,7 @@ namespace MissionPlanner.Utilities
         public bool UploadPX4(string filename)
         {
             Uploader up;
-            updateProgress(0, "Reading Hex File");
+            updateProgress(0, "读取固件文件");
             px4uploader.Firmware fw;
             try
             {
@@ -724,9 +650,9 @@ namespace MissionPlanner.Utilities
 
                     try
                     {
-                        updateProgress(0, "Upload");
+                        updateProgress(0, "上传");
                         up.upload(fw);
-                        updateProgress(100, "Upload Done");
+                        updateProgress(100, "上传完成");
                     }
                     catch (Exception ex)
                     {
@@ -914,7 +840,7 @@ namespace MissionPlanner.Utilities
             byte[] FLASH = new byte[1];
             try
             {
-                updateProgress(0, "Reading Hex File");
+                updateProgress(0, "读取固件文件");
                 using (StreamReader sr = new StreamReader(filename))
                 {
                     FLASH = readIntelHEXv2(sr);
@@ -923,8 +849,8 @@ namespace MissionPlanner.Utilities
             }
             catch (Exception ex)
             {
-                updateProgress(0, "Failed read HEX");
-                CustomMessageBox.Show("Failed to read firmware.hex : " + ex.Message);
+                updateProgress(0, "读取固件失败");
+                CustomMessageBox.Show("读取固件失败 firmware.hex : " + ex.Message);
                 return false;
             }
             IArduinoComms port = new ArduinoSTK();
@@ -960,7 +886,7 @@ namespace MissionPlanner.Utilities
                 if (port.connectAP())
                 {
                     log.Info("starting");
-                    updateProgress(0, "Uploading " + FLASH.Length + " bytes to Board: " + board);
+                    updateProgress(0, "上传 " + FLASH.Length + " bytes to Board: " + board);
 
                     // this is enough to make ap_var reset
                     //port.upload(new byte[256], 0, 2, 0);
@@ -976,7 +902,7 @@ namespace MissionPlanner.Utilities
 
                     port.Progress -= updateProgress;
 
-                    updateProgress(100, "Upload Complete");
+                    updateProgress(100, "上传结束");
 
                     log.Info("Uploaded");
 
@@ -985,11 +911,11 @@ namespace MissionPlanner.Utilities
 
                     byte[] flashverify = new byte[FLASH.Length + 256];
 
-                    updateProgress(0, "Verify Firmware");
+                    updateProgress(0, "校验固件");
 
                     while (start < FLASH.Length)
                     {
-                        updateProgress((int)((start / (float)FLASH.Length) * 100), "Verify Firmware");
+                        updateProgress((int)((start / (float)FLASH.Length) * 100), "校验固件");
                         port.setaddress(start);
                         //log.Info("Downloading " + length + " at " + start);
                         port.downloadflash(length).CopyTo(flashverify, start);
@@ -1006,7 +932,7 @@ namespace MissionPlanner.Utilities
                         }
                     }
 
-                    updateProgress(100, "Verify Complete");
+                    updateProgress(100, "校验结束");
                 }
                 else
                 {
@@ -1029,7 +955,7 @@ namespace MissionPlanner.Utilities
                 }
                 catch { }
 
-                updateProgress(100, "Done");
+                updateProgress(100, "完成");
             }
             catch (Exception ex)
             {
@@ -1061,7 +987,7 @@ namespace MissionPlanner.Utilities
 
             while (!sr.EndOfStream)
             {
-                updateProgress((int)(((float)sr.BaseStream.Position / (float)sr.BaseStream.Length) * 100), "Reading Hex");
+                updateProgress((int)(((float)sr.BaseStream.Position / (float)sr.BaseStream.Length) * 100), "读取固件");
 
                 string line = sr.ReadLine();
 

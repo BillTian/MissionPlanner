@@ -44,14 +44,14 @@
             this.configTradHeli1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigTradHeli();
             this.backstageViewPageframetype = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configFrameType1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigFrameType();
-            this.backstageViewPagecompass = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
-            this.configHWCompass1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigHWCompass();
             this.backstageViewPageaccelquad = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configAccelerometerCalibrationQuad1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigAccelerometerCalibrationQuad();
             this.backstageViewPageaccelplane = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configAccelerometerCalibrationPlane1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigAccelerometerCalibrationPlane();
             this.backstageViewPageacceltracker = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configAccelerometerCalibrationTracker1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigAccelerometerCalibrationTracker();
+            this.backstageViewPagecompass = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
+            this.configHWCompass1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigHWCompass();
             this.backstageViewPageradio = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configRadioInput1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigRadioInput();
             this.backstageViewPageflmode = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
@@ -81,6 +81,8 @@
             this.backstageViewPageMotorTest = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configMotor1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigMotorTest();
             this.backstageViewPageinstfw = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
+            this.MinimOSD1 = new MissionPlanner.GCSViews.ConfigurationView.MinimOSD();
+            this.backstageViewMinimOSD = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.initialSetupBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +116,7 @@
             this.backstageView.Pages.Add(this.backstageViewPagegimbal);
             this.backstageView.Pages.Add(this.backstageViewPageAntTrack);
             this.backstageView.Pages.Add(this.backstageViewPageMotorTest);
+            this.backstageView.Pages.Add(this.backstageViewMinimOSD);
             this.backstageView.WidthMenu = 172;
             // 
             // backstageViewPagefw
@@ -215,21 +218,6 @@
             resources.ApplyResources(this.configFrameType1, "configFrameType1");
             this.configFrameType1.Name = "configFrameType1";
             // 
-            // backstageViewPagecompass
-            // 
-            this.backstageViewPagecompass.Advanced = false;
-            this.backstageViewPagecompass.LinkText = "Compass";
-            this.backstageViewPagecompass.Page = this.configHWCompass1;
-            this.backstageViewPagecompass.Parent = this.backstageViewPagemand;
-            this.backstageViewPagecompass.Show = true;
-            this.backstageViewPagecompass.Spacing = 30;
-            resources.ApplyResources(this.backstageViewPagecompass, "backstageViewPagecompass");
-            // 
-            // configHWCompass1
-            // 
-            resources.ApplyResources(this.configHWCompass1, "configHWCompass1");
-            this.configHWCompass1.Name = "configHWCompass1";
-            // 
             // backstageViewPageaccelquad
             // 
             this.backstageViewPageaccelquad.Advanced = false;
@@ -277,6 +265,21 @@
             // 
             resources.ApplyResources(this.configAccelerometerCalibrationTracker1, "configAccelerometerCalibrationTracker1");
             this.configAccelerometerCalibrationTracker1.Name = "configAccelerometerCalibrationTracker1";
+            // 
+            // backstageViewPagecompass
+            // 
+            this.backstageViewPagecompass.Advanced = false;
+            this.backstageViewPagecompass.LinkText = "Compass";
+            this.backstageViewPagecompass.Page = this.configHWCompass1;
+            this.backstageViewPagecompass.Parent = this.backstageViewPagemand;
+            this.backstageViewPagecompass.Show = true;
+            this.backstageViewPagecompass.Spacing = 30;
+            resources.ApplyResources(this.backstageViewPagecompass, "backstageViewPagecompass");
+            // 
+            // configHWCompass1
+            // 
+            resources.ApplyResources(this.configHWCompass1, "configHWCompass1");
+            this.configHWCompass1.Name = "configHWCompass1";
             // 
             // backstageViewPageradio
             // 
@@ -509,6 +512,21 @@
             this.backstageViewPageinstfw.Spacing = 30;
             resources.ApplyResources(this.backstageViewPageinstfw, "backstageViewPageinstfw");
             // 
+            // MinimOSD1
+            // 
+            resources.ApplyResources(this.MinimOSD1, "MinimOSD1");
+            this.MinimOSD1.Name = "MinimOSD1";
+            // 
+            // backstageViewMinimOSD
+            // 
+            this.backstageViewMinimOSD.Advanced = false;
+            this.backstageViewMinimOSD.LinkText = "MinimOSD";
+            this.backstageViewMinimOSD.Page = this.MinimOSD1;
+            this.backstageViewMinimOSD.Parent = this.backstageViewPageopt;
+            this.backstageViewMinimOSD.Show = true;
+            this.backstageViewMinimOSD.Spacing = 30;
+            resources.ApplyResources(this.backstageViewMinimOSD, "backstageViewMinimOSD");
+            // 
             // InitialSetup
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -577,5 +595,7 @@
         private Controls.BackstageView.BackstageViewPage backstageViewPageMotorTest;
         private Controls.BackstageView.BackstageViewPage backstageViewPageacceltracker;
         private ConfigurationView.ConfigAccelerometerCalibrationTracker configAccelerometerCalibrationTracker1;
+        private ConfigurationView.MinimOSD MinimOSD1;
+        private Controls.BackstageView.BackstageViewPage backstageViewMinimOSD;
     }
 }

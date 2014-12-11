@@ -47,51 +47,51 @@ namespace MissionPlanner.GCSViews
 
                 if (MainV2.comPort.BaseStream.IsOpen)
                 {
-                    AddBackstageViewPage(new ConfigFlightModes(), "Flight Modes");
+                    AddBackstageViewPage(new ConfigFlightModes(), "飞行模式");
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduCopter2)
-                        AddBackstageViewPage(new ConfigAC_Fence(), "GeoFence");
+                        AddBackstageViewPage(new ConfigAC_Fence(), "围栏");
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduCopter2)
                     {
-                        start = AddBackstageViewPage(new ConfigSimplePids(), "Basic Tuning");
+                        start = AddBackstageViewPage(new ConfigSimplePids(), "基础调参");
 
-                        AddBackstageViewPage(new ConfigArducopter(), "Extended Tuning");
+                        AddBackstageViewPage(new ConfigArducopter(), "扩展调参");
                     }
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduPlane)
                     {
-                        start = AddBackstageViewPage(new ConfigArduplane(), "Basic Tuning");
+                        start = AddBackstageViewPage(new ConfigArduplane(), "基础调参");
 
                     }
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduRover)
                     {
-                        start = AddBackstageViewPage(new ConfigArdurover(), "Basic Tuning");
+                        start = AddBackstageViewPage(new ConfigArdurover(), "基础调参");
                     }
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduTracker)
                     {
-                        start = AddBackstageViewPage(new ConfigAntennaTracker(), "Extended Tuning");
+                        start = AddBackstageViewPage(new ConfigAntennaTracker(), "扩展调参");
                     }
 
-                    AddBackstageViewPage(new ConfigFriendlyParams { ParameterMode = ParameterMetaDataConstants.Standard }, "Standard Params");
-                    AddBackstageViewPage(new ConfigFriendlyParams { ParameterMode = ParameterMetaDataConstants.Advanced }, "Advanced Params",null,true);
-                    AddBackstageViewPage(new ConfigRawParams(), "Full Parameter List", null, true);
+                    AddBackstageViewPage(new ConfigFriendlyParams { ParameterMode = ParameterMetaDataConstants.Standard }, "标准参数");
+                    AddBackstageViewPage(new ConfigFriendlyParams { ParameterMode = ParameterMetaDataConstants.Advanced }, "高级参数",null,true);
+                    AddBackstageViewPage(new ConfigRawParams(), "所有参数列表", null, true);
 
-                    AddBackstageViewPage(new ConfigRawParamsTree(), "Full Parameter Tree", null, true);
+                    AddBackstageViewPage(new ConfigRawParamsTree(), "所有参数树形", null, true);
 
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.Ateryx)
                     {
-                        start = AddBackstageViewPage(new ConfigFlightModes(), "Flight Modes");
+                        start = AddBackstageViewPage(new ConfigFlightModes(), "飞行模式");
                         AddBackstageViewPage(new ConfigAteryxSensors(), "Ateryx Zero Sensors");
                         AddBackstageViewPage(new ConfigAteryx(), "Ateryx Pids");
                     }
 
                     if (MainV2.comPort.MAV.cs.firmware == MainV2.Firmwares.ArduTracker)
                     {
-                        start = AddBackstageViewPage(new ConfigRawParams(), "Full Parameter List", null, true);
+                        start = AddBackstageViewPage(new ConfigRawParams(), "全参数列表", null, true);
                     }
 
                     AddBackstageViewPage(new ConfigPlanner(), "Planner");

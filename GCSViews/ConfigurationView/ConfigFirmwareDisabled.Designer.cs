@@ -38,9 +38,8 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(411, 78);
             this.label1.TabIndex = 0;
-            this.label1.Text = "You cannot load new firmware while connected via MAVLink. \r\n\r\nPlease press the Di" +
-    "sconnect button at top right to end the current MAVLink session and enable the f" +
-    "irmware loading screen.";
+            this.label1.Text = "当你通过MavLink连接的时候不能加载固件. \r\n\r\n请点击断开按钮断开MavLink连接";
+   
             // 
             // ConfigFirmwareDisabled
             // 

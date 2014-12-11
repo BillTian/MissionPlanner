@@ -222,7 +222,7 @@ namespace System
                     var but = new MyButton
                                   {
                                       Size = new Size(75, 23),
-                                      Text = "OK",
+                                      Text = "确定",
                                       Left = msgBoxFrm.Width - 100 - FORM_X_MARGIN,
                                       Top = msgBoxFrm.Height - 40 - FORM_Y_MARGIN - titleHeight
                                   };
@@ -240,7 +240,7 @@ namespace System
                     var butyes = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "Yes",
+                        Text = "是",
                         Left = msgBoxFrm.Width - 75 * 2 - FORM_X_MARGIN * 2,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -252,7 +252,7 @@ namespace System
                     var butno = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "No",
+                        Text = "否",
                         Left = msgBoxFrm.Width - 75 - FORM_X_MARGIN,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -270,7 +270,7 @@ namespace System
                     var butok = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "OK",
+                        Text = "确定",
                         Left = msgBoxFrm.Width - 75 * 2 - FORM_X_MARGIN * 2,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };
@@ -282,7 +282,7 @@ namespace System
                     var butcancel = new MyButton
                     {
                         Size = new Size(75, 23),
-                        Text = "Cancel",
+                        Text = "取消",
                         Left = msgBoxFrm.Width - 75 - FORM_X_MARGIN,
                         Top = msgBoxFrm.Height - 23 - FORM_Y_MARGIN - titleHeight
                     };

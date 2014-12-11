@@ -326,6 +326,9 @@
     </Compile>
     <Compile Include="Controls\Waypoints\Spline2.cs" />
     <Compile Include="Controls\Waypoints\Spline.cs" />
+    <Compile Include="GCSViews\ArduinoSTK.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GCSViews\ConfigurationView\ConfigAccelerometerCalibrationTracker.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -367,6 +370,23 @@
     </Compile>
     <Compile Include="GCSViews\ConfigurationView\ConfigWizard.Designer.cs">
       <DependentUpon>ConfigWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\ConfigurationView\MavlinkOther.cs" />
+    <Compile Include="GCSViews\ConfigurationView\mcm.cs" />
+    <Compile Include="GCSViews\ConfigurationView\MinimOSD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\ConfigurationView\MinimOSD.Designer.cs">
+      <DependentUpon>MinimOSD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\ConfigurationView\Panels.cs" />
+    <Compile Include="GCSViews\ConfigurationView\Tools.cs" />
+    <Compile Include="GCSViews\ConfigurationView\Tuple.cs" />
+    <Compile Include="GCSViews\Share.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\Share.Designer.cs">
+      <DependentUpon>Share.cs</DependentUpon>
     </Compile>
     <Compile Include="Joystick\Joy_Do_Repeat_Servo.cs">
       <SubType>Form</SubType>
@@ -812,6 +832,9 @@
     <EmbeddedResource Include="GCSViews\InitialSetup.zh-TW.resx">
       <DependentUpon>InitialSetup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\Share.resx">
+      <DependentUpon>Share.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\Simple.zh-Hant.resx">
       <DependentUpon>Simple.cs</DependentUpon>
     </EmbeddedResource>
@@ -829,6 +852,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\Terminal.zh-TW.resx">
       <DependentUpon>Terminal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ConfigurationView\MinimOSD.resx">
+      <DependentUpon>MinimOSD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="georefimage.zh-Hant.resx">
       <DependentUpon>georefimage.cs</DependentUpon>
@@ -1058,6 +1084,7 @@
     <None Include="airports.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Drivers\amd64\ftd2xx.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1238,6 +1265,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConnectionControl.resx">
       <DependentUpon>ConnectionControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Waypoints\Command.resx">
       <DependentUpon>Command.cs</DependentUpon>
@@ -1287,6 +1315,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainV2.zh-Hans.resx">
       <DependentUpon>MainV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MovingBase.de-DE.resx">
       <DependentUpon>MovingBase.cs</DependentUpon>
@@ -1347,6 +1376,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigMandatory.resx">
       <DependentUpon>ConfigMandatory.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigMount.de-DE.resx">
       <DependentUpon>ConfigMount.cs</DependentUpon>
@@ -1356,6 +1386,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigOptional.resx">
       <DependentUpon>ConfigOptional.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigPlanner.it-IT.resx">
       <DependentUpon>ConfigPlanner.cs</DependentUpon>
@@ -1913,6 +1944,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConnectionStats.resx">
       <DependentUpon>ConnectionStats.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ModifyandSet.resx">
       <DependentUpon>ModifyandSet.cs</DependentUpon>
@@ -2526,6 +2558,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainV2.resx">
       <DependentUpon>MainV2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigFirmware.resx">
       <DependentUpon>ConfigFirmware.cs</DependentUpon>
@@ -6267,6 +6300,7 @@
     <None Include="Resources\PlusFramesGreen_06.png" />
     <None Include="Resources\pixhawk.jpg" />
     <Content Include="Resources\rover.png" />
+    <None Include="Resources\share.png" />
     <Content Include="Resources\splash.jpg" />
     <Content Include="Scripts\datetime.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

@@ -118,28 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CMB_history_label.Text" xml:space="preserve">
-    <value>Pick previous firmware</value>
+    <value>选择老版本固件</value>
   </data>
   <data name="lbl_devfw.Text" xml:space="preserve">
-    <value>Beta firmwares</value>
+    <value>测试版固件</value>
   </data>
   <data name="lbl_dlfw.Text" xml:space="preserve">
-    <value>Download firmwares</value>
+    <value>手动下载固件</value>
   </data>
   <data name="lbl_px4io.Text" xml:space="preserve">
-    <value>PX4IO Firmware</value>
+    <value>PX4IO 固件</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Images by Max Levine</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Please click the images above for "Flight versions"</value>
+    <value>点击上面的图片加载对应的固件</value>
   </data>
   <data name="lbl_status.Text" xml:space="preserve">
-    <value>Status</value>
+    <value>状态</value>
   </data>
   <data name="lbl_Custom_firmware_label.Text" xml:space="preserve">
-    <value>Load custom firmware</value>
+    <value>从磁盘加载固件</value>
   </data>
   <data name="BUT_setup.Text" xml:space="preserve">
     <value>APM Setup (Plane and Quad)</value>

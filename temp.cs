@@ -810,7 +810,7 @@ namespace MissionPlanner
         {
             GMapControl MainMap = new GMapControl();
 
-            MainMap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+            MainMap.MapProvider = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
 
             MainMap.CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + "/gmapcache/";
 
@@ -888,7 +888,7 @@ namespace MissionPlanner
         private void BUT_clearcustommaps_Click(object sender, EventArgs e)
         {
             GMapControl MainMap = new GMapControl();
-            MainMap.MapProvider = GMap.NET.MapProviders.GoogleSatelliteMapProvider.Instance;
+            MainMap.MapProvider = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
 
             int removed = MainMap.Manager.PrimaryCache.DeleteOlderThan(DateTime.Now, Maps.Custom.Instance.DbId);
 
@@ -1569,6 +1569,11 @@ namespace MissionPlanner
         private void but_terrain_Click(object sender, EventArgs e)
         {
             MainV2.comPort.Terrain.checkTerrain(MainV2.comPort.MAV.cs.HomeLocation.Lat, MainV2.comPort.MAV.cs.HomeLocation.Lng);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

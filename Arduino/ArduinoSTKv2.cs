@@ -265,7 +265,7 @@ namespace MissionPlanner.Arduino
 
 
                 if (Progress != null)
-                    Progress((int)(((float)startaddress / (float)length) * 100), "Uploading Firmware");
+                    Progress((int)(((float)startaddress / (float)length) * 100), "固件上传中");
 
                 if (command[1] != 0)
                 {

@@ -384,4 +384,7 @@
   <data name="lbl_hdop.ToolTip" xml:space="preserve">
     <value>gps hdop</value>
   </data>
+  <data name="tabPagemessages.Text" xml:space="preserve">
+    <value>消息</value>
+  </data>
 </root>
