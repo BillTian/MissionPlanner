@@ -159,7 +159,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                         MainV2.comPort.setParam("SUPER_SIMPLE", value);
                 }
             }
-            catch { CustomMessageBox.Show("Failed to set Flight modes", "Error"); }
+            catch { CustomMessageBox.Show(Strings.ErrorSettingParameter, Strings.ERROR); }
             BUT_SaveModes.Text = "Complete";
         }
 
@@ -318,7 +318,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void linkLabel1_ss_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://copter.ardupilot.com/wiki/flight-modes/simpleandsuper-simple-modes/");
+            try
+            {
+                System.Diagnostics.Process.Start("http://copter.ardupilot.com/wiki/flight-modes/simpleandsuper-simple-modes/");
+            }
+            catch { CustomMessageBox.Show(Strings.ERROR + " http://copter.ardupilot.com/wiki/flight-modes/simpleandsuper-simple-modes/"); }
         }
 
         private void flightmode_SelectedIndexChanged(object sender, EventArgs e)

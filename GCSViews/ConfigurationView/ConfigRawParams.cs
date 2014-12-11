@@ -138,9 +138,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 Hashtable data = new Hashtable();
                 foreach (DataGridViewRow row in Params.Rows)
                 {
-                    float value = float.Parse(row.Cells[1].Value.ToString());
+                    try
+                    {
+                        float value = float.Parse(row.Cells[1].Value.ToString());
 
-                    data[row.Cells[0].Value.ToString()] = value;
+                        data[row.Cells[0].Value.ToString()] = value;
+                    }
+                    catch (Exception ex) { CustomMessageBox.Show(Strings.InvalidNumberEntered + " " + row.Cells[0].Value.ToString()); }
                 }
 
                 Utilities.ParamFile.SaveParamFile(sfd.FileName,data);
@@ -226,7 +230,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             if (!MainV2.comPort.BaseStream.IsOpen)
                 return;
 
-            if (DialogResult.OK == CustomMessageBox.Show("Update Params\nDON'T DO THIS IF YOU ARE IN THE AIR\n", "Error", MessageBoxButtons.OKCancel))
+            if (DialogResult.OK == CustomMessageBox.Show(Strings.WarningUpdateParamList, Strings.ERROR, MessageBoxButtons.OKCancel))
             {
                 ((Control)sender).Enabled = false;
 
@@ -237,7 +241,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 catch (Exception ex)
                 {
                     log.Error("Exception getting param list", ex);
-                    CustomMessageBox.Show("Error: getting param list", "Error");
+                    CustomMessageBox.Show(Strings.ErrorReceivingParams, Strings.ERROR);
                 }
 
 
@@ -497,7 +501,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 CustomMessageBox.Show("Your board is now rebooting, You will be required to reconnect to the autopilot.");
                 }
-                catch (Exception ex) { log.Error(ex); CustomMessageBox.Show("Error talking to board."+ex.ToString(), "Error"); }
+                catch (Exception ex) { log.Error(ex); CustomMessageBox.Show(Strings.ErrorCommunicating +"\n"+ ex.ToString(), Strings.ERROR); }
             }
         }
     }

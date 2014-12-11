@@ -125,6 +125,18 @@ S15: MAX_WINDOW=131
                 }
 
             }
+            else if (device == uploader.Uploader.Board.DEVICE_ID_RFD900U)
+            {
+                if (beta)
+                {
+                    return Common.getFilefromNet("http://rfdesign.com.au/firmware/RFD_SiK_V1.10_BETA_rfd900u.ihx", firmwarefile);
+                }
+                else
+                {
+                    return Common.getFilefromNet("http://rfdesign.com.au/firmware/RFD_SiK_V1.9_rfd900u.ihx", firmwarefile);
+                }
+
+            }
             else
             {
                 return false;
@@ -241,7 +253,7 @@ S15: MAX_WINDOW=131
                 {
                     comPort.Open();
                 }
-                catch { CustomMessageBox.Show("Error opening port", "error"); return; }
+                catch { CustomMessageBox.Show("Error opening port", "Error"); return; }
 
                 uploader.ProgressEvent += new ProgressEventHandler(uploader_ProgressEvent);
                 uploader.LogEvent += new LogEventHandler(uploader_LogEvent);
@@ -864,7 +876,14 @@ S15: MAX_WINDOW=131
             {
                 var temp1 = Serial_ReadLine(comPort);
             }
-            catch { comPort.ReadExisting(); }
+            catch 
+            {
+                try
+                {
+                    comPort.ReadExisting();
+                }
+                catch { return ""; }
+            }
             Sleep(100);
             comPort.DiscardInBuffer();
             lbl_status.Text = "Doing Command " + cmd;

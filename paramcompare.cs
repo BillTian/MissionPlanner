@@ -79,7 +79,7 @@ namespace MissionPlanner
                         }
                     }
                 }
-                catch { CustomMessageBox.Show("Error setting parameter, are you still connected?", "Error"); return; }
+                catch { CustomMessageBox.Show(Strings.ErrorSettingParameter, Strings.ERROR); return; }
             }
             else
             {
