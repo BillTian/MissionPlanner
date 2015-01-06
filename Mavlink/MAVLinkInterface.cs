@@ -17,7 +17,6 @@ using MissionPlanner.Comms;
 using MissionPlanner.Utilities;
 using System.Windows.Forms;
 using MissionPlanner.HIL;
-using MissionPlanner.Mavlink;
 
 namespace MissionPlanner
 {
@@ -227,7 +226,7 @@ namespace MissionPlanner
             frmProgressReporter = new ProgressReporterDialogue
                                       {
                                           StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                                          Text = MAVLinkT.ConnectingMavlink
+                                          Text = Strings.ConnectingMavlink
                                       };
 
             if (getparams)
@@ -238,7 +237,7 @@ namespace MissionPlanner
             {
                 frmProgressReporter.DoWork += FrmProgressReporterDoWorkNOParams;
             }
-            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.MavlinkConnecting);
+            frmProgressReporter.UpdateProgressAndStatus(-1, Strings.MavlinkConnecting);
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -261,7 +260,7 @@ namespace MissionPlanner
 
         private void OpenBg(object PRsender, bool getparams, ProgressWorkerEventArgs progressWorkerEventArgs)
         {
-            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.MavlinkConnecting);
+            frmProgressReporter.UpdateProgressAndStatus(-1, Strings.MavlinkConnecting);
 
             giveComport = true;
 
@@ -298,7 +297,7 @@ namespace MissionPlanner
                 countDown.Elapsed += (sender, e) =>
                 {
                     int secondsRemaining = (deadline - e.SignalTime).Seconds;
-                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format(MAVLinkT.Trying, secondsRemaining));
+                    frmProgressReporter.UpdateProgressAndStatus(-1, string.Format(Strings.Trying, secondsRemaining));
                     if (secondsRemaining > 0) countDown.Start();
                 };
                 countDown.Start();
@@ -328,8 +327,8 @@ namespace MissionPlanner
 
                         if (hbseen)
                         {
-                            progressWorkerEventArgs.ErrorMessage = MAVLinkT.Only1Hb;
-                            throw new Exception(MAVLinkT.Only1HbD);
+                            progressWorkerEventArgs.ErrorMessage = Strings.Only1Hb;
+                            throw new Exception(Strings.Only1HbD);
                         }
                         else
                         {
@@ -420,13 +419,13 @@ Please check the following
                 catch { }
                 giveComport = false;
                 if (string.IsNullOrEmpty(progressWorkerEventArgs.ErrorMessage))
-                    progressWorkerEventArgs.ErrorMessage = MAVLinkT.ConnectFailed;
+                    progressWorkerEventArgs.ErrorMessage = Strings.ConnectFailed;
                 log.Error(e);
                 throw;
             }
             //frmProgressReporter.Close();
             giveComport = false;
-            frmProgressReporter.UpdateProgressAndStatus(100, MAVLinkT.Done);
+            frmProgressReporter.UpdateProgressAndStatus(100, Strings.Done);
             log.Info("Done open " + MAV.sysid + " " + MAV.compid);
             MAV.packetslost = 0;
             MAV.synclost = 0;
@@ -466,6 +465,8 @@ Please check the following
 
                         if (hb.type != (byte)MAVLink.MAV_TYPE.GCS)
                         {
+                            SetupMavConnect(buffer[3], buffer[4], buffer[2], hb);
+
                             giveComport = false;
                             return buffer;
                         }
@@ -730,11 +731,11 @@ Please check the following
             frmProgressReporter = new ProgressReporterDialogue
             {
                 StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen,
-                Text = MAVLinkT.GettingParams
+                Text = Strings.GettingParams
             };
 
             frmProgressReporter.DoWork += FrmProgressReporterGetParams;
-            frmProgressReporter.UpdateProgressAndStatus(-1, MAVLinkT.GettingParamsD);
+            frmProgressReporter.UpdateProgressAndStatus(-1, Strings.GettingParamsD);
             ThemeManager.ApplyThemeTo(frmProgressReporter);
 
             frmProgressReporter.RunBackgroundOperationAsync();
@@ -774,7 +775,6 @@ Please check the following
             // clear old
             MAV.param = new Hashtable();
 
-            int retrys = 6;
             int param_count = 0;
             int param_total = 1;
 
@@ -912,7 +912,7 @@ Please check the following
 
                         //Console.WriteLine(DateTime.Now.Millisecond + " gp3 ");
 
-                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, MAVLinkT.Gotparam + paramID);
+                        this.frmProgressReporter.UpdateProgressAndStatus((indexsreceived.Count * 100) / param_total, Strings.Gotparam + paramID);
 
                         // we hit the last param - lets escape eq total = 176 index = 0-175
                         if (par.param_index == (param_total - 1))
@@ -920,7 +920,7 @@ Please check the following
                     }
                     if (buffer[5] == (byte)MAVLINK_MSG_ID.STATUSTEXT) 
                     {
-                        var msg = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.STATUSTEXT].ByteArrayToStructure<MAVLink.mavlink_statustext_t>(6);
+                        var msg = buffer.ByteArrayToStructure<MAVLink.mavlink_statustext_t>(6);
 
                         string logdata = Encoding.ASCII.GetString(msg.text);
 
@@ -1248,11 +1248,6 @@ Please check the following
             req.target_system = MAV.sysid;
             req.target_component = MAV.compid;
 
-            if (actionid == MAV_CMD.COMPONENT_ARM_DISARM)
-            {
-                req.target_component = (byte)MAV_COMPONENT.MAV_COMP_ID_SYSTEM_CONTROL;
-            }
-
             req.command = (ushort)actionid;
 
             req.param1 = p1;
@@ -1264,6 +1259,16 @@ Please check the following
             req.param7 = p7;
 
             log.InfoFormat("doCommand cmd {0} {1} {2} {3} {4} {5} {6} {7}",actionid.ToString(),p1,p2,p3,p4,p5,p6,p7);
+
+            // send old style, then new style
+            if (actionid == MAV_CMD.COMPONENT_ARM_DISARM)
+            {
+                req.target_component = (byte)MAV_COMPONENT.MAV_COMP_ID_SYSTEM_CONTROL;
+
+                generatePacket((byte)MAVLINK_MSG_ID.COMMAND_LONG, req);
+
+                req.target_component = MAV.compid;
+            }
 
             generatePacket((byte)MAVLINK_MSG_ID.COMMAND_LONG, req);
 
@@ -2714,7 +2719,8 @@ Please check the following
             if (buffer[5] == (byte)MAVLINK_MSG_ID.MISSION_COUNT)
             {
                 // clear old
-                MAVlist[sysid].wps.Clear();
+                mavlink_mission_count_t wp = buffer.ByteArrayToStructure<mavlink_mission_count_t>(6);
+                MAVlist[wp.target_system].wps.Clear();
             }
 
             if (buffer[5] == (byte)MAVLink.MAVLINK_MSG_ID.MISSION_ITEM)
@@ -2724,11 +2730,11 @@ Please check the following
                 if (wp.current == 2)
                 {
                     // guide mode wp
-                    MAVlist[sysid].GuidedMode = wp;
+                    MAVlist[wp.target_system].GuidedMode = wp;
                 }
                 else
                 {
-                    MAVlist[sysid].wps[wp.seq] = wp;
+                    MAVlist[wp.target_system].wps[wp.seq] = wp;
                 }
 
                 Console.WriteLine("WP # {7} cmd {8} p1 {0} p2 {1} p3 {2} p4 {3} x {4} y {5} z {6}", wp.param1, wp.param2, wp.param3, wp.param4, wp.x, wp.y, wp.z, wp.seq, wp.command);
@@ -2738,7 +2744,7 @@ Please check the following
             {
                 mavlink_rally_point_t rallypt = buffer.ByteArrayToStructure<mavlink_rally_point_t>(6);
 
-                MAVlist[sysid].rallypoints[rallypt.idx] = rallypt;
+                MAVlist[rallypt.target_system].rallypoints[rallypt.idx] = rallypt;
 
                 Console.WriteLine("RP # {0} {1} {2} {3} {4}", rallypt.idx, rallypt.lat,rallypt.lng,rallypt.alt, rallypt.break_alt);
             }
@@ -2747,7 +2753,7 @@ Please check the following
             {
                 mavlink_fence_point_t fencept = buffer.ByteArrayToStructure<mavlink_fence_point_t>(6);
 
-                MAVlist[sysid].fencepoints[fencept.idx] = fencept;
+                MAVlist[fencept.target_system].fencepoints[fencept.idx] = fencept;
             }
         }
 

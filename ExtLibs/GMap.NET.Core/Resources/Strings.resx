@@ -112,15 +112,48 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Desc" xml:space="preserve">
-    <value>Description: </value>
+  <data name="AMap" xml:space="preserve">
+    <value>AMap</value>
   </data>
-  <data name="Units" xml:space="preserve">
-    <value>Units: {0}{1}</value>
+  <data name="AMapSatellite" xml:space="preserve">
+    <value>AMapSatellite</value>
+  </data>
+  <data name="BingHybridMap" xml:space="preserve">
+    <value>BingHybridMap</value>
+  </data>
+  <data name="BingMap" xml:space="preserve">
+    <value>BingMap</value>
+  </data>
+  <data name="BingSatelliteMap" xml:space="preserve">
+    <value>BingSatelliteMap</value>
+  </data>
+  <data name="GoogleChinaHybridMap" xml:space="preserve">
+    <value>GoogleChinaHybridMap</value>
+  </data>
+  <data name="GoogleChinaMap" xml:space="preserve">
+    <value>GoogleChinaMap</value>
+  </data>
+  <data name="GoogleChinaSatelliteMap" xml:space="preserve">
+    <value>GoogleChinaSatelliteMap</value>
+  </data>
+  <data name="GoogleChinaTerrainMap" xml:space="preserve">
+    <value>GoogleChinaTerrainMap</value>
+  </data>
+  <data name="GoogleHybridMap" xml:space="preserve">
+    <value>GoogleHybridMap</value>
+  </data>
+  <data name="GoogleMap" xml:space="preserve">
+    <value>GoogleMap</value>
+  </data>
+  <data name="GoogleSatelliteMap" xml:space="preserve">
+    <value>GoogleSatelliteMap</value>
+  </data>
+  <data name="GoogleTerrainMap" xml:space="preserve">
+    <value>GoogleTerrainMap</value>
   </data>
 </root>

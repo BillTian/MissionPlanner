@@ -151,8 +151,6 @@ namespace MissionPlanner.GCSViews
                 routes.Dispose();
             if (route != null)
                 route.Dispose();
-            if (polygon != null)
-                polygon.Dispose();
             if (marker != null)
                 marker.Dispose();
             if (aviwriter != null)
@@ -180,6 +178,8 @@ namespace MissionPlanner.GCSViews
             mymap = gMapControl1;
             myhud = hud1;
             MainHcopy = MainH;
+
+            mymap.Paint += mymap_Paint;
 
             //  mymap.Manager.UseMemoryCache = false;
 
@@ -306,6 +306,11 @@ namespace MissionPlanner.GCSViews
 
             // first run
             MainV2_AdvancedChanged(null, null);
+        }
+
+        void mymap_Paint(object sender, PaintEventArgs e)
+        {
+            distanceBar1.Invalidate();
         }
 
         void comPort_MavChanged(object sender, EventArgs e)
@@ -994,6 +999,12 @@ namespace MissionPlanner.GCSViews
                             //Console.WriteLine("Doing FD WP's");
                             updateClearMissionRouteMarkers();
 
+                            float dist = 0;
+                            float travdist = 0;
+                            distanceBar1.ClearWPDist();
+                            MAVLink.mavlink_mission_item_t lastplla = new MAVLink.mavlink_mission_item_t();
+                            MAVLink.mavlink_mission_item_t home = new MAVLink.mavlink_mission_item_t(); 
+
                             foreach (MAVLink.mavlink_mission_item_t plla in MainV2.comPort.MAV.wps.Values)
                             {
                                 if (plla.x == 0 || plla.y == 0)
@@ -1009,14 +1020,45 @@ namespace MissionPlanner.GCSViews
                                 if (plla.seq == 0 && plla.current != 2)
                                 {
                                     tag = "Home";
+                                    home = plla;
                                 }
                                 if (plla.current == 2)
                                 {
                                     continue;
                                 }
 
+                                if (lastplla.command == 0)
+                                    lastplla = plla;
+
+                                try
+                                {
+                                    dist = (float)new PointLatLngAlt(plla.x, plla.y).GetDistance(new PointLatLngAlt(lastplla.x, lastplla.y));
+
+                                    distanceBar1.AddWPDist(dist);
+
+                                    if (plla.seq <= MainV2.comPort.MAV.cs.wpno)
+                                    {
+                                        travdist += dist;
+                                    }
+
+                                    lastplla = plla;
+                                }
+                                catch { }
+
                                 addpolygonmarker(tag, plla.y, plla.x, (int)plla.z, Color.White, polygons);
                             }
+
+                            try
+                            {
+                                //dist = (float)new PointLatLngAlt(home.x, home.y).GetDistance(new PointLatLngAlt(lastplla.x, lastplla.y));
+                               // distanceBar1.AddWPDist(dist);
+                            }
+                            catch { }
+
+                            travdist -= MainV2.comPort.MAV.cs.wp_dist;
+
+                            if (MainV2.comPort.MAV.cs.mode.ToUpper() == "AUTO")
+                                distanceBar1.traveleddist = travdist;
 
                             RegeneratePolygon();
 
@@ -1220,6 +1262,7 @@ namespace MissionPlanner.GCSViews
             // not async
             this.Invoke((System.Windows.Forms.MethodInvoker)delegate()
             {
+                polygons.Routes.Clear();
                 polygons.Markers.Clear();
                 routes.Markers.Clear();
             });
@@ -1425,31 +1468,32 @@ namespace MissionPlanner.GCSViews
                 }
             }
 
-            if (polygon == null)
-            {
-                polygon = new GMapPolygon(polygonPoints, "polygon test");
-                polygons.Polygons.Add(polygon);
-            }
-            else
-            {
-                polygon.Points.Clear();
-                polygon.Points.AddRange(polygonPoints);
+            if (polygonPoints.Count < 2)
+                return;
 
-                polygon.Stroke = new Pen(Color.Yellow, 4);
-                polygon.Fill = Brushes.Transparent;
+            GMapRoute homeroute = new GMapRoute("homepath");
+            homeroute.Stroke = new Pen(Color.Yellow, 2);
+            homeroute.Stroke.DashStyle = DashStyle.Dash;
+            // add first point past home
+            homeroute.Points.Add(polygonPoints[1]);
+            // add home location
+            homeroute.Points.Add(polygonPoints[0]);
+            // add last point
+            homeroute.Points.Add(polygonPoints[polygonPoints.Count - 1]);
 
-                if (polygons.Polygons.Count == 0)
-                {
-                    polygons.Polygons.Add(polygon);
-                }
-                else
-                {
-                    gMapControl1.UpdatePolygonLocalPosition(polygon);
-                }
+            GMapRoute wppath = new GMapRoute("wp path");
+            wppath.Stroke = new Pen(Color.Yellow, 4);
+
+            for (int a = 1; a < polygonPoints.Count; a++)
+            {
+                wppath.Points.Add(polygonPoints[a]);
             }
+
+            polygons.Routes.Add(homeroute);
+            polygons.Routes.Add(wppath);
+
         }
 
-        GMapPolygon polygon;
         GMapOverlay polygons;
         GMapOverlay routes;
         GMapRoute route;
@@ -1809,13 +1853,15 @@ namespace MissionPlanner.GCSViews
                 {
                     BUT_clear_track_Click(null, null);
 
-                    MainV2.comPort.logreadmode = false;
+                    MainV2.comPort.logreadmode = true;
                     MainV2.comPort.logplaybackfile = new BinaryReader(File.OpenRead(file));
                     MainV2.comPort.lastlogread = DateTime.MinValue;
 
                     LBL_logfn.Text = Path.GetFileName(file);
 
                     log.Info("Open logfile " + file);
+
+                    MainV2.comPort.getHeartBeat();
 
                     tracklog.Value = 0;
                     tracklog.Minimum = 0;
@@ -2202,6 +2248,8 @@ namespace MissionPlanner.GCSViews
                 selectform.Controls.Add(chk_box);
             }
 
+            ThemeManager.ApplyThemeTo(selectform);
+
             y += 20;
 
             object thisBoxed = MainV2.comPort.MAV.cs;
@@ -2230,26 +2278,58 @@ namespace MissionPlanner.GCSViews
 
                 CheckBox chk_box = new CheckBox();
 
+                ThemeManager.ApplyThemeTo(chk_box);
+
                 if (list1item != null && list1item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list2item != null && list2item.Name == field.Name)
-                    chk_box.Checked = true;
+                {
+                    chk_box.Checked = true; 
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list3item != null && list3item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list4item != null && list4item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list5item != null && list5item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list6item != null && list6item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list7item != null && list7item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list8item != null && list8item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list9item != null && list9item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
                 if (list10item != null && list10item.Name == field.Name)
+                {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
+                }
 
                 chk_box.Text = field.Name;
                 chk_box.Name = field.Name;
@@ -2272,7 +2352,7 @@ namespace MissionPlanner.GCSViews
                     selectform.Width = x + 100;
                 }
             }
-            ThemeManager.ApplyThemeTo(selectform);
+            
             selectform.Show();
         }
 
@@ -2286,6 +2366,8 @@ namespace MissionPlanner.GCSViews
                 Height = 410,
                 Text = "Display This"
             };
+
+            ThemeManager.ApplyThemeTo(selectform);
 
             int x = 10;
             int y = 10;
@@ -2316,6 +2398,8 @@ namespace MissionPlanner.GCSViews
 
                 CheckBox chk_box = new CheckBox();
 
+                ThemeManager.ApplyThemeTo(chk_box);
+
                 chk_box.Text = field.Name;
                 chk_box.Name = field.Name;
                 chk_box.Tag = (sender);
@@ -2324,6 +2408,7 @@ namespace MissionPlanner.GCSViews
                 if (hud1.CustomItems.ContainsKey(field.Name))
                 {
                     chk_box.Checked = true;
+                    chk_box.BackColor = Color.Green;
                 }
 
                 chk_box.CheckedChanged += chk_box_hud_UserItem_CheckedChanged;
@@ -2343,7 +2428,7 @@ namespace MissionPlanner.GCSViews
                     selectform.Width = x + 100;
                 }
             }
-            ThemeManager.ApplyThemeTo(selectform);
+           
             selectform.Show();
         }
 
@@ -2360,6 +2445,8 @@ namespace MissionPlanner.GCSViews
         {
             if (((CheckBox)sender).Checked)
             {
+                ((CheckBox)sender).BackColor = Color.Green;
+
                 HUD.Custom cust = new HUD.Custom();
                 HUD.Custom.src = MainV2.comPort.MAV.cs;
 
@@ -2378,6 +2465,8 @@ namespace MissionPlanner.GCSViews
             }
             else
             {
+                ((CheckBox)sender).BackColor = Color.Transparent;
+
                 if (hud1.CustomItems.ContainsKey(((CheckBox)sender).Name))
                 {
                     hud1.CustomItems.Remove(((CheckBox)sender).Name);
@@ -2403,6 +2492,8 @@ namespace MissionPlanner.GCSViews
         {
             if (((CheckBox)sender).Checked)
             {
+                ((CheckBox)sender).BackColor = Color.Green;
+
                 if (list1item == null)
                 {
                     if (setupPropertyInfo(ref list1item, ((CheckBox)sender).Name, MainV2.comPort.MAV.cs))
@@ -2503,6 +2594,8 @@ namespace MissionPlanner.GCSViews
             }
             else
             {
+                ((CheckBox)sender).BackColor = Color.Transparent;
+
                 // reset old stuff
                 if (list1item != null && list1item.Name == ((CheckBox)sender).Name)
                 {
