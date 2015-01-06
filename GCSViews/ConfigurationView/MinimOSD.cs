@@ -100,7 +100,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 // load default bg picture
                 try
                 {
-                    bgpicture = Image.FromFile("vlcsnap-2012-01-28-07h46m04s95.png");
+                    string imgFile = String.Format("{0}{1}{2}", Application.StartupPath, Path.DirectorySeparatorChar, "vlcsnap-2012-01-28-07h46m04s95.png");
+                    bgpicture = Image.FromFile(imgFile);
                 }
                 catch { }
                 for (int i = 0; i < npanel; i++)

@@ -787,7 +787,7 @@ namespace MissionPlanner
             {
                 Share.webBrowser1.Visible = true;
                 Share.init = true;
-                Share.webBrowser1.Url = new Uri("http://playuav.com");
+                Share.webBrowser1.Url = new Uri("http://www.playuav.com/analyzer/map");
             }
             MyView.ShowScreen("Share");
 
