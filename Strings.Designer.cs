@@ -61,11 +61,29 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 Advanced Params 的本地化字符串。
+        /// </summary>
+        public static string AdvancedParams {
+            get {
+                return ResourceManager.GetString("AdvancedParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Bad Lat/Lng 的本地化字符串。
         /// </summary>
         public static string BadCoords {
             get {
                 return ResourceManager.GetString("BadCoords", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Basic Tuning 的本地化字符串。
+        /// </summary>
+        public static string BasicTuning {
+            get {
+                return ResourceManager.GetString("BasicTuning", resourceCulture);
             }
         }
         
@@ -79,12 +97,166 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 Cant detect your Board version. Please check your cabling 的本地化字符串。
+        /// </summary>
+        public static string CantDetectBoardVersion {
+            get {
+                return ResourceManager.GetString("CantDetectBoardVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Checking  的本地化字符串。
+        /// </summary>
+        public static string Checking {
+            get {
+                return ResourceManager.GetString("Checking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Check port settings or Port in use? 的本地化字符串。
+        /// </summary>
+        public static string CheckPortSettingsOr {
+            get {
+                return ResourceManager.GetString("CheckPortSettingsOr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 The Command failed to execute
         /// 的本地化字符串。
         /// </summary>
         public static string CommandFailed {
             get {
                 return ResourceManager.GetString("CommandFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Communication Error - no connection 的本地化字符串。
+        /// </summary>
+        public static string CommunicationErrorNoConnection {
+            get {
+                return ResourceManager.GetString("CommunicationErrorNoConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CONNECT 的本地化字符串。
+        /// </summary>
+        public static string CONNECTc {
+            get {
+                return ResourceManager.GetString("CONNECTc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Connect Failed 的本地化字符串。
+        /// </summary>
+        public static string ConnectFailed {
+            get {
+                return ResourceManager.GetString("ConnectFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Connecting Mavlink 的本地化字符串。
+        /// </summary>
+        public static string ConnectingMavlink {
+            get {
+                return ResourceManager.GetString("ConnectingMavlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Description:  的本地化字符串。
+        /// </summary>
+        public static string Desc {
+            get {
+                return ResourceManager.GetString("Desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Detected a 的本地化字符串。
+        /// </summary>
+        public static string DetectedA {
+            get {
+                return ResourceManager.GetString("DetectedA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Detecting Board Version 的本地化字符串。
+        /// </summary>
+        public static string DetectingBoardVersion {
+            get {
+                return ResourceManager.GetString("DetectingBoardVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Disconnect 的本地化字符串。
+        /// </summary>
+        public static string Disconnect {
+            get {
+                return ResourceManager.GetString("Disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DISCONNECT 的本地化字符串。
+        /// </summary>
+        public static string DISCONNECTc {
+            get {
+                return ResourceManager.GetString("DISCONNECTc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Done 的本地化字符串。
+        /// </summary>
+        public static string Done {
+            get {
+                return ResourceManager.GetString("Done", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Downloaded from internet 的本地化字符串。
+        /// </summary>
+        public static string DownloadedFromInternet {
+            get {
+                return ResourceManager.GetString("DownloadedFromInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Downloading from Internet 的本地化字符串。
+        /// </summary>
+        public static string DownloadingFromInternet {
+            get {
+                return ResourceManager.GetString("DownloadingFromInternet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Epprom changed, all your setting will be lost during the update,
+        ///Do you wish to continue? 的本地化字符串。
+        /// </summary>
+        public static string EppromChanged {
+            get {
+                return ResourceManager.GetString("EppromChanged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Epprom format changed ({0) vs {1}) 的本地化字符串。
+        /// </summary>
+        public static string EppromFormatChanged {
+            get {
+                return ResourceManager.GetString("EppromFormatChanged", resourceCulture);
             }
         }
         
@@ -217,6 +389,159 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 Extended Tuning 的本地化字符串。
+        /// </summary>
+        public static string ExtendedTuning {
+            get {
+                return ResourceManager.GetString("ExtendedTuning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to create log - wont log this session 的本地化字符串。
+        /// </summary>
+        public static string Failclog {
+            get {
+                return ResourceManager.GetString("Failclog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed download 的本地化字符串。
+        /// </summary>
+        public static string FailedDownload {
+            get {
+                return ResourceManager.GetString("FailedDownload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed read HEX 的本地化字符串。
+        /// </summary>
+        public static string FailedReadHEX {
+            get {
+                return ResourceManager.GetString("FailedReadHEX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed to read firmware.hex : 的本地化字符串。
+        /// </summary>
+        public static string FailedToReadHex {
+            get {
+                return ResourceManager.GetString("FailedToReadHex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Failed upload 的本地化字符串。
+        /// </summary>
+        public static string FailedUpload {
+            get {
+                return ResourceManager.GetString("FailedUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Flight Modes 的本地化字符串。
+        /// </summary>
+        public static string FlightModes {
+            get {
+                return ResourceManager.GetString("FlightModes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Full Parameter List 的本地化字符串。
+        /// </summary>
+        public static string FullParameterList {
+            get {
+                return ResourceManager.GetString("FullParameterList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Full Parameter Tree 的本地化字符串。
+        /// </summary>
+        public static string FullParameterTree {
+            get {
+                return ResourceManager.GetString("FullParameterTree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GeoFence 的本地化字符串。
+        /// </summary>
+        public static string GeoFence {
+            get {
+                return ResourceManager.GetString("GeoFence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting  的本地化字符串。
+        /// </summary>
+        public static string Getting {
+            get {
+                return ResourceManager.GetString("Getting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting FW List 的本地化字符串。
+        /// </summary>
+        public static string GettingFWList {
+            get {
+                return ResourceManager.GetString("GettingFWList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting FW Version 的本地化字符串。
+        /// </summary>
+        public static string GettingFWVersion {
+            get {
+                return ResourceManager.GetString("GettingFWVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting Params 的本地化字符串。
+        /// </summary>
+        public static string GettingParams {
+            get {
+                return ResourceManager.GetString("GettingParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting Params... 的本地化字符串。
+        /// </summary>
+        public static string GettingParamsD {
+            get {
+                return ResourceManager.GetString("GettingParamsD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Getting updated parameters 的本地化字符串。
+        /// </summary>
+        public static string GettingUpdatedParams {
+            get {
+                return ResourceManager.GetString("GettingUpdatedParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Got param  的本地化字符串。
+        /// </summary>
+        public static string Gotparam {
+            get {
+                return ResourceManager.GetString("Gotparam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Invalid Alt 的本地化字符串。
         /// </summary>
         public static string InvalidAlt {
@@ -231,6 +556,15 @@ namespace MissionPlanner {
         public static string InvalidBaudRate {
             get {
                 return ResourceManager.GetString("InvalidBaudRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Invalid Board Type 的本地化字符串。
+        /// </summary>
+        public static string InvalidBoardType {
+            get {
+                return ResourceManager.GetString("InvalidBoardType", resourceCulture);
             }
         }
         
@@ -299,6 +633,34 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 Mavlink Connecting... 的本地化字符串。
+        /// </summary>
+        public static string MavlinkConnecting {
+            get {
+                return ResourceManager.GetString("MavlinkConnecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 New Firmware 的本地化字符串。
+        /// </summary>
+        public static string NewFirmware {
+            get {
+                return ResourceManager.GetString("NewFirmware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 New firmware available
+        /// 的本地化字符串。
+        /// </summary>
+        public static string NewFirmwareA {
+            get {
+                return ResourceManager.GetString("NewFirmwareA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 No FMT message for  的本地化字符串。
         /// </summary>
         public static string NoFMTMessage {
@@ -308,11 +670,39 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 Only 1 Heatbeat Received 的本地化字符串。
+        /// </summary>
+        public static string Only1Hb {
+            get {
+                return ResourceManager.GetString("Only1Hb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Only 1 Mavlink Heartbeat Packets was read from this port - Verify your hardware is setup correctly
+        ///Mission Planner waits for 2 valid heartbeat packets before connecting 的本地化字符串。
+        /// </summary>
+        public static string Only1HbD {
+            get {
+                return ResourceManager.GetString("Only1HbD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Please connect first 的本地化字符串。
         /// </summary>
         public static string PleaseConnect {
             get {
                 return ResourceManager.GetString("PleaseConnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Please connect and backup your config in the configuration tab. 的本地化字符串。
+        /// </summary>
+        public static string PleaseConnectAndBackupConfig {
+            get {
+                return ResourceManager.GetString("PleaseConnectAndBackupConfig", resourceCulture);
             }
         }
         
@@ -335,11 +725,148 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   查找类似 
+        ///Please upgrade 的本地化字符串。
+        /// </summary>
+        public static string Pleaseup {
+            get {
+                return ResourceManager.GetString("Pleaseup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Sucessfully programmed 的本地化字符串。
+        /// </summary>
+        public static string ProgrammedOK {
+            get {
+                return ResourceManager.GetString("ProgrammedOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Reading Hex 的本地化字符串。
+        /// </summary>
+        public static string ReadingHex {
+            get {
+                return ResourceManager.GetString("ReadingHex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Reading Hex File 的本地化字符串。
+        /// </summary>
+        public static string ReadingHexFile {
+            get {
+                return ResourceManager.GetString("ReadingHexFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Received List 的本地化字符串。
+        /// </summary>
+        public static string ReceivedList {
+            get {
+                return ResourceManager.GetString("ReceivedList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Please select a comport 的本地化字符串。
         /// </summary>
         public static string SelectComport {
             get {
                 return ResourceManager.GetString("SelectComport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Standard Params 的本地化字符串。
+        /// </summary>
+        public static string StandardParams {
+            get {
+                return ResourceManager.GetString("StandardParams", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Your model is still moving are you sure you want to disconnect? 的本地化字符串。
+        /// </summary>
+        public static string Stillmoving {
+            get {
+                return ResourceManager.GetString("Stillmoving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Timeout waiting for autoscan/no mavlink device connected 的本地化字符串。
+        /// </summary>
+        public static string Timeout {
+            get {
+                return ResourceManager.GetString("Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Trying to connect.
+        ///Timeout in {0} 的本地化字符串。
+        /// </summary>
+        public static string Trying {
+            get {
+                return ResourceManager.GetString("Trying", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Units: {0}{1} 的本地化字符串。
+        /// </summary>
+        public static string Units {
+            get {
+                return ResourceManager.GetString("Units", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload Complete 的本地化字符串。
+        /// </summary>
+        public static string UploadComplete {
+            get {
+                return ResourceManager.GetString("UploadComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Uploading {0} bytes to Board: 的本地化字符串。
+        /// </summary>
+        public static string UploadingBytesToBoard {
+            get {
+                return ResourceManager.GetString("UploadingBytesToBoard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Upload succeeded, but verify failed: exp {0} got {1} at  的本地化字符串。
+        /// </summary>
+        public static string UploadSucceededButVerifyFailed {
+            get {
+                return ResourceManager.GetString("UploadSucceededButVerifyFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Verify Complete 的本地化字符串。
+        /// </summary>
+        public static string VerifyComplete {
+            get {
+                return ResourceManager.GetString("VerifyComplete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Verify Firmware 的本地化字符串。
+        /// </summary>
+        public static string VerifyFirmware {
+            get {
+                return ResourceManager.GetString("VerifyFirmware", resourceCulture);
             }
         }
         

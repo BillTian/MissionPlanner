@@ -168,7 +168,7 @@ namespace MissionPlanner.GCSViews
             CreateChart(zg1);
 
             // config map             
-            gMapControl1.MapProvider = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
+            gMapControl1.MapProvider = GMap.NET.MapProviders.GoogleChinaHybridMapProvider.Instance;
             gMapControl1.MinZoom = 1;
             gMapControl1.CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + "/gmapcache/";
 

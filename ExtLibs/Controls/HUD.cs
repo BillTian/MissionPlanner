@@ -9,6 +9,7 @@ using System.IO;
 using System.Drawing.Imaging;
 using System.Collections;
 using System.Threading;
+using System.Xml;
  
 using System.Drawing.Drawing2D;
 using log4net;
@@ -24,6 +25,10 @@ namespace MissionPlanner.Controls
 {
     public class HUD : GLControl
     {
+
+        private Dictionary<string, string> messageDict = new Dictionary<string, string>();
+        private Dictionary<string, string> modeDict = new Dictionary<string, string>();
+
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         object paintlock = new object();
         object streamlock = new object();
@@ -65,6 +70,8 @@ namespace MissionPlanner.Controls
 
         public HUD()
         {
+            LoadXMLFile();
+
             if (this.DesignMode)
             {
                 opengl = false;
@@ -455,7 +462,9 @@ namespace MissionPlanner.Controls
             if (opengl)
             {
                 GL.ClearColor(color);
-            } else 
+
+            }
+            else
             {
                 graphicsObjectGDIP.Clear(color);
             }
@@ -819,6 +828,85 @@ namespace MissionPlanner.Controls
         Pen greenPen = new Pen(Color.Green, 2);
         Pen redPen = new Pen(Color.Red, 2);
 
+
+        private void ReadXml(XmlNodeList nodes)
+        {
+            foreach (XmlNode node in nodes)
+            {
+                if (node.Value != null && node.Value.Trim().Length > 0)
+                {
+                   
+                    Console.WriteLine(node.Value);
+                }
+                ReadXml(node.ChildNodes);
+            }
+        }
+
+        private void LoadXMLFile()
+        {
+          /*  string mpdir = Directory.GetCurrentDirectory()+"/Message.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(mpdir);
+            XmlElement node = doc.DocumentElement;
+            ReadXml(node.ChildNodes);*/
+
+            messageDict.Add("Bad Compass Health", "Bad Compass Health(罗盘不健康)");
+            messageDict.Add("Bad GPS Health", "Bad GPS Health(GPS不健康)");
+            messageDict.Add("Bad Gyro Health", "Bad Gyro Health(陀螺仪不健康)");
+            messageDict.Add("Bad Accel Health", "Bad Accel Health(加速度计不健康)");
+            messageDict.Add("Bad Baro Health", "Bad Baro Health(气压计不健康)");
+            messageDict.Add("Bad LiDAR Health", "Bad LiDAR Health(激光传感器不健康)");
+            messageDict.Add("Bad or No Terrain Data", "Bad or No Terrain Data(地形数据错误)");
+            messageDict.Add("Geofence Breach", "Geofence Breach(围栏冲突)");
+            messageDict.Add("Bad OptFlow Health", "Bad OptFlow Health(光流不健康)");
+            messageDict.Add("Bad AHRS", "Bad AHRS(姿态解算错误)");
+            messageDict.Add("NO RC Receiver", "NO RC Receiver(没有遥控接收机)");
+            messageDict.Add("PreArm: RC not calibrated", "PreArm: RC not calibrated(遥控未校准)");
+            messageDict.Add("PreArm: Baro not healthy", "PreArm: Baro not healthy(气压计不健康)");
+            messageDict.Add("PreArm: Alt disparity", "PreArm: Alt disparity(高度不一致)");
+            messageDict.Add("PreArm: Compass not healthy", "PreArm: Compass not healthy(罗盘不健康)");
+            messageDict.Add("PreArm: Compass not calibrated", "PreArm: Compass not calibrated(罗盘未校准)");
+            messageDict.Add("PreArm: Compass offsets too high", "PreArm: Compass offsets too high(罗盘偏移量太高)");
+            messageDict.Add("PreArm: Check mag field", "PreArm: Check mag field(检查磁场)");
+            messageDict.Add("PreArm: compasses inconsistent", "PreArm: compasses inconsistent(罗盘不一致)");
+            messageDict.Add("PreArm: INS not calibrated", "PreArm: INS not calibrated(惯导未校准)");
+            messageDict.Add("PreArm: INS not healthy", "PreArm: INS not healthy(惯导不健康)");
+            messageDict.Add("PreArm: Check Board Voltage", "PreArm: Check Board Voltage(检测主板电压)");
+            messageDict.Add("PreArm: Ch7&Ch8 Opt cannot be same", "PreArm: Ch7&Ch8 Opt cannot be same(通道7和8选项不能一样");
+            messageDict.Add("PreArm: Check FS_THR_VALUE", "PreArm: Check FS_THR_VALUE(检查油门失控保护值)");
+            messageDict.Add("PreArm: Check ANGLE_MAX", "PreArm: Check ANGLE_MAX(检查ANGLE_MAX参数)");
+            messageDict.Add("PreArm: ACRO_BAL_ROLL/PITCH", "PreArm: ACRO_BAL_ROLL/PITCH(检查ACRO_BAL_ROLL/PITCH参数)");
+            messageDict.Add("PreArm: GPS Glitch", "PreArm: GPS Glitch(GPS干扰)");
+            messageDict.Add("PreArm: Need 3D Fix", "PreArm: Need 3D Fix(需要3D锁定)");
+            messageDict.Add("PreArm: Bad Velocity", "PreArm: Bad Velocity(GPS速度不对)");
+            messageDict.Add("PreArm: High GPS HDOP", "PreArm: High GPS HDOP(高GPS精度)");
+            messageDict.Add("PreArm: Baro not healthy!", "PreArm: Baro not healthy!(气压计不健康)");
+            messageDict.Add("PreArm: Compass not healthy!", "PreArm: Compass not healthy!(罗盘不健康)");
+            messageDict.Add("PreArm: Bad GPS Pos", "PreArm: Bad GPS Pos(GPS坐标不对)");
+            messageDict.Add("PreArm: Battery failsafe on.", "PreArm: Battery failsafe on.(电池失效保护)");
+            messageDict.Add("PreArm: Hardware Safety Switch", "PreArm: Hardware Safety Switch(硬件安全开关)");
+            messageDict.Add("PreArm: Radio failsafe on.", "PreArm: Radio failsafe on.(遥控失效保护)");
+
+         /*   modeDict.Add("Unknown", "Unknown(未知)");
+            modeDict.Add("Stabilize", "Stabilize(自稳)");
+            modeDict.Add("Acro", "Acro(特技)");
+            modeDict.Add("AltHold", "AltHold(定高)");
+            modeDict.Add("Auto", "Auto(自动)");
+            modeDict.Add("Guided", "Guided(引导)");
+            modeDict.Add("Loiter", "Loiter(留待)");
+            modeDict.Add("RTL", "RTL(返航)");
+            modeDict.Add("Circle", "Circle(绕圈)");
+            modeDict.Add("Land", "Land(降落)");
+            modeDict.Add("OF_Loiter", "OF_Loiter(光流留待)");
+            modeDict.Add("Drift", "Drift(飘移)");
+            modeDict.Add("Sport", "Sport(运动)");
+            modeDict.Add("PosHold", "PosHold(定点)");      */    
+
+            
+
+        }
+
+
         void doPaint(PaintEventArgs e)
         {
             //Console.WriteLine("hud paint "+DateTime.Now.Millisecond);
@@ -841,7 +929,16 @@ namespace MissionPlanner.Controls
 
                 graphicsObjectGDIP.InterpolationMode = InterpolationMode.Bilinear;
 
-                graphicsObject.Clear(Color.Transparent);
+                try
+                {
+                    graphicsObject.Clear(Color.Transparent);
+                }
+                catch
+                {
+                    // this is the first posible opengl call
+                    // in vmware fusion on mac, this fails, so switch back to legacy
+                    opengl = false;
+                }
 
                 if (_bgimage != null)
                 {
@@ -1462,8 +1559,14 @@ namespace MissionPlanner.Controls
                 graphicsObject.ResetTransform();
 
                 // mode and wp dist and wp
+              /*  if(modeDict.ContainsKey(_mode))
+                    drawstring(graphicsObject,modeDict[_mode], font, fontsize, whiteBrush, scrollbg.Left - 80, scrollbg.Bottom + 5);
+                else
+                    drawstring(graphicsObject, _mode, font, fontsize, whiteBrush, scrollbg.Left - 80, scrollbg.Bottom + 5);*/
+
 
                 drawstring(graphicsObject, _mode, font, fontsize, whiteBrush, scrollbg.Left - 30, scrollbg.Bottom + 5);
+
                 drawstring(graphicsObject, (int)_disttowp + ">" + _wpno, font, fontsize, whiteBrush, scrollbg.Left - 30, scrollbg.Bottom + fontsize + 2 + 10);
 
                 graphicsObject.DrawLine(greenPen, scrollbg.Left - 5, scrollbg.Top - (int)(fontsize * 2.2) - 2 - 20, scrollbg.Left - 5, scrollbg.Top - (int)(fontsize) - 2 - 20);
@@ -1505,29 +1608,29 @@ namespace MissionPlanner.Controls
 
                 if (_gpsfix == 0)
                 {
-                    gps = ("GPS: No GPS");
+                    gps = ("GPS: 没有GPS");
                     col = (SolidBrush)Brushes.Red;
                 }
                 else if (_gpsfix == 1)
                 {
-                    gps = ("GPS: No Fix");
+                    gps = ("GPS: 未锁定");
                     col = (SolidBrush)Brushes.Red;
                 }
                 else if (_gpsfix == 2)
                 {
-                    gps = ("GPS: 2D Fix");
+                    gps = ("GPS: 2D 锁定)");
                 }
                 else if (_gpsfix == 3)
                 {
-                    gps = ("GPS: 3D Fix");
+                    gps = ("GPS: 3D 锁定");
                 }
                 else if (_gpsfix == 4)
                 {
-                    gps = ("GPS: 3D dgps");
+                    gps = ("GPS: 3D 差分定位");
                 }
                 else if (_gpsfix == 5)
                 {
-                    gps = ("GPS: 3D rtk");
+                    gps = ("GPS: 3D 动态差分");
                 }
                 drawstring(graphicsObject, gps, font, fontsize + 2, col, this.Width - 13 * fontsize, this.Height - 30 - fontoffset);
 
@@ -1610,7 +1713,10 @@ namespace MissionPlanner.Controls
 
                 if (message != "" && messagetime.AddSeconds(15) > DateTime.Now)
                 {
-                    drawstring(graphicsObject, message, font, fontsize + 10, (SolidBrush)Brushes.Red, -halfwidth + 50, halfheight / 3);
+                    if(messageDict.ContainsKey(message))
+                        drawstring(graphicsObject, messageDict[message], font, fontsize + 10, (SolidBrush)Brushes.Red, -halfwidth + 50, halfheight / 3);
+                    else
+                        drawstring(graphicsObject, message, font, fontsize + 10, (SolidBrush)Brushes.Red, -halfwidth + 50, halfheight / 3);
                 }
 
 

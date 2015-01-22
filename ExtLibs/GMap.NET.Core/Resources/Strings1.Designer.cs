@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MissionPlanner {
+namespace GMap.NET.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace MissionPlanner {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class MainV2T {
+    internal class Strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainV2T() {
+        internal Strings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace MissionPlanner {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MissionPlanner.MainV2T", typeof(MainV2T).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GMap.NET.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,103 +61,119 @@ namespace MissionPlanner {
         }
         
         /// <summary>
-        ///   查找类似 CONNECT 的本地化字符串。
+        ///   查找类似 AMap 的本地化字符串。
         /// </summary>
-        internal static string CONNECTc {
+        internal static string AMap {
             get {
-                return ResourceManager.GetString("CONNECTc", resourceCulture);
+                return ResourceManager.GetString("AMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Disconnect 的本地化字符串。
+        ///   查找类似 AMapSatellite 的本地化字符串。
         /// </summary>
-        internal static string Disconnect {
+        internal static string AMapSatellite {
             get {
-                return ResourceManager.GetString("Disconnect", resourceCulture);
+                return ResourceManager.GetString("AMapSatellite", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 DISCONNECT 的本地化字符串。
+        ///   查找类似 BingHybridMap 的本地化字符串。
         /// </summary>
-        internal static string DISCONNECTc {
+        internal static string BingHybridMap {
             get {
-                return ResourceManager.GetString("DISCONNECTc", resourceCulture);
+                return ResourceManager.GetString("BingHybridMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Error 的本地化字符串。
+        ///   查找类似 BingMap 的本地化字符串。
         /// </summary>
-        internal static string Error {
+        internal static string BingMap {
             get {
-                return ResourceManager.GetString("Error", resourceCulture);
+                return ResourceManager.GetString("BingMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Error closing log files (Out of disk space?)\n 的本地化字符串。
+        ///   查找类似 BingSatelliteMap 的本地化字符串。
         /// </summary>
-        internal static string Errorclosing {
+        internal static string BingSatelliteMap {
             get {
-                return ResourceManager.GetString("Errorclosing", resourceCulture);
+                return ResourceManager.GetString("BingSatelliteMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Failed to create log - wont log this session 的本地化字符串。
+        ///   查找类似 GoogleChinaHybridMap 的本地化字符串。
         /// </summary>
-        internal static string Failclog {
+        internal static string GoogleChinaHybridMap {
             get {
-                return ResourceManager.GetString("Failclog", resourceCulture);
+                return ResourceManager.GetString("GoogleChinaHybridMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 New Firmware 的本地化字符串。
+        ///   查找类似 GoogleChinaMap 的本地化字符串。
         /// </summary>
-        internal static string NewFirmware {
+        internal static string GoogleChinaMap {
             get {
-                return ResourceManager.GetString("NewFirmware", resourceCulture);
+                return ResourceManager.GetString("GoogleChinaMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 New firmware available
-        /// 的本地化字符串。
+        ///   查找类似 GoogleChinaSatelliteMap 的本地化字符串。
         /// </summary>
-        internal static string NewFirmwareA {
+        internal static string GoogleChinaSatelliteMap {
             get {
-                return ResourceManager.GetString("NewFirmwareA", resourceCulture);
+                return ResourceManager.GetString("GoogleChinaSatelliteMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 
-        ///Please upgrade 的本地化字符串。
+        ///   查找类似 GoogleChinaTerrainMap 的本地化字符串。
         /// </summary>
-        internal static string Pleaseup {
+        internal static string GoogleChinaTerrainMap {
             get {
-                return ResourceManager.GetString("Pleaseup", resourceCulture);
+                return ResourceManager.GetString("GoogleChinaTerrainMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Your model is still moving are you sure you want to disconnect? 的本地化字符串。
+        ///   查找类似 GoogleHybridMap 的本地化字符串。
         /// </summary>
-        internal static string Stillmoving {
+        internal static string GoogleHybridMap {
             get {
-                return ResourceManager.GetString("Stillmoving", resourceCulture);
+                return ResourceManager.GetString("GoogleHybridMap", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   查找类似 Timeout waiting for autoscan/no mavlink device connected 的本地化字符串。
+        ///   查找类似 GoogleMap 的本地化字符串。
         /// </summary>
-        internal static string Timeout {
+        internal static string GoogleMap {
             get {
-                return ResourceManager.GetString("Timeout", resourceCulture);
+                return ResourceManager.GetString("GoogleMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GoogleSatelliteMap 的本地化字符串。
+        /// </summary>
+        internal static string GoogleSatelliteMap {
+            get {
+                return ResourceManager.GetString("GoogleSatelliteMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 GoogleTerrainMap 的本地化字符串。
+        /// </summary>
+        internal static string GoogleTerrainMap {
+            get {
+                return ResourceManager.GetString("GoogleTerrainMap", resourceCulture);
             }
         }
     }

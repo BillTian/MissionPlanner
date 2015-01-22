@@ -228,6 +228,11 @@
     <Compile Include="GMap.NET\AccessMode.cs" />
     <Compile Include="GMap.NET\Delegates.cs" />
     <Compile Include="GMap.NET\MapRoute.cs" />
+    <Compile Include="Resources\Strings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
     <None Include="GMap.NET\MapType.cs" />
     <Compile Include="GMap.NET.CacheProviders\MsSQLPureImageCache.cs" />
     <Compile Include="GMap.NET\GPoint.cs" />
@@ -261,6 +266,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.zh-Hans.resx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sn.snk" />
@@ -280,9 +291,7 @@
   <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

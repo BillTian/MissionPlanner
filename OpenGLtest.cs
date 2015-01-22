@@ -69,7 +69,7 @@ namespace MissionPlanner.Controls
 
         void getImage()
         {
-            GMapProvider type = GMap.NET.MapProviders.AMapSateliteProvider.Instance;
+            GMapProvider type = GMap.NET.MapProviders.GoogleChinaHybridMapProvider.Instance;
             PureProjection prj = type.Projection;
 
             //GMap.NET.GMaps.Instance.GetImageFrom();

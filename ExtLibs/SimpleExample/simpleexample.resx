@@ -117,28 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdvancedParams" xml:space="preserve">
-    <value>Advanced Params</value>
-  </data>
-  <data name="BasicTuning" xml:space="preserve">
-    <value>Basic Tuning</value>
-  </data>
-  <data name="ExtendedTuning" xml:space="preserve">
-    <value>Extended Tuning</value>
-  </data>
-  <data name="FlightModes" xml:space="preserve">
-    <value>Flight Modes</value>
-  </data>
-  <data name="FullParameterList" xml:space="preserve">
-    <value>Full Parameter List</value>
-  </data>
-  <data name="FullParameterTree" xml:space="preserve">
-    <value>Full Parameter Tree</value>
-  </data>
-  <data name="GeoFence" xml:space="preserve">
-    <value>GeoFence</value>
-  </data>
-  <data name="StandardParams" xml:space="preserve">
-    <value>Standard Params</value>
-  </data>
+  <metadata name="serialPort1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

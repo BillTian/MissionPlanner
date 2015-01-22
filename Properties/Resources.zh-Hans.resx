@@ -134,7 +134,7 @@
 \b\tab\tab\tab 飞行计划 \endash  \b0 计划你的飞行和其它脚本任务。\par
 \b\tab\tab\tab 初始设置 \endash  \b0 升级APM固件、设置与初次调试各个功能等。\par
 \b\tab\tab\tab 配置/调试 \endash  \b0 自定义PID和其它关键设置，包括启用和禁用硬件。\par
-\b\tab\tab\tab 模拟 \endash  \b0 使用Xplanes和Flightgear来HIL模拟，当和你的板子一起使用时。\par
+\b\tab\tab\tab 模拟 \endash  \b0 使用Xplanes和Flightgear来HIL模拟，当和你的控制板一起使用时。\par
 \b\tab\tab\tab 终端 \endash  \b0 手动设置你的APM并且运行传感器测试，读取日志和其它功能。\par
 \pard\nowidctlpar\b\tab 主开发者:\b0  Michael Oborne\par
 \tab\b 设计:\b0  Samantha Nelson\par

@@ -20,7 +20,7 @@ namespace GMap.NET.MapProviders
          Instance = new GoogleChinaSatelliteMapProvider();
       }
 
-      public string Version = "s@130";
+      public string Version = "s@165";
 
       #region GMapProvider Members
 
@@ -33,7 +33,7 @@ namespace GMap.NET.MapProviders
          }
       }
 
-      readonly string name = "GoogleChinaSatelliteMap";
+      readonly string name = Resources.Strings.GoogleChinaSatelliteMap;
       public override string Name
       {
          get
@@ -56,8 +56,9 @@ namespace GMap.NET.MapProviders
          string sec1 = string.Empty; // after &x=...
          string sec2 = string.Empty; // after &zoom=...
          GetSecureWords(pos, out sec1, out sec2);
-
-         return string.Format(UrlFormat, UrlFormatServer, GetServerNum(pos, 4), UrlFormatRequest, Version, pos.X, sec1, pos.Y, zoom, sec2, ServerChina);
+         string ret = string.Format(UrlFormat, UrlFormatServer, GetServerNum(pos, 4), UrlFormatRequest, Version, pos.X, sec1, pos.Y, zoom, sec2, ServerChina);
+         Console.Write(ret);
+          return ret;
       }
 
       static readonly string UrlFormatServer = "mt";

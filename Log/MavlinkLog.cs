@@ -247,7 +247,7 @@ namespace MissionPlanner.Log
                 <tr><td>Pitch: " + model.Orientation.Tilt.Value.ToString("0.00") + @" </td></tr>
                 <tr><td>Yaw: " + model.Orientation.Heading.Value.ToString("0.00") + @" </td></tr>
                 <tr><td>Time: " + cs.datetime.ToString("HH:mm:sszzzzzz") + @" </td></tr>
-              </table> ";
+              </table> ]]>";
 //            ]]>";
 
                     pmplane.Description = desc;
@@ -644,6 +644,8 @@ namespace MissionPlanner.Log
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                this.Text = "Log - " + Path.GetFileName(openFileDialog1.FileName);
+
                 List<string> fields = GetLogFileValidFields(openFileDialog1.FileName);
 
                 zg1.GraphPane.CurveList.Clear();

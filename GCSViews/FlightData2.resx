@@ -117,33 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CONNECTc" xml:space="preserve">
-    <value>CONNECT</value>
-  </data>
-  <data name="Disconnect" xml:space="preserve">
-    <value>Disconnect</value>
-  </data>
-  <data name="DISCONNECTc" xml:space="preserve">
-    <value>DISCONNECT</value>
-  </data>
-  <data name="Failclog" xml:space="preserve">
-    <value>Failed to create log - wont log this session</value>
-  </data>
-  <data name="NewFirmware" xml:space="preserve">
-    <value>New Firmware</value>
-  </data>
-  <data name="NewFirmwareA" xml:space="preserve">
-    <value>New firmware available
-</value>
-  </data>
-  <data name="Pleaseup" xml:space="preserve">
-    <value>
-Please upgrade</value>
-  </data>
-  <data name="Stillmoving" xml:space="preserve">
-    <value>Your model is still moving are you sure you want to disconnect?</value>
-  </data>
-  <data name="Timeout" xml:space="preserve">
-    <value>Timeout waiting for autoscan/no mavlink device connected</value>
-  </data>
+  <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>57</value>
+  </metadata>
 </root>

@@ -399,6 +399,8 @@ namespace GMap.NET.MapProviders
             {
                 request.Proxy = WebProxy;
             }
+          //  WebProxy proxyObject = new WebProxy("58.96.185.129", 8899);// port为端口号
+           // request.Proxy = proxyObject;
 
             if (Credential != null)
             {

@@ -33,7 +33,7 @@ namespace GMap.NET.MapProviders
          }
       }
 
-      readonly string name = "GoogleChinaMap";
+      readonly string name = Resources.Strings.GoogleChinaMap;
       public override string Name
       {
          get
@@ -56,8 +56,9 @@ namespace GMap.NET.MapProviders
          string sec1 = string.Empty; // after &x=...
          string sec2 = string.Empty; // after &zoom=...
          GetSecureWords(pos, out sec1, out sec2);
-
-         return string.Format(UrlFormat, UrlFormatServer, GetServerNum(pos, 4), UrlFormatRequest, Version, ChinaLanguage, pos.X, sec1, pos.Y, zoom, sec2, ServerChina);
+         string ret = string.Format(UrlFormat, UrlFormatServer, GetServerNum(pos, 4), UrlFormatRequest, Version, ChinaLanguage, pos.X, sec1, pos.Y, zoom, sec2, ServerChina);
+         Console.Write(ret);
+         return ret;
       }
 
       static readonly string ChinaLanguage = "zh-CN";

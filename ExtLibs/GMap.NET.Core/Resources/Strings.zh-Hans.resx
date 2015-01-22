@@ -112,15 +112,48 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Desc" xml:space="preserve">
-    <value>描述：</value>
+  <data name="AMap" xml:space="preserve">
+    <value>高德地图</value>
   </data>
-  <data name="Units" xml:space="preserve">
-    <value>单位：{0}{1}</value>
+  <data name="AMapSatellite" xml:space="preserve">
+    <value>高德卫星地图</value>
+  </data>
+  <data name="BingHybridMap" xml:space="preserve">
+    <value>必应混合地图</value>
+  </data>
+  <data name="BingMap" xml:space="preserve">
+    <value>必应地图</value>
+  </data>
+  <data name="BingSatelliteMap" xml:space="preserve">
+    <value>必应卫星地图</value>
+  </data>
+  <data name="GoogleChinaHybridMap" xml:space="preserve">
+    <value>谷歌中国混合地图</value>
+  </data>
+  <data name="GoogleChinaMap" xml:space="preserve">
+    <value>谷歌中国地图</value>
+  </data>
+  <data name="GoogleChinaSatelliteMap" xml:space="preserve">
+    <value>谷歌中国卫星地图</value>
+  </data>
+  <data name="GoogleChinaTerrainMap" xml:space="preserve">
+    <value>谷歌中国地形图</value>
+  </data>
+  <data name="GoogleHybridMap" xml:space="preserve">
+    <value>谷歌混合地图</value>
+  </data>
+  <data name="GoogleMap" xml:space="preserve">
+    <value>谷歌地图</value>
+  </data>
+  <data name="GoogleSatelliteMap" xml:space="preserve">
+    <value>谷歌卫星地图</value>
+  </data>
+  <data name="GoogleTerrainMap" xml:space="preserve">
+    <value>谷歌地形图</value>
   </data>
 </root>

@@ -1,4 +1,3 @@
-﻿
 
 namespace GMap.NET.MapProviders
 {
@@ -21,10 +20,12 @@ namespace GMap.NET.MapProviders
 
 
         GMapProvider[] overlays;
+
         public override GMapProvider[] Overlays
         {
             get
             {
+
                 if (overlays == null)
                 {
                     overlays = new GMapProvider[] { this };

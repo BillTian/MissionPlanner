@@ -54,7 +54,7 @@ namespace MissionPlanner
             static public int SW_HIDE = 0;
         }
 
-        static menuicons diplayicons = new menuicons2();
+        static menuicons displayicons = new menuicons2();
 
         public class menuicons
         {
@@ -351,20 +351,7 @@ namespace MissionPlanner
 
             comPort.BaseStream.BaudRate = 115200;
 
-            // ** Old
-            //            CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
-            //            CMB_serialport.Items.Add("TCP");
-            //            CMB_serialport.Items.Add("UDP");
-            //            if (CMB_serialport.Items.Count > 0)
-            //            {
-            //                CMB_baudrate.SelectedIndex = 7;
-            //                CMB_serialport.SelectedIndex = 0;
-            //            }
-            // ** new
-            _connectionControl.CMB_serialport.Items.Add("AUTO");
-            _connectionControl.CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
-            _connectionControl.CMB_serialport.Items.Add("TCP");
-            _connectionControl.CMB_serialport.Items.Add("UDP");
+            PopulateSerialportList();
             if (_connectionControl.CMB_serialport.Items.Count > 0)
             {
                 _connectionControl.CMB_baudrate.SelectedIndex = 8;
@@ -741,15 +728,20 @@ namespace MissionPlanner
         private void CMB_serialport_Click(object sender, EventArgs e)
         {
             string oldport = _connectionControl.CMB_serialport.Text;
+            PopulateSerialportList();
+            if (_connectionControl.CMB_serialport.Items.Contains(oldport))
+                _connectionControl.CMB_serialport.Text = oldport;
+        }
+
+        private void PopulateSerialportList()
+        {
             _connectionControl.CMB_serialport.Items.Clear();
             _connectionControl.CMB_serialport.Items.Add("AUTO");
             _connectionControl.CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
             _connectionControl.CMB_serialport.Items.Add("TCP");
             _connectionControl.CMB_serialport.Items.Add("UDP");
-            if (_connectionControl.CMB_serialport.Items.Contains(oldport))
-                _connectionControl.CMB_serialport.Text = oldport;
+            _connectionControl.CMB_serialport.Items.Add("UDPCl");
         }
-
 
         private void MenuFlightData_Click(object sender, EventArgs e)
         {
@@ -823,7 +815,7 @@ namespace MissionPlanner
             // sanity check
             if (comPort.BaseStream.IsOpen && MainV2.comPort.MAV.cs.groundspeed > 4)
             {
-                if (DialogResult.No == CustomMessageBox.Show(MainV2T.Stillmoving, MainV2T.Disconnect, MessageBoxButtons.YesNo))
+                if (DialogResult.No == CustomMessageBox.Show(Strings.Stillmoving, Strings.Disconnect, MessageBoxButtons.YesNo))
                 {
                     return;
                 }
@@ -911,6 +903,9 @@ namespace MissionPlanner
                     case "UDP":
                         comPort.BaseStream = new UdpSerial();
                         break;
+                    case "UDPCl":
+                        comPort.BaseStream = new UdpSerialConnect();
+                        break;
                     case "AUTO":
                     default:
                         comPort.BaseStream = new SerialPort();
@@ -946,7 +941,7 @@ namespace MissionPlanner
 
                             if (DateTime.Now > deadline)
                             {
-                                CustomMessageBox.Show(MainV2T.Timeout);
+                                CustomMessageBox.Show(Strings.Timeout);
                                 _connectionControl.IsConnected(false);
                                 return;
                             }
@@ -996,7 +991,7 @@ namespace MissionPlanner
 
                         log.Info("creating logfile " + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".tlog");
                     }
-                    catch (Exception exp2) { log.Error(exp2); CustomMessageBox.Show(MainV2T.Failclog); } // soft fail
+                    catch (Exception exp2) { log.Error(exp2); CustomMessageBox.Show(Strings.Failclog); } // soft fail
 
                     // reset connect time - for timeout functions
                     connecttime = DateTime.Now;
@@ -1068,7 +1063,7 @@ namespace MissionPlanner
 
                                     if (ver2 > ver1)
                                     {
-                                        Common.MessageShowAgain(MainV2T.NewFirmware, MainV2T.NewFirmwareA + item.name + MainV2T.Pleaseup);
+                                        Common.MessageShowAgain(Strings.NewFirmware, Strings.NewFirmwareA + item.name + Strings.Pleaseup);
                                         break;
                                     }
 
@@ -1114,7 +1109,7 @@ namespace MissionPlanner
                     }
 
                     // set connected icon
-                    this.MenuConnect.Image = diplayicons.disconnect;
+                    this.MenuConnect.Image = displayicons.disconnect;
                 }
                 catch (Exception ex)
                 {
@@ -1135,13 +1130,15 @@ namespace MissionPlanner
         private void CMB_serialport_SelectedIndexChanged(object sender, EventArgs e)
         {
             comPortName = _connectionControl.CMB_serialport.Text;
-            if (comPortName == "UDP" || comPortName == "TCP" || comPortName == "AUTO")
+            if (comPortName == "UDP" || comPortName == "UDPCl" || comPortName == "TCP" || comPortName == "AUTO")
             {
                 _connectionControl.CMB_baudrate.Enabled = false;
                 if (comPortName == "TCP")
                     MainV2.comPort.BaseStream = new TcpSerial();
                 if (comPortName == "UDP")
                     MainV2.comPort.BaseStream = new UdpSerial();
+                if (comPortName == "UDPCl")
+                    MainV2.comPort.BaseStream = new UdpSerialConnect();
                 if (comPortName == "AUTO")
                 {
                     MainV2.comPort.BaseStream = new SerialPort();
@@ -1557,10 +1554,9 @@ namespace MissionPlanner
                     {
                         this.BeginInvoke((MethodInvoker)delegate
                         {
-                            this.MenuConnect.Image = diplayicons.disconnect;
+                            this.MenuConnect.Image = displayicons.disconnect;
                             this.MenuConnect.Image.Tag = "Disconnect";
-                            this.MenuConnect.Text = MainV2T.DISCONNECTc;
-
+                            this.MenuConnect.Text = Strings.DISCONNECTc;
                             _connectionControl.IsConnected(true);
                         });
                     }
@@ -1571,10 +1567,9 @@ namespace MissionPlanner
                     {
                         this.BeginInvoke((MethodInvoker)delegate
                         {
-                            this.MenuConnect.Image = diplayicons.connect;
+                            this.MenuConnect.Image = displayicons.connect;
                             this.MenuConnect.Image.Tag = "Connect";
-                            this.MenuConnect.Text = MainV2T.CONNECTc;
-
+                            this.MenuConnect.Text = Strings.CONNECTc;
                             _connectionControl.IsConnected(false);
                             if (_connectionStats != null)
                             {
@@ -1894,7 +1889,7 @@ namespace MissionPlanner
                             {
                                 port.sendPacket(htb);
                             }
-                            catch { }
+                            catch (Exception ex) { port.Close(); }
                         }
 
                         heatbeatSend = DateTime.Now;

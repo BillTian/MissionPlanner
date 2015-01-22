@@ -363,7 +363,7 @@ namespace MissionPlanner.GCSViews
 
             // config map             
             MainMap.CacheLocation = Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + "gmapcache" + Path.DirectorySeparatorChar;
-            MainMap.MapProvider = AMapSateliteProvider.Instance;
+            MainMap.MapProvider = GoogleChinaHybridMapProvider.Instance;
 
             // map events
             MainMap.OnPositionChanged += new PositionChanged(MainMap_OnCurrentPositionChanged);
@@ -1168,7 +1168,7 @@ namespace MissionPlanner.GCSViews
                         MainMap.Position = rect.Value.LocationMiddle;
                     }
 
-                    MainMap.Zoom = 17;
+                    //MainMap.Zoom = 17;
 
                     MainMap_OnMapZoomChanged();
                 }
@@ -1468,8 +1468,10 @@ namespace MissionPlanner.GCSViews
                         sw.WriteLine("");
                     }
                     sw.Close();
+
+                    lbl_wpfile.Text = "Saved "+Path.GetFileName(file);
                 }
-                catch (Exception) { CustomMessageBox.Show("Error writing file"); }
+                catch (Exception) { CustomMessageBox.Show(Strings.ERROR); }
             }
         }
 
@@ -2232,6 +2234,8 @@ namespace MissionPlanner.GCSViews
                     wpfilename = file;
                     readQGC110wpfile(file);
                 }
+
+                lbl_wpfile.Text = "Loaded "+Path.GetFileName(file);
             }
         }
 
