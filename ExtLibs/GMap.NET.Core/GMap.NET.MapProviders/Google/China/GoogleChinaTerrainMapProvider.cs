@@ -2,7 +2,7 @@
 namespace GMap.NET.MapProviders
 {
    using System;
-
+   using GMap.NET.Projections;
    /// <summary>
    /// GoogleChinaTerrainMap provider
    /// </summary>
@@ -18,6 +18,11 @@ namespace GMap.NET.MapProviders
       static GoogleChinaTerrainMapProvider()
       {
          Instance = new GoogleChinaTerrainMapProvider();
+      }
+
+      public override PureProjection Projection
+      {
+          get { return AMapProjection.Instance; }
       }
 
       public string Version = "t@131,r@218";

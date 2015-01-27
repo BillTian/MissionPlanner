@@ -43,8 +43,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 CustomMessageBox.Show("These are the latest trunk firmware, use at your own risk!!!", "trunk");
                 firmwareurl = "https://raw.github.com/diydrones/binary/master/dev/firmwarelatest.xml";
                 softwares.Clear();
-                UpdateFWList();
-                CMB_history.Visible = false;
+                UpdateFWList();            
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
@@ -67,10 +66,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (MainV2.Advanced)
             {
-                lbl_devfw.Visible = false;
+                lbl_devfw.Visible = true;
                 lbl_Custom_firmware_label.Visible = true;
                 lbl_dlfw.Visible = true;
-                CMB_history_label.Visible = false;
+                CMB_history_label.Visible = true;
             }
             else
             {
@@ -458,6 +457,18 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
             }
             catch { CustomMessageBox.Show("Failed to connect and send the reboot command",Strings.ERROR); }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start(@"http://copter.ardupilot.com/wiki/motor-setup/");
+            }
+            catch 
+            {
+                CustomMessageBox.Show("http://copter.ardupilot.com/wiki/motor-setup/",Strings.ERROR); 
+            }
         }
     }
 }

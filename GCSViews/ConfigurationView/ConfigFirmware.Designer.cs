@@ -79,6 +79,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.lbl_px4bl = new System.Windows.Forms.Label();
             this.pictureAntennaTracker = new MissionPlanner.Controls.ImageLabel();
             this.lbl_licence = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHilimage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAPHil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxACHil)).BeginInit();
@@ -87,9 +88,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxAPM
             // 
-            resources.ApplyResources(this.pictureBoxAPM, "pictureBoxAPM");
             this.pictureBoxAPM.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxAPM.Image = global::MissionPlanner.Properties.Resources.APM_airframes_001;
+            resources.ApplyResources(this.pictureBoxAPM, "pictureBoxAPM");
             this.pictureBoxAPM.Name = "pictureBoxAPM";
             this.pictureBoxAPM.TabStop = false;
             this.pictureBoxAPM.Tag = "";
@@ -97,9 +98,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxQuad
             // 
-            resources.ApplyResources(this.pictureBoxQuad, "pictureBoxQuad");
             this.pictureBoxQuad.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxQuad.Image = global::MissionPlanner.Properties.Resources.FW_icons_2013_logos_04;
+            resources.ApplyResources(this.pictureBoxQuad, "pictureBoxQuad");
             this.pictureBoxQuad.Name = "pictureBoxQuad";
             this.pictureBoxQuad.TabStop = false;
             this.pictureBoxQuad.Tag = "";
@@ -107,9 +108,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxHexa
             // 
-            resources.ApplyResources(this.pictureBoxHexa, "pictureBoxHexa");
             this.pictureBoxHexa.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxHexa.Image = global::MissionPlanner.Properties.Resources.FW_icons_2013_logos_10;
+            resources.ApplyResources(this.pictureBoxHexa, "pictureBoxHexa");
             this.pictureBoxHexa.Name = "pictureBoxHexa";
             this.pictureBoxHexa.TabStop = false;
             this.pictureBoxHexa.Tag = "";
@@ -117,9 +118,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxTri
             // 
-            resources.ApplyResources(this.pictureBoxTri, "pictureBoxTri");
             this.pictureBoxTri.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxTri.Image = global::MissionPlanner.Properties.Resources.FW_icons_2013_logos_08;
+            resources.ApplyResources(this.pictureBoxTri, "pictureBoxTri");
             this.pictureBoxTri.Name = "pictureBoxTri";
             this.pictureBoxTri.TabStop = false;
             this.pictureBoxTri.Tag = "";
@@ -127,9 +128,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxY6
             // 
-            resources.ApplyResources(this.pictureBoxY6, "pictureBoxY6");
             this.pictureBoxY6.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxY6.Image = global::MissionPlanner.Properties.Resources.y6a;
+            resources.ApplyResources(this.pictureBoxY6, "pictureBoxY6");
             this.pictureBoxY6.Name = "pictureBoxY6";
             this.pictureBoxY6.TabStop = false;
             this.pictureBoxY6.Tag = "";
@@ -148,9 +149,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxHeli
             // 
-            resources.ApplyResources(this.pictureBoxHeli, "pictureBoxHeli");
             this.pictureBoxHeli.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxHeli.Image = global::MissionPlanner.Properties.Resources.APM_airframes_08;
+            resources.ApplyResources(this.pictureBoxHeli, "pictureBoxHeli");
             this.pictureBoxHeli.Name = "pictureBoxHeli";
             this.pictureBoxHeli.TabStop = false;
             this.pictureBoxHeli.Tag = "";
@@ -158,17 +159,17 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxHilimage
             // 
-            resources.ApplyResources(this.pictureBoxHilimage, "pictureBoxHilimage");
             this.pictureBoxHilimage.Image = global::MissionPlanner.Properties.Resources.hil;
+            resources.ApplyResources(this.pictureBoxHilimage, "pictureBoxHilimage");
             this.pictureBoxHilimage.Name = "pictureBoxHilimage";
             this.pictureBoxHilimage.TabStop = false;
             this.pictureBoxHilimage.Tag = "";
             // 
             // pictureBoxAPHil
             // 
-            resources.ApplyResources(this.pictureBoxAPHil, "pictureBoxAPHil");
             this.pictureBoxAPHil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxAPHil.Image = global::MissionPlanner.Properties.Resources.hilplane;
+            resources.ApplyResources(this.pictureBoxAPHil, "pictureBoxAPHil");
             this.pictureBoxAPHil.Name = "pictureBoxAPHil";
             this.pictureBoxAPHil.TabStop = false;
             this.pictureBoxAPHil.Tag = "";
@@ -176,9 +177,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxACHil
             // 
-            resources.ApplyResources(this.pictureBoxACHil, "pictureBoxACHil");
             this.pictureBoxACHil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxACHil.Image = global::MissionPlanner.Properties.Resources.hilquad;
+            resources.ApplyResources(this.pictureBoxACHil, "pictureBoxACHil");
             this.pictureBoxACHil.Name = "pictureBoxACHil";
             this.pictureBoxACHil.TabStop = false;
             this.pictureBoxACHil.Tag = "";
@@ -186,9 +187,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxACHHil
             // 
-            resources.ApplyResources(this.pictureBoxACHHil, "pictureBoxACHHil");
             this.pictureBoxACHHil.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxACHHil.Image = global::MissionPlanner.Properties.Resources.hilheli;
+            resources.ApplyResources(this.pictureBoxACHHil, "pictureBoxACHHil");
             this.pictureBoxACHHil.Name = "pictureBoxACHHil";
             this.pictureBoxACHHil.TabStop = false;
             this.pictureBoxACHHil.Tag = "";
@@ -196,8 +197,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxOcta
             // 
-            resources.ApplyResources(this.pictureBoxOcta, "pictureBoxOcta");
             this.pictureBoxOcta.Image = global::MissionPlanner.Properties.Resources.FW_icons_2013_logos_12;
+            resources.ApplyResources(this.pictureBoxOcta, "pictureBoxOcta");
             this.pictureBoxOcta.Name = "pictureBoxOcta";
             this.pictureBoxOcta.TabStop = false;
             this.pictureBoxOcta.Tag = "";
@@ -205,8 +206,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxOctaQuad
             // 
-            resources.ApplyResources(this.pictureBoxOctaQuad, "pictureBoxOctaQuad");
             this.pictureBoxOctaQuad.Image = global::MissionPlanner.Properties.Resources.x8;
+            resources.ApplyResources(this.pictureBoxOctaQuad, "pictureBoxOctaQuad");
             this.pictureBoxOctaQuad.Name = "pictureBoxOctaQuad";
             this.pictureBoxOctaQuad.TabStop = false;
             this.pictureBoxOctaQuad.Tag = "";
@@ -214,9 +215,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureBoxRover
             // 
-            resources.ApplyResources(this.pictureBoxRover, "pictureBoxRover");
             this.pictureBoxRover.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxRover.Image = global::MissionPlanner.Properties.Resources.rover_11;
+            resources.ApplyResources(this.pictureBoxRover, "pictureBoxRover");
             this.pictureBoxRover.Name = "pictureBoxRover";
             this.pictureBoxRover.TabStop = false;
             this.pictureBoxRover.Tag = "";
@@ -229,10 +230,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // CMB_history
             // 
-            resources.ApplyResources(this.CMB_history, "CMB_history");
             this.CMB_history.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CMB_history.DropDownWidth = 160;
             this.CMB_history.FormattingEnabled = true;
+            resources.ApplyResources(this.CMB_history, "CMB_history");
             this.CMB_history.Name = "CMB_history";
             this.CMB_history.SelectedIndexChanged += new System.EventHandler(this.CMB_history_SelectedIndexChanged);
             // 
@@ -273,9 +274,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             // 
             // pictureAntennaTracker
             // 
-            resources.ApplyResources(this.pictureAntennaTracker, "pictureAntennaTracker");
             this.pictureAntennaTracker.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureAntennaTracker.Image = global::MissionPlanner.Properties.Resources.Antenna_Tracker_01;
+            resources.ApplyResources(this.pictureAntennaTracker, "pictureAntennaTracker");
             this.pictureAntennaTracker.Name = "pictureAntennaTracker";
             this.pictureAntennaTracker.TabStop = false;
             this.pictureAntennaTracker.Tag = "";
@@ -288,10 +289,18 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.lbl_licence.Name = "lbl_licence";
             this.lbl_licence.Click += new System.EventHandler(this.lbl_dlfw_Click);
             // 
+            // linkLabel1
+            // 
+            resources.ApplyResources(this.linkLabel1, "linkLabel1");
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // ConfigFirmware
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lbl_licence);
             this.Controls.Add(this.pictureAntennaTracker);
             this.Controls.Add(this.lbl_px4bl);
@@ -335,6 +344,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private Label lbl_px4bl;
         private Controls.ImageLabel pictureAntennaTracker;
         private Label lbl_licence;
+        private LinkLabel linkLabel1;
 
     }
 }

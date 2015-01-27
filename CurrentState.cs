@@ -30,11 +30,11 @@ namespace MissionPlanner
         public static double fromSpeedDisplayUnit(double input) { return input / multiplierspeed; }
 
         // orientation - rads
-        [DisplayText("Roll (deg)")]
+        [DisplayText("横滚 (deg)")]
         public float roll { get; set; }
-        [DisplayText("Pitch (deg)")]
+        [DisplayText("俯仰 (deg)")]
         public float pitch { get; set; }
-        [DisplayText("Yaw (deg)")]
+        [DisplayText("偏航 (deg)")]
         public float yaw { get { return _yaw; } set { if (value < 0) { _yaw = value + 360; } else { _yaw = value; } } }
         private float _yaw = 0;
 
@@ -43,11 +43,11 @@ namespace MissionPlanner
         private float _groundcourse = 0;
 
         // position
-        [DisplayText("Latitude (dd)")]
+        [DisplayText("纬度 (dd)")]
         public double lat { get; set; }
-        [DisplayText("Longitude (dd)")]
+        [DisplayText("经度 (dd)")]
         public double lng { get; set; }
-        [DisplayText("Altitude (dist)")]
+        [DisplayText("高度 (dist)")]
         public float alt
         {
             get { return (_alt - altoffsethome) * multiplierdist; }
@@ -68,18 +68,18 @@ namespace MissionPlanner
             }
         }
         DateTime lastalt = DateTime.MinValue;
-        [DisplayText("Altitude (dist)")]
+        [DisplayText("高度 (dist)")]
         public float altasl { get { return _altasl * multiplierdist; } set { _altasl = value; } }
         float _altasl = 0;
         float oldalt = 0;
         [DisplayText("Alt Home Offset (dist)")]
         public float altoffsethome { get; set; }
         private float _alt = 0;
-        [DisplayText("Gps Status")]
+        [DisplayText("Gps 状态")]
         public float gpsstatus { get; set; }
         [DisplayText("Gps HDOP")]
         public float gpshdop { get; set; }
-        [DisplayText("Sat Count")]
+        [DisplayText("卫星数")]
         public float satcount { get; set; }
 
         public double lat2 { get; set; }
@@ -102,24 +102,24 @@ namespace MissionPlanner
         public float altd100 { get { return (alt / 100) % 10; } }
 
         // speeds
-        [DisplayText("AirSpeed (speed)")]
+        [DisplayText("空速 (speed)")]
         public float airspeed { get { return _airspeed * multiplierspeed; } set { _airspeed = value; } }
         [DisplayText("Airspeed Target (speed)")]
         public float targetairspeed { get { return _targetairspeed; } }
         public bool lowairspeed { get; set; }
         [DisplayText("Airspeed Ratio")]
         public float asratio { get; set; }
-        [DisplayText("GroundSpeed (speed)")]
+        [DisplayText("地速 (speed)")]
         public float groundspeed { get { return _groundspeed * multiplierspeed; } set { _groundspeed = value; } }
         public bool lowgroundspeed { get; set; }
         float _airspeed;
         float _groundspeed;
         float _verticalspeed;
-        [DisplayText("Vertical Speed (speed)")]
+        [DisplayText("垂直速度 (speed)")]
         public float verticalspeed { get { if (float.IsNaN(_verticalspeed)) _verticalspeed = 0; return _verticalspeed * multiplierspeed; } set { _verticalspeed = _verticalspeed * 0.4f + value * 0.6f; } }
-        [DisplayText("Wind Direction (Deg)")]
+        [DisplayText("风向 (Deg)")]
         public float wind_dir { get; set; }
-        [DisplayText("Wind Velocity (speed)")]
+        [DisplayText("风速 (speed)")]
         public float wind_vel { get; set; }
         /// <summary>
         /// used in wind calc
@@ -131,35 +131,35 @@ namespace MissionPlanner
         double We_fgo;
 
         // accel
-        [DisplayText("Accel X")]
+        [DisplayText("加速计 X")]
         public float ax { get; set; }
-        [DisplayText("Accel Y")]
+        [DisplayText("加速计 Y")]
         public float ay { get; set; }
-        [DisplayText("Accel Z")]
+        [DisplayText("加速计 Z")]
         public float az { get; set; }
         // gyro
-        [DisplayText("Gyro X")]
+        [DisplayText("陀螺仪 X")]
         public float gx { get; set; }
-        [DisplayText("Gyro Y")]
+        [DisplayText("陀螺仪 Y")]
         public float gy { get; set; }
-        [DisplayText("Gyro Z")]
+        [DisplayText("陀螺仪 Z")]
         public float gz { get; set; }
         // mag
-        [DisplayText("Mag X")]
+        [DisplayText("磁感 X")]
         public float mx { get; set; }
-        [DisplayText("Mag Y")]
+        [DisplayText("磁感 Y")]
         public float my { get; set; }
-        [DisplayText("Mag Z")]
+        [DisplayText("磁感 Z")]
         public float mz { get; set; }
 
-        [DisplayText("Mag Field")]
+        [DisplayText("磁场")]
         public float magfield { get { return (float)Math.Sqrt(Math.Pow(mx, 2) + Math.Pow(my, 2) + Math.Pow(mz, 2)); } }
-        [DisplayText("Accel Strength")]
+        [DisplayText("加速计 强度")]
         public float accelsq { get { return (float)Math.Sqrt(Math.Pow(ax, 2) + Math.Pow(ay, 2) + Math.Pow(az, 2)) / 1000.0f /*980.665f*/; } }
-        [DisplayText("Gyro Strength")]
+        [DisplayText("陀螺仪 强度")]
         public float gyrosq { get { return (float)Math.Sqrt(Math.Pow(gx, 2) + Math.Pow(gy, 2) + Math.Pow(gz, 2)); } }
 
-        [DisplayText("Failsafe")]
+        [DisplayText("失效保护")]
         public bool failsafe { get; set; }
 
         [DisplayText("RX Rssi")]
@@ -222,42 +222,42 @@ namespace MissionPlanner
         public float nav_bearing { get; set; }
         [DisplayText("Bearing Target (deg)")]
         public float target_bearing { get; set; }
-        [DisplayText("Dist to WP (dist)")]
+        [DisplayText("与航点距离(dist)")]
         public float wp_dist { get { return (_wpdist * multiplierdist); } set { _wpdist = value; } }
-        [DisplayText("Altitude Error (dist)")]
+        [DisplayText("高度错误 (dist)")]
         public float alt_error { get { return _alt_error * multiplierdist; } set { if (_alt_error == value) return; _alt_error = value; _targetalt = _targetalt * 0.5f + (float)Math.Round(alt + alt_error, 0) * 0.5f; } }
-        [DisplayText("Bearing Error (deg)")]
+        [DisplayText("方位错误 (deg)")]
         public float ber_error { get { return (target_bearing - yaw); } set { } }
-        [DisplayText("Airspeed Error (speed)")]
+        [DisplayText("空速错误 (speed)")]
         public float aspd_error { get { return _aspd_error * multiplierspeed; } set { if (_aspd_error == value) return; _aspd_error = value; _targetairspeed = _targetairspeed * 0.5f + (float)Math.Round(airspeed + aspd_error, 0) * 0.5f; } }
         [DisplayText("Xtrack Error (m)")]
         public float xtrack_error { get; set; }
         [DisplayText("WP No")]
         public float wpno { get; set; }
-        [DisplayText("Mode")]
+        [DisplayText("模式")]
         public string mode { get; set; }
         uint _mode = 99999;
-        [DisplayText("ClimbRate (speed)")]
+        [DisplayText("爬升率 (speed)")]
         public float climbrate { get { return _climbrate * multiplierspeed; } set {_climbrate = value;} }
 
 
         /// <summary>
         /// time over target in seconds
         /// </summary>
-        [DisplayText("Time over Target (sec)")]
+        [DisplayText("到目标所需时间 (sec)")]
         public int tot { get { if (groundspeed <= 0) return 0; return (int)(wp_dist / groundspeed); } }
-        [DisplayText("Time over Home (sec)")]
+        [DisplayText("到家所需时间 (sec)")]
         public int toh { get { if (groundspeed <= 0) return 0; return (int)(DistToHome  / groundspeed); } }
-        [DisplayText("Dist Traveled (dist)")]
+        [DisplayText("已飞行距离 (dist)")]
         public float distTraveled { get; set; }
-        [DisplayText("Time in Air (sec)")]
+        [DisplayText("在空中时间 (sec)")]
         public float timeInAir { get; set; }
 
         // calced turn rate
-        [DisplayText("Turn Rate (speed)")]
+        [DisplayText("转弯速率 (speed)")]
         public float turnrate { get { if (groundspeed <= 1) return 0; return (roll * 9.8f) / groundspeed; } }
         // turn radius
-        [DisplayText("Turn Radius (dist)")]
+        [DisplayText("转弯半径 (dist)")]
         public float radius { get { if (groundspeed <= 1) return 0; return ((groundspeed * groundspeed) / (float)(9.8f * Math.Tan(roll * deg2rad))); } }
 
         float _wpdist;
@@ -280,28 +280,29 @@ namespace MissionPlanner
         public DateTime messageHighTime { get; set; }
 
         //battery
-        [DisplayText("Bat Voltage (V)")]
+        [DisplayText("电池电压 (V)")]
         public float battery_voltage { get { return _battery_voltage; } set { if (_battery_voltage == 0) _battery_voltage = value; _battery_voltage = value * 0.1f + _battery_voltage * 0.9f; } }
-        private float _battery_voltage;
-        [DisplayText("Bat Remaining (%)")]
+        internal float _battery_voltage;
+        [DisplayText("电池剩余 (%)")]
         public int battery_remaining { get { return _battery_remaining; } set { _battery_remaining = value; if (_battery_remaining < 0 || _battery_remaining > 100) _battery_remaining = 0; } }
         private int _battery_remaining;
-        [DisplayText("Bat Current (Amps)")]
+        [DisplayText("电池电流 (Amps)")]
         public float current { get { return _current; } set { if (value < 0) return; if (_lastcurrent == DateTime.MinValue) _lastcurrent = datetime; battery_usedmah += (float)((value * 1000.0) * (datetime - _lastcurrent).TotalHours); _current = value; _lastcurrent = datetime; } }
         private float _current;
-        [DisplayText("Bat Watts")]
+        [DisplayText("电池功率 ")]
         public float watts { get { return battery_voltage * current; } }
         private DateTime _lastcurrent = DateTime.MinValue;
-        [DisplayText("Bat used EST (mah)")]
+        [DisplayText("电池已耗电 (mah)")]
         public float battery_usedmah { get; set; }
 
-        [DisplayText("Bat2 Voltage (V)")]
+        [DisplayText("电池2 电压 (V)")]
         public float battery_voltage2 { get { return _battery_voltage2; } set { if (_battery_voltage2 == 0) _battery_voltage2 = value; _battery_voltage2 = value * 0.1f + _battery_voltage2 * 0.9f; } }
-        private float _battery_voltage2;
-        [DisplayText("Bat2 Current (Amps)")]
+        internal float _battery_voltage2;
+        [DisplayText("电池2 电流 (Amps)")]
         public float current2 { get { return _current2; } set { if (value < 0) return; _current2 = value; } }
         private float _current2;
 
+        [DisplayText("家的高度")]
         public float HomeAlt { get { return (float)HomeLocation.Alt; } set { } }
 
         static PointLatLngAlt _homelocation = new PointLatLngAlt();
@@ -312,7 +313,7 @@ namespace MissionPlanner
         static PointLatLngAlt _trackerloc = new PointLatLngAlt();
         public PointLatLngAlt TrackerLocation { get { if (_trackerloc.Lng != 0) return _trackerloc; return HomeLocation; } set { _trackerloc = value; } }
 
-        [DisplayText("Distance to Home (dist)")]
+        [DisplayText("与家距离 (dist)")]
         public float DistToHome
         {
             get
