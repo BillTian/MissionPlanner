@@ -89,7 +89,7 @@ namespace GMap.NET.MapProviders
         {
             if (!init && TryCorrectVersion)
             {
-                string url = string.Format("http://maps.{0}", Server);
+               /* string url = string.Format("http://maps.{0}", Server);
                 try
                 {
                     string html = GMaps.Instance.UseUrlCache ? Cache.Instance.GetContent(url, CacheType.UrlCache, TimeSpan.FromHours(8)) : string.Empty;
@@ -211,7 +211,7 @@ namespace GMap.NET.MapProviders
                     Debug.WriteLine("TryCorrectGoogleVersions failed: " + ex.ToString());
                     if (ex.InnerException != null)
                         Debug.WriteLine(ex.InnerException.ToString());
-                }
+                }*/
             }
         }
 

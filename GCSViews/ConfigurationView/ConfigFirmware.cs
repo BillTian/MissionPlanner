@@ -247,10 +247,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
 
                     if (fwtoupload.url2560_2 != null && fwtoupload.url2560_2.ToLower().Contains("copter") && fwtoupload.name.ToLower().Contains("3.1"))
-                        CustomMessageBox.Show("警告, 因为从 AC 3.1 固件开始，解锁时马达会自动启动, 可以通过 MOT_SPIN_ARMED 参数配置马达速度", "警告");
+                        CustomMessageBox.Show(Strings.WarningAC31, Strings.Warning);
 
                     if (fwtoupload.url2560_2 != null && fwtoupload.url2560_2.ToLower().Contains("copter") && fwtoupload.name.ToLower().Contains("3.2"))
-                        CustomMessageBox.Show("警告, 如果你第一次安装 AC 3.2 固件, 你必须进行罗盘重新校准.", "警告");
+                        CustomMessageBox.Show(Strings.WarningAC32, Strings.Warning);
+
                 }
                 else
                 {
