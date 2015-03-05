@@ -84,7 +84,9 @@
             this.backstageViewPageinstfw = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
 
             this.MinimOSD1 = new MissionPlanner.GCSViews.ConfigurationView.MinimOSD();
+            this.PlayUAVOSD1 = new MissionPlanner.GCSViews.ConfigurationView.PlayUAVOSD();
             this.backstageViewMinimOSD = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
+            this.backstageViewPlayUAVOSD = new MissionPlanner.Controls.BackstageView.BackstageViewPage();
             this.configHWBT1 = new MissionPlanner.GCSViews.ConfigurationView.ConfigHWBT();
 
             ((System.ComponentModel.ISupportInitialize)(this.initialSetupBindingSource)).BeginInit();
@@ -121,6 +123,7 @@
             this.backstageView.Pages.Add(this.backstageViewPageAntTrack);
             this.backstageView.Pages.Add(this.backstageViewPageMotorTest);
             this.backstageView.Pages.Add(this.backstageViewMinimOSD);
+            this.backstageView.Pages.Add(this.backstageViewPlayUAVOSD);
             this.backstageView.Pages.Add(this.backstageViewPagehwbt);
 
             this.backstageView.WidthMenu = 172;
@@ -543,6 +546,14 @@
             this.backstageViewMinimOSD.Spacing = 30;
             resources.ApplyResources(this.backstageViewMinimOSD, "backstageViewMinimOSD");
 
+            this.backstageViewPlayUAVOSD.Advanced = false;
+            this.backstageViewPlayUAVOSD.LinkText = "PlayUAVOSD";
+            this.backstageViewPlayUAVOSD.Page = this.PlayUAVOSD1;
+            this.backstageViewPlayUAVOSD.Parent = this.backstageViewPageopt;
+            this.backstageViewPlayUAVOSD.Show = true;
+            this.backstageViewPlayUAVOSD.Spacing = 30;
+            resources.ApplyResources(this.backstageViewPlayUAVOSD, "backstageViewPlayUAVOSD");
+
             // configHWBT1
             // 
             resources.ApplyResources(this.configHWBT1, "configHWBT1");
@@ -589,6 +600,8 @@
         private ConfigurationView.ConfigHWOSD configHWOSD1;
         private ConfigurationView.ConfigMount configMount1;
         private ConfigurationView.ConfigMotorTest configMotor1;
+        private ConfigurationView.MinimOSD MinimOSD1;
+        private ConfigurationView.PlayUAVOSD PlayUAVOSD1;
         private Antenna.Tracker tracker1;
         private Controls.BackstageView.BackstageViewPage backstageViewPageinstfw;
         private Controls.BackstageView.BackstageViewPage backstageViewPagewizard;
@@ -618,8 +631,8 @@
         private Controls.BackstageView.BackstageViewPage backstageViewPageMotorTest;
         private Controls.BackstageView.BackstageViewPage backstageViewPageacceltracker;
         private ConfigurationView.ConfigAccelerometerCalibrationTracker configAccelerometerCalibrationTracker1;
-        private ConfigurationView.MinimOSD MinimOSD1;
         private Controls.BackstageView.BackstageViewPage backstageViewMinimOSD;
+        private Controls.BackstageView.BackstageViewPage backstageViewPlayUAVOSD;
         private Controls.BackstageView.BackstageViewPage backstageViewPagehwbt;
         private ConfigurationView.ConfigHWBT configHWBT1;
     }

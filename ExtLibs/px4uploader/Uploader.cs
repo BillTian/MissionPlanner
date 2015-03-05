@@ -632,10 +632,10 @@ namespace px4uploader
             this.port.ReadTimeout = 1000; // 1 sec
 
             //Make sure we are doing the right thing
-            if (self.board_type != fw.board_id)
+        /*    if (self.board_type != fw.board_id)
                 throw new Exception("Firmware not suitable for this board");
             if (self.fw_maxsize < fw.image_size)
-                throw new Exception("Firmware image is too large for this board");
+                throw new Exception("Firmware image is too large for this board");*/
 
             print("erase...");
             self.__erase();

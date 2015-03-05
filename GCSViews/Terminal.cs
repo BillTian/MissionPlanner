@@ -91,7 +91,7 @@ namespace MissionPlanner.GCSViews
                             break;
                     }
 
-                    addText(ASCIIEncoding.ASCII.GetString(buffer,0,a+1));
+                    addText(UTF8Encoding.UTF8.GetString(buffer, 0, a + 1));
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.ToString()); if (!threadrun) return; TXT_terminal.AppendText("Error reading com port\r\n"); }

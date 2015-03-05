@@ -392,6 +392,12 @@
       <DependentUpon>MinimOSD.cs</DependentUpon>
     </Compile>
     <Compile Include="GCSViews\ConfigurationView\Panels.cs" />
+    <Compile Include="GCSViews\ConfigurationView\PlayUAVOSD.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\ConfigurationView\PlayUAVOSD.designer.cs">
+      <DependentUpon>PlayUAVOSD.cs</DependentUpon>
+    </Compile>
     <Compile Include="GCSViews\ConfigurationView\Tools.cs" />
     <Compile Include="GCSViews\ConfigurationView\Tuple.cs" />
     <Compile Include="GCSViews\Share.cs">
@@ -848,6 +854,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigTradHeli.zh-TW.resx">
       <DependentUpon>ConfigTradHeli.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ConfigurationView\PlayUAVOSD.resx">
+      <DependentUpon>PlayUAVOSD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\FlightData.zh-Hant.resx">
       <DependentUpon>FlightData.cs</DependentUpon>
