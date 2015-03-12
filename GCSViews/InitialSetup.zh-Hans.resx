@@ -121,19 +121,19 @@
     <value>3DR数传</value>
   </data>
   <data name="backstageViewPageaccelplane.Text" xml:space="preserve">
-    <value>加速计校准</value>
+    <value>加速度计校准</value>
   </data>
   <data name="backstageViewPageaccelquad.Text" xml:space="preserve">
-    <value>加速计校准</value>
+    <value>加速度计校准</value>
   </data>
   <data name="backstageViewPageacceltracker.Text" xml:space="preserve">
-    <value>加速计校准</value>
+    <value>加速度计校准</value>
   </data>
   <data name="backstageViewPageairspeed.Text" xml:space="preserve">
-    <value>空速计</value>
+    <value>空速</value>
   </data>
   <data name="backstageViewPageAntTrack.Text" xml:space="preserve">
-    <value>自动追踪天线</value>
+    <value>天线追踪器</value>
   </data>
   <data name="backstageViewPagebatmon.Text" xml:space="preserve">
     <value>电池监测器</value>
@@ -151,7 +151,7 @@
     <value>机架类型</value>
   </data>
   <data name="backstageViewPagefs.Text" xml:space="preserve">
-    <value>失控保护</value>
+    <value>故障保护</value>
   </data>
   <data name="backstageViewPagefw.Text" xml:space="preserve">
     <value>安装固件</value>
@@ -175,7 +175,7 @@
     <value>可选硬件</value>
   </data>
   <data name="backstageViewPageoptflow.Text" xml:space="preserve">
-    <value>光流传感器</value>
+    <value>光流</value>
   </data>
   <data name="backstageViewPageosd.Text" xml:space="preserve">
     <value>OSD</value>
@@ -191,5 +191,8 @@
   </data>
   <data name="backstageViewPagewizard.Text" xml:space="preserve">
     <value>向导</value>
+  </data>
+  <data name="backstageViewPagehwbt.Text" xml:space="preserve">
+    <value>蓝牙设置</value>
   </data>
 </root>

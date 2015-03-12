@@ -165,7 +165,6 @@ namespace MissionPlanner
             // MenuTest
             // 
             this.MenuTest.ForeColor = System.Drawing.Color.White;
-            this.MenuTest.Image = global::MissionPlanner.Properties.Resources.share;
             resources.ApplyResources(this.MenuTest, "MenuTest");
             this.MenuTest.Name = "MenuTest";
             this.MenuTest.Click += new System.EventHandler(this.MenuShare_Click);

@@ -15,7 +15,7 @@ namespace GMap.NET.MapProviders
 
         public override PureProjection Projection
         {
-            get { return AMapProjection.Instance; }
+            get { return MercatorProjectionGCJ.Instance; }
         }
 
         GMapProvider[] overlays;

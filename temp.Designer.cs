@@ -78,50 +78,50 @@
             this.butlogindex = new MissionPlanner.Controls.MyButton();
             this.but_droneapi = new MissionPlanner.Controls.MyButton();
             this.but_terrain = new MissionPlanner.Controls.MyButton();
-            this.button4 = new System.Windows.Forms.Button();
+            this.but_structtest = new MissionPlanner.Controls.MyButton();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(274, 16);
+            this.label1.Location = new System.Drawing.Point(274, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 12);
+            this.label1.Size = new System.Drawing.Size(85, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "Includes eeprom";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(274, 42);
+            this.label2.Location = new System.Drawing.Point(274, 46);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 12);
+            this.label2.Size = new System.Drawing.Size(125, 13);
             this.label2.TabIndex = 12;
             this.label2.Text = "Does not include eeprom";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 75);
+            this.label3.Location = new System.Drawing.Point(95, 81);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(371, 12);
+            this.label3.Size = new System.Drawing.Size(273, 13);
             this.label3.TabIndex = 13;
             this.label3.Text = "1280 - can do full copy\'s   2560- full read, write flash only";
             // 
             // CMB_mavs
             // 
             this.CMB_mavs.FormattingEnabled = true;
-            this.CMB_mavs.Location = new System.Drawing.Point(12, 238);
+            this.CMB_mavs.Location = new System.Drawing.Point(12, 258);
             this.CMB_mavs.Name = "CMB_mavs";
-            this.CMB_mavs.Size = new System.Drawing.Size(121, 20);
+            this.CMB_mavs.Size = new System.Drawing.Size(121, 21);
             this.CMB_mavs.TabIndex = 26;
             this.CMB_mavs.SelectedIndexChanged += new System.EventHandler(this.CMB_mavs_SelectedIndexChanged);
             // 
             // but_multimav
             // 
-            this.but_multimav.Location = new System.Drawing.Point(37, 211);
+            this.but_multimav.Location = new System.Drawing.Point(37, 229);
             this.but_multimav.Name = "but_multimav";
-            this.but_multimav.Size = new System.Drawing.Size(75, 21);
+            this.but_multimav.Size = new System.Drawing.Size(75, 23);
             this.but_multimav.TabIndex = 25;
             this.but_multimav.Text = "2nd mav";
             this.but_multimav.UseVisualStyleBackColor = true;
@@ -129,9 +129,9 @@
             // 
             // BUT_xplane
             // 
-            this.BUT_xplane.Location = new System.Drawing.Point(598, 220);
+            this.BUT_xplane.Location = new System.Drawing.Point(598, 238);
             this.BUT_xplane.Name = "BUT_xplane";
-            this.BUT_xplane.Size = new System.Drawing.Size(75, 21);
+            this.BUT_xplane.Size = new System.Drawing.Size(75, 23);
             this.BUT_xplane.TabIndex = 23;
             this.BUT_xplane.Text = "live xplane output";
             this.BUT_xplane.UseVisualStyleBackColor = true;
@@ -139,9 +139,9 @@
             // 
             // but_osdvideo
             // 
-            this.but_osdvideo.Location = new System.Drawing.Point(495, 169);
+            this.but_osdvideo.Location = new System.Drawing.Point(495, 183);
             this.but_osdvideo.Name = "but_osdvideo";
-            this.but_osdvideo.Size = new System.Drawing.Size(75, 21);
+            this.but_osdvideo.Size = new System.Drawing.Size(75, 23);
             this.but_osdvideo.TabIndex = 22;
             this.but_osdvideo.Text = "OSDVideo";
             this.but_osdvideo.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@
             // 
             // BUT_outputMD
             // 
-            this.BUT_outputMD.Location = new System.Drawing.Point(308, 122);
+            this.BUT_outputMD.Location = new System.Drawing.Point(308, 132);
             this.BUT_outputMD.Name = "BUT_outputMD";
-            this.BUT_outputMD.Size = new System.Drawing.Size(75, 21);
+            this.BUT_outputMD.Size = new System.Drawing.Size(75, 23);
             this.BUT_outputMD.TabIndex = 21;
             this.BUT_outputMD.Text = "MicroDrone";
             this.BUT_outputMD.UseVisualStyleBackColor = true;
@@ -159,9 +159,9 @@
             // 
             // BUT_paramgen
             // 
-            this.BUT_paramgen.Location = new System.Drawing.Point(414, 169);
+            this.BUT_paramgen.Location = new System.Drawing.Point(414, 183);
             this.BUT_paramgen.Name = "BUT_paramgen";
-            this.BUT_paramgen.Size = new System.Drawing.Size(75, 21);
+            this.BUT_paramgen.Size = new System.Drawing.Size(75, 23);
             this.BUT_paramgen.TabIndex = 20;
             this.BUT_paramgen.Text = "Param gen";
             this.BUT_paramgen.UseVisualStyleBackColor = true;
@@ -169,9 +169,9 @@
             // 
             // BUT_follow_me
             // 
-            this.BUT_follow_me.Location = new System.Drawing.Point(333, 169);
+            this.BUT_follow_me.Location = new System.Drawing.Point(333, 183);
             this.BUT_follow_me.Name = "BUT_follow_me";
-            this.BUT_follow_me.Size = new System.Drawing.Size(75, 21);
+            this.BUT_follow_me.Size = new System.Drawing.Size(75, 23);
             this.BUT_follow_me.TabIndex = 17;
             this.BUT_follow_me.Text = "Follow Me";
             this.BUT_follow_me.UseVisualStyleBackColor = true;
@@ -179,18 +179,18 @@
             // 
             // BUT_georefimage
             // 
-            this.BUT_georefimage.Location = new System.Drawing.Point(150, 169);
+            this.BUT_georefimage.Location = new System.Drawing.Point(150, 183);
             this.BUT_georefimage.Name = "BUT_georefimage";
-            this.BUT_georefimage.Size = new System.Drawing.Size(96, 21);
+            this.BUT_georefimage.Size = new System.Drawing.Size(96, 23);
             this.BUT_georefimage.TabIndex = 0;
             this.BUT_georefimage.Text = "Geo ref images";
             this.BUT_georefimage.Click += new System.EventHandler(this.BUT_georefimage_Click);
             // 
             // BUT_lang_edit
             // 
-            this.BUT_lang_edit.Location = new System.Drawing.Point(252, 169);
+            this.BUT_lang_edit.Location = new System.Drawing.Point(252, 183);
             this.BUT_lang_edit.Name = "BUT_lang_edit";
-            this.BUT_lang_edit.Size = new System.Drawing.Size(75, 21);
+            this.BUT_lang_edit.Size = new System.Drawing.Size(75, 23);
             this.BUT_lang_edit.TabIndex = 16;
             this.BUT_lang_edit.Text = "Lang Edit";
             this.BUT_lang_edit.UseVisualStyleBackColor = true;
@@ -198,9 +198,9 @@
             // 
             // BUT_clearcustommaps
             // 
-            this.BUT_clearcustommaps.Location = new System.Drawing.Point(365, 211);
+            this.BUT_clearcustommaps.Location = new System.Drawing.Point(365, 229);
             this.BUT_clearcustommaps.Name = "BUT_clearcustommaps";
-            this.BUT_clearcustommaps.Size = new System.Drawing.Size(209, 37);
+            this.BUT_clearcustommaps.Size = new System.Drawing.Size(209, 40);
             this.BUT_clearcustommaps.TabIndex = 15;
             this.BUT_clearcustommaps.Text = "Clear Custom Maps from Database";
             this.BUT_clearcustommaps.UseVisualStyleBackColor = true;
@@ -208,9 +208,9 @@
             // 
             // BUT_geinjection
             // 
-            this.BUT_geinjection.Location = new System.Drawing.Point(150, 211);
+            this.BUT_geinjection.Location = new System.Drawing.Point(150, 229);
             this.BUT_geinjection.Name = "BUT_geinjection";
-            this.BUT_geinjection.Size = new System.Drawing.Size(209, 37);
+            this.BUT_geinjection.Size = new System.Drawing.Size(209, 40);
             this.BUT_geinjection.TabIndex = 14;
             this.BUT_geinjection.Text = "Inject GE into database (now jpgs)";
             this.BUT_geinjection.UseVisualStyleBackColor = true;
@@ -218,9 +218,9 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(37, 90);
+            this.button2.Location = new System.Drawing.Point(37, 97);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(159, 21);
+            this.button2.Size = new System.Drawing.Size(159, 23);
             this.button2.TabIndex = 9;
             this.button2.Text = "firmware.hex 2 firmware.bin";
             this.button2.UseVisualStyleBackColor = true;
@@ -228,18 +228,18 @@
             // 
             // BUT_copyto2560
             // 
-            this.BUT_copyto2560.Location = new System.Drawing.Point(143, 38);
+            this.BUT_copyto2560.Location = new System.Drawing.Point(143, 41);
             this.BUT_copyto2560.Name = "BUT_copyto2560";
-            this.BUT_copyto2560.Size = new System.Drawing.Size(125, 21);
+            this.BUT_copyto2560.Size = new System.Drawing.Size(125, 23);
             this.BUT_copyto2560.TabIndex = 8;
             this.BUT_copyto2560.Text = "Copy to APM 2560";
             this.BUT_copyto2560.UseVisualStyleBackColor = true;
             // 
             // BUT_copyto1280
             // 
-            this.BUT_copyto1280.Location = new System.Drawing.Point(143, 11);
+            this.BUT_copyto1280.Location = new System.Drawing.Point(143, 12);
             this.BUT_copyto1280.Name = "BUT_copyto1280";
-            this.BUT_copyto1280.Size = new System.Drawing.Size(125, 21);
+            this.BUT_copyto1280.Size = new System.Drawing.Size(125, 23);
             this.BUT_copyto1280.TabIndex = 7;
             this.BUT_copyto1280.Text = "Copy to APM 1280";
             this.BUT_copyto1280.UseVisualStyleBackColor = true;
@@ -247,9 +247,9 @@
             // 
             // BUT_copy2560
             // 
-            this.BUT_copy2560.Location = new System.Drawing.Point(12, 38);
+            this.BUT_copy2560.Location = new System.Drawing.Point(12, 41);
             this.BUT_copy2560.Name = "BUT_copy2560";
-            this.BUT_copy2560.Size = new System.Drawing.Size(125, 21);
+            this.BUT_copy2560.Size = new System.Drawing.Size(125, 23);
             this.BUT_copy2560.TabIndex = 6;
             this.BUT_copy2560.Text = "Copy APM 2560";
             this.BUT_copy2560.UseVisualStyleBackColor = true;
@@ -257,9 +257,9 @@
             // 
             // BUT_copy1280
             // 
-            this.BUT_copy1280.Location = new System.Drawing.Point(12, 11);
+            this.BUT_copy1280.Location = new System.Drawing.Point(12, 12);
             this.BUT_copy1280.Name = "BUT_copy1280";
-            this.BUT_copy1280.Size = new System.Drawing.Size(125, 21);
+            this.BUT_copy1280.Size = new System.Drawing.Size(125, 23);
             this.BUT_copy1280.TabIndex = 5;
             this.BUT_copy1280.Text = "Copy APM 1280";
             this.BUT_copy1280.UseVisualStyleBackColor = true;
@@ -267,9 +267,9 @@
             // 
             // BUT_dleeprom
             // 
-            this.BUT_dleeprom.Location = new System.Drawing.Point(476, 42);
+            this.BUT_dleeprom.Location = new System.Drawing.Point(476, 46);
             this.BUT_dleeprom.Name = "BUT_dleeprom";
-            this.BUT_dleeprom.Size = new System.Drawing.Size(125, 21);
+            this.BUT_dleeprom.Size = new System.Drawing.Size(125, 23);
             this.BUT_dleeprom.TabIndex = 4;
             this.BUT_dleeprom.Text = "download eeprom";
             this.BUT_dleeprom.UseVisualStyleBackColor = true;
@@ -277,9 +277,9 @@
             // 
             // BUT_flashup
             // 
-            this.BUT_flashup.Location = new System.Drawing.Point(542, 75);
+            this.BUT_flashup.Location = new System.Drawing.Point(542, 81);
             this.BUT_flashup.Name = "BUT_flashup";
-            this.BUT_flashup.Size = new System.Drawing.Size(125, 21);
+            this.BUT_flashup.Size = new System.Drawing.Size(125, 23);
             this.BUT_flashup.TabIndex = 3;
             this.BUT_flashup.Text = "upload flash";
             this.BUT_flashup.UseVisualStyleBackColor = true;
@@ -287,9 +287,9 @@
             // 
             // BUT_flashdl
             // 
-            this.BUT_flashdl.Location = new System.Drawing.Point(411, 75);
+            this.BUT_flashdl.Location = new System.Drawing.Point(411, 81);
             this.BUT_flashdl.Name = "BUT_flashdl";
-            this.BUT_flashdl.Size = new System.Drawing.Size(125, 21);
+            this.BUT_flashdl.Size = new System.Drawing.Size(125, 23);
             this.BUT_flashdl.TabIndex = 2;
             this.BUT_flashdl.Text = "download flash";
             this.BUT_flashdl.UseVisualStyleBackColor = true;
@@ -297,9 +297,9 @@
             // 
             // BUT_wipeeeprom
             // 
-            this.BUT_wipeeeprom.Location = new System.Drawing.Point(411, 11);
+            this.BUT_wipeeeprom.Location = new System.Drawing.Point(411, 12);
             this.BUT_wipeeeprom.Name = "BUT_wipeeeprom";
-            this.BUT_wipeeeprom.Size = new System.Drawing.Size(125, 21);
+            this.BUT_wipeeeprom.Size = new System.Drawing.Size(125, 23);
             this.BUT_wipeeeprom.TabIndex = 1;
             this.BUT_wipeeeprom.Text = "WIPE eeprom";
             this.BUT_wipeeeprom.UseVisualStyleBackColor = true;
@@ -307,9 +307,9 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(542, 11);
+            this.button1.Location = new System.Drawing.Point(542, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 21);
+            this.button1.Size = new System.Drawing.Size(125, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "upload eeprom";
             this.button1.UseVisualStyleBackColor = true;
@@ -317,9 +317,9 @@
             // 
             // BUT_swarm
             // 
-            this.BUT_swarm.Location = new System.Drawing.Point(307, 265);
+            this.BUT_swarm.Location = new System.Drawing.Point(307, 287);
             this.BUT_swarm.Name = "BUT_swarm";
-            this.BUT_swarm.Size = new System.Drawing.Size(75, 21);
+            this.BUT_swarm.Size = new System.Drawing.Size(75, 23);
             this.BUT_swarm.TabIndex = 27;
             this.BUT_swarm.Text = "Swarm";
             this.BUT_swarm.UseVisualStyleBackColor = true;
@@ -327,9 +327,9 @@
             // 
             // BUT_outputnmea
             // 
-            this.BUT_outputnmea.Location = new System.Drawing.Point(227, 122);
+            this.BUT_outputnmea.Location = new System.Drawing.Point(227, 132);
             this.BUT_outputnmea.Name = "BUT_outputnmea";
-            this.BUT_outputnmea.Size = new System.Drawing.Size(75, 21);
+            this.BUT_outputnmea.Size = new System.Drawing.Size(75, 23);
             this.BUT_outputnmea.TabIndex = 28;
             this.BUT_outputnmea.Text = "NMEA";
             this.BUT_outputnmea.UseVisualStyleBackColor = true;
@@ -337,9 +337,9 @@
             // 
             // BUT_outputMavlink
             // 
-            this.BUT_outputMavlink.Location = new System.Drawing.Point(389, 122);
+            this.BUT_outputMavlink.Location = new System.Drawing.Point(389, 132);
             this.BUT_outputMavlink.Name = "BUT_outputMavlink";
-            this.BUT_outputMavlink.Size = new System.Drawing.Size(75, 21);
+            this.BUT_outputMavlink.Size = new System.Drawing.Size(75, 23);
             this.BUT_outputMavlink.TabIndex = 29;
             this.BUT_outputMavlink.Text = "Mavlink";
             this.BUT_outputMavlink.UseVisualStyleBackColor = true;
@@ -347,9 +347,9 @@
             // 
             // BUT_simmulti
             // 
-            this.BUT_simmulti.Location = new System.Drawing.Point(592, 265);
+            this.BUT_simmulti.Location = new System.Drawing.Point(592, 287);
             this.BUT_simmulti.Name = "BUT_simmulti";
-            this.BUT_simmulti.Size = new System.Drawing.Size(75, 21);
+            this.BUT_simmulti.Size = new System.Drawing.Size(75, 23);
             this.BUT_simmulti.TabIndex = 31;
             this.BUT_simmulti.Text = "Multi Sim";
             this.BUT_simmulti.UseVisualStyleBackColor = true;
@@ -357,9 +357,9 @@
             // 
             // BUT_followleader
             // 
-            this.BUT_followleader.Location = new System.Drawing.Point(307, 292);
+            this.BUT_followleader.Location = new System.Drawing.Point(307, 316);
             this.BUT_followleader.Name = "BUT_followleader";
-            this.BUT_followleader.Size = new System.Drawing.Size(75, 21);
+            this.BUT_followleader.Size = new System.Drawing.Size(75, 23);
             this.BUT_followleader.TabIndex = 33;
             this.BUT_followleader.Text = "Follow the leader";
             this.BUT_followleader.UseVisualStyleBackColor = true;
@@ -367,9 +367,9 @@
             // 
             // BUT_driverclean
             // 
-            this.BUT_driverclean.Location = new System.Drawing.Point(526, 351);
+            this.BUT_driverclean.Location = new System.Drawing.Point(526, 380);
             this.BUT_driverclean.Name = "BUT_driverclean";
-            this.BUT_driverclean.Size = new System.Drawing.Size(75, 21);
+            this.BUT_driverclean.Size = new System.Drawing.Size(75, 23);
             this.BUT_driverclean.TabIndex = 36;
             this.BUT_driverclean.Text = "Driver Clean";
             this.BUT_driverclean.UseVisualStyleBackColor = true;
@@ -377,9 +377,9 @@
             // 
             // but_compassrotation
             // 
-            this.but_compassrotation.Location = new System.Drawing.Point(542, 312);
+            this.but_compassrotation.Location = new System.Drawing.Point(542, 338);
             this.but_compassrotation.Name = "but_compassrotation";
-            this.but_compassrotation.Size = new System.Drawing.Size(75, 21);
+            this.but_compassrotation.Size = new System.Drawing.Size(75, 23);
             this.but_compassrotation.TabIndex = 37;
             this.but_compassrotation.Text = "Compass Rotation";
             this.but_compassrotation.UseVisualStyleBackColor = true;
@@ -387,9 +387,9 @@
             // 
             // BUT_sorttlogs
             // 
-            this.BUT_sorttlogs.Location = new System.Drawing.Point(526, 378);
+            this.BUT_sorttlogs.Location = new System.Drawing.Point(526, 409);
             this.BUT_sorttlogs.Name = "BUT_sorttlogs";
-            this.BUT_sorttlogs.Size = new System.Drawing.Size(75, 21);
+            this.BUT_sorttlogs.Size = new System.Drawing.Size(75, 23);
             this.BUT_sorttlogs.TabIndex = 38;
             this.BUT_sorttlogs.Text = "Sort TLogs";
             this.BUT_sorttlogs.UseVisualStyleBackColor = true;
@@ -402,9 +402,9 @@
             // 
             // BUT_accellogs
             // 
-            this.BUT_accellogs.Location = new System.Drawing.Point(429, 351);
+            this.BUT_accellogs.Location = new System.Drawing.Point(429, 380);
             this.BUT_accellogs.Name = "BUT_accellogs";
-            this.BUT_accellogs.Size = new System.Drawing.Size(75, 21);
+            this.BUT_accellogs.Size = new System.Drawing.Size(75, 23);
             this.BUT_accellogs.TabIndex = 39;
             this.BUT_accellogs.Text = "Find High Accel";
             this.BUT_accellogs.UseVisualStyleBackColor = true;
@@ -412,9 +412,9 @@
             // 
             // BUT_movingbase
             // 
-            this.BUT_movingbase.Location = new System.Drawing.Point(576, 169);
+            this.BUT_movingbase.Location = new System.Drawing.Point(576, 183);
             this.BUT_movingbase.Name = "BUT_movingbase";
-            this.BUT_movingbase.Size = new System.Drawing.Size(75, 21);
+            this.BUT_movingbase.Size = new System.Drawing.Size(75, 23);
             this.BUT_movingbase.TabIndex = 40;
             this.BUT_movingbase.Text = "Moving Base";
             this.BUT_movingbase.UseVisualStyleBackColor = true;
@@ -422,9 +422,9 @@
             // 
             // but_getfw
             // 
-            this.but_getfw.Location = new System.Drawing.Point(121, 351);
+            this.but_getfw.Location = new System.Drawing.Point(121, 380);
             this.but_getfw.Name = "but_getfw";
-            this.but_getfw.Size = new System.Drawing.Size(75, 21);
+            this.but_getfw.Size = new System.Drawing.Size(75, 23);
             this.but_getfw.TabIndex = 41;
             this.but_getfw.Text = "rip all fw";
             this.but_getfw.UseVisualStyleBackColor = true;
@@ -432,9 +432,9 @@
             // 
             // but_loganalysis
             // 
-            this.but_loganalysis.Location = new System.Drawing.Point(121, 312);
+            this.but_loganalysis.Location = new System.Drawing.Point(121, 338);
             this.but_loganalysis.Name = "but_loganalysis";
-            this.but_loganalysis.Size = new System.Drawing.Size(75, 21);
+            this.but_loganalysis.Size = new System.Drawing.Size(75, 23);
             this.but_loganalysis.TabIndex = 42;
             this.but_loganalysis.Text = "Log Analyser";
             this.but_loganalysis.UseVisualStyleBackColor = true;
@@ -442,9 +442,9 @@
             // 
             // BUT_magfit
             // 
-            this.BUT_magfit.Location = new System.Drawing.Point(389, 265);
+            this.BUT_magfit.Location = new System.Drawing.Point(389, 287);
             this.BUT_magfit.Name = "BUT_magfit";
-            this.BUT_magfit.Size = new System.Drawing.Size(75, 21);
+            this.BUT_magfit.Size = new System.Drawing.Size(75, 23);
             this.BUT_magfit.TabIndex = 43;
             this.BUT_magfit.Text = "magfit";
             this.BUT_magfit.UseVisualStyleBackColor = true;
@@ -452,9 +452,9 @@
             // 
             // but_mavserialport
             // 
-            this.but_mavserialport.Location = new System.Drawing.Point(216, 332);
+            this.but_mavserialport.Location = new System.Drawing.Point(216, 360);
             this.but_mavserialport.Name = "but_mavserialport";
-            this.but_mavserialport.Size = new System.Drawing.Size(75, 21);
+            this.but_mavserialport.Size = new System.Drawing.Size(75, 23);
             this.but_mavserialport.TabIndex = 44;
             this.but_mavserialport.Text = "MAVSerial pass";
             this.but_mavserialport.UseVisualStyleBackColor = true;
@@ -462,9 +462,9 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(429, 312);
+            this.button3.Location = new System.Drawing.Point(429, 338);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(107, 21);
+            this.button3.Size = new System.Drawing.Size(107, 23);
             this.button3.TabIndex = 44;
             this.button3.Text = "Warning Manager";
             this.button3.UseVisualStyleBackColor = true;
@@ -472,9 +472,9 @@
             // 
             // BUT_magfit2
             // 
-            this.BUT_magfit2.Location = new System.Drawing.Point(470, 265);
+            this.BUT_magfit2.Location = new System.Drawing.Point(470, 287);
             this.BUT_magfit2.Name = "BUT_magfit2";
-            this.BUT_magfit2.Size = new System.Drawing.Size(75, 21);
+            this.BUT_magfit2.Size = new System.Drawing.Size(75, 23);
             this.BUT_magfit2.TabIndex = 45;
             this.BUT_magfit2.Text = "magfit2";
             this.BUT_magfit2.UseVisualStyleBackColor = true;
@@ -482,9 +482,9 @@
             // 
             // BUT_shptopoly
             // 
-            this.BUT_shptopoly.Location = new System.Drawing.Point(592, 122);
+            this.BUT_shptopoly.Location = new System.Drawing.Point(592, 132);
             this.BUT_shptopoly.Name = "BUT_shptopoly";
-            this.BUT_shptopoly.Size = new System.Drawing.Size(75, 21);
+            this.BUT_shptopoly.Size = new System.Drawing.Size(75, 23);
             this.BUT_shptopoly.TabIndex = 46;
             this.BUT_shptopoly.Text = "Shp to Poly";
             this.BUT_shptopoly.UseVisualStyleBackColor = true;
@@ -492,9 +492,9 @@
             // 
             // but_droneshare
             // 
-            this.but_droneshare.Location = new System.Drawing.Point(324, 351);
+            this.but_droneshare.Location = new System.Drawing.Point(324, 380);
             this.but_droneshare.Name = "but_droneshare";
-            this.but_droneshare.Size = new System.Drawing.Size(75, 21);
+            this.but_droneshare.Size = new System.Drawing.Size(75, 23);
             this.but_droneshare.TabIndex = 47;
             this.but_droneshare.Text = "test droneshare";
             this.but_droneshare.UseVisualStyleBackColor = true;
@@ -502,9 +502,9 @@
             // 
             // but_gimbaltest
             // 
-            this.but_gimbaltest.Location = new System.Drawing.Point(324, 324);
+            this.but_gimbaltest.Location = new System.Drawing.Point(324, 351);
             this.but_gimbaltest.Name = "but_gimbaltest";
-            this.but_gimbaltest.Size = new System.Drawing.Size(75, 21);
+            this.but_gimbaltest.Size = new System.Drawing.Size(75, 23);
             this.but_gimbaltest.TabIndex = 48;
             this.but_gimbaltest.Text = "gimbal test";
             this.but_gimbaltest.UseVisualStyleBackColor = true;
@@ -512,9 +512,9 @@
             // 
             // but_mntstatus
             // 
-            this.but_mntstatus.Location = new System.Drawing.Point(227, 359);
+            this.but_mntstatus.Location = new System.Drawing.Point(227, 389);
             this.but_mntstatus.Name = "but_mntstatus";
-            this.but_mntstatus.Size = new System.Drawing.Size(75, 21);
+            this.but_mntstatus.Size = new System.Drawing.Size(75, 23);
             this.but_mntstatus.TabIndex = 49;
             this.but_mntstatus.Text = "mount status msg";
             this.but_mntstatus.UseVisualStyleBackColor = true;
@@ -522,9 +522,9 @@
             // 
             // but_maplogs
             // 
-            this.but_maplogs.Location = new System.Drawing.Point(12, 351);
+            this.but_maplogs.Location = new System.Drawing.Point(12, 380);
             this.but_maplogs.Name = "but_maplogs";
-            this.but_maplogs.Size = new System.Drawing.Size(75, 21);
+            this.but_maplogs.Size = new System.Drawing.Size(75, 23);
             this.but_maplogs.TabIndex = 50;
             this.but_maplogs.Text = "map logs";
             this.but_maplogs.UseVisualStyleBackColor = true;
@@ -532,9 +532,9 @@
             // 
             // butlogindex
             // 
-            this.butlogindex.Location = new System.Drawing.Point(12, 383);
+            this.butlogindex.Location = new System.Drawing.Point(12, 415);
             this.butlogindex.Name = "butlogindex";
-            this.butlogindex.Size = new System.Drawing.Size(75, 21);
+            this.butlogindex.Size = new System.Drawing.Size(75, 23);
             this.butlogindex.TabIndex = 51;
             this.butlogindex.Text = "logindex";
             this.butlogindex.UseVisualStyleBackColor = true;
@@ -542,9 +542,9 @@
             // 
             // but_droneapi
             // 
-            this.but_droneapi.Location = new System.Drawing.Point(12, 324);
+            this.but_droneapi.Location = new System.Drawing.Point(12, 351);
             this.but_droneapi.Name = "but_droneapi";
-            this.but_droneapi.Size = new System.Drawing.Size(75, 21);
+            this.but_droneapi.Size = new System.Drawing.Size(75, 23);
             this.but_droneapi.TabIndex = 52;
             this.but_droneapi.Text = "droneapi";
             this.but_droneapi.UseVisualStyleBackColor = true;
@@ -552,30 +552,30 @@
             // 
             // but_terrain
             // 
-            this.but_terrain.Location = new System.Drawing.Point(12, 297);
+            this.but_terrain.Location = new System.Drawing.Point(12, 322);
             this.but_terrain.Name = "but_terrain";
-            this.but_terrain.Size = new System.Drawing.Size(75, 21);
+            this.but_terrain.Size = new System.Drawing.Size(75, 23);
             this.but_terrain.TabIndex = 53;
             this.but_terrain.Text = "terrain check";
             this.but_terrain.UseVisualStyleBackColor = true;
             this.but_terrain.Click += new System.EventHandler(this.but_terrain_Click);
             // 
-            // button4
+            // but_structtest
             // 
-            this.button4.Location = new System.Drawing.Point(38, 139);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(99, 28);
-            this.button4.TabIndex = 54;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.but_structtest.Location = new System.Drawing.Point(37, 172);
+            this.but_structtest.Name = "but_structtest";
+            this.but_structtest.Size = new System.Drawing.Size(75, 23);
+            this.but_structtest.TabIndex = 54;
+            this.but_structtest.Text = "structtest";
+            this.but_structtest.UseVisualStyleBackColor = true;
+            this.but_structtest.Click += new System.EventHandler(this.but_structtest_Click);
             // 
             // temp
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(685, 415);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(685, 450);
+            this.Controls.Add(this.but_structtest);
             this.Controls.Add(this.but_terrain);
             this.Controls.Add(this.but_droneapi);
             this.Controls.Add(this.butlogindex);
@@ -683,6 +683,6 @@
         private Controls.MyButton butlogindex;
         private Controls.MyButton but_droneapi;
         private Controls.MyButton but_terrain;
-        private System.Windows.Forms.Button button4;
+        private Controls.MyButton but_structtest;
     }
 }

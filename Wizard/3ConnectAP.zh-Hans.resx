@@ -117,25 +117,48 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>453, 123</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>Connect your autopilot to the computer via the USB port.
+    <value>使用USB连接你的自动驾驶仪到电脑。
 
-NOTE: USB hubs might not provide adequate power, connect directly to your computer.</value>
+注：USB集线器可能不能提供充足的电量，请直接连接你的电脑。</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>199, 22</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>CONNECT YOUR AUTOPILOT</value>
+    <value>连接你的自动驾驶仪</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="radialGradientBG1.Image.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radialGradientBG1.Label.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="radialGradientBG1.Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 29</value>
+  </data>
+  <data name="radialGradientBG1.Label.Text" xml:space="preserve">
+    <value>连接你的自动驾驶仪</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 121</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
-    <value>Please select your comport from the list.
+    <value>请在列表中选择你的串口
 
-The correct comport will apear as "Arduino Mega 2560" or "PX4 FMU"
+正确的串口应显示为"Arduino Mega 2560"或"PX4 FMU"
 
 </value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>SELECT COM PORT</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 22</value>
   </data>
-  <data name="radialGradientBG1.Label.Text" xml:space="preserve">
-    <value>Connecting your autopilot</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>选择串口</value>
   </data>
 </root>

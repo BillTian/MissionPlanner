@@ -111,6 +111,11 @@
     <Compile Include="HUD.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="HUDT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HUDT.resx</DependentUpon>
+    </Compile>
     <Compile Include="IActivate.cs" />
     <Compile Include="IDynamicParameterControl.cs" />
     <Compile Include="ImageLabel.cs">
@@ -244,6 +249,14 @@
     <EmbeddedResource Include="HSI.resx">
       <DependentUpon>HSI.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HUDT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>HUDT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HUDT.zh-Hans.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ImageLabel.resx">
       <DependentUpon>ImageLabel.cs</DependentUpon>
     </EmbeddedResource>
@@ -260,6 +273,9 @@
       <DependentUpon>ProgressReporterDialogue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressReporterSphere.resx">
+      <DependentUpon>ProgressReporterSphere.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProgressReporterSphere.zh-Hans.resx">
       <DependentUpon>ProgressReporterSphere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgressStep.resx">

@@ -32,6 +32,7 @@ using GMap.NET.MapProviders;
 using MissionPlanner.Maps;
 using System.Data;
 using DotSpatial.Projections;
+using System.Drawing.Drawing2D;
 
 namespace MissionPlanner.GCSViews
 {
@@ -91,7 +92,7 @@ namespace MissionPlanner.GCSViews
         }
 
         /// <summary>
-        /// used to adjust existing point in the datagrid including "Home"
+        /// used to adjust existing point in the datagrid including "H"
         /// </summary>
         /// <param name="pointno"></param>
         /// <param name="lat"></param>
@@ -105,7 +106,7 @@ namespace MissionPlanner.GCSViews
             }
 
             // dragging a WP
-            if (pointno == "Home")
+            if (pointno == "H")
             {
                 if (isonline && CHK_verifyheight.Checked)
                 {
@@ -315,7 +316,7 @@ namespace MissionPlanner.GCSViews
             if (sethome)
             {
                 sethome = false;
-                callMeDrag("Home", lat, lng, alt);
+                callMeDrag("H", lat, lng, alt);
                 return;
             }
             // creating a WP
@@ -879,15 +880,16 @@ namespace MissionPlanner.GCSViews
             try
             {
                 PointLatLng point = new PointLatLng(lat, lng);
-                GMarkerGoogle m = new GMarkerGoogle(point, GMarkerGoogleType.green);
-                m.ToolTipMode = MarkerTooltipMode.Always;
-                m.ToolTipText = tag;
+                GMapMarkerWP m = new GMapMarkerWP(point, tag);
+                m.ToolTipMode = MarkerTooltipMode.OnMouseOver;
+                m.ToolTipText = "Alt: " + alt.ToString("0");
                 m.Tag = tag;
 
                 //MissionPlanner.GMapMarkerRectWPRad mBorders = new MissionPlanner.GMapMarkerRectWPRad(point, (int)float.Parse(TXT_WPRad.Text), MainMap);
                 GMapMarkerRect mBorders = new GMapMarkerRect(point);
                 {
                     mBorders.InnerMarker = m;
+                    mBorders.Tag = tag;
                     mBorders.wprad = (int)(float.Parse(TXT_WPRad.Text) / CurrentState.multiplierdist);
                     if (color.HasValue)
                     {
@@ -986,9 +988,9 @@ namespace MissionPlanner.GCSViews
                     home = string.Format("{0},{1},{2}\r\n", TXT_homelng.Text, TXT_homelat.Text, TXT_DefaultAlt.Text);
                     if (objectsoverlay != null) // during startup
                     {
-                        pointlist.Add(new PointLatLngAlt(double.Parse(TXT_homelat.Text), double.Parse(TXT_homelng.Text), (int)double.Parse(TXT_homealt.Text), "Home"));
+                        pointlist.Add(new PointLatLngAlt(double.Parse(TXT_homelat.Text), double.Parse(TXT_homelng.Text), (int)double.Parse(TXT_homealt.Text), "H"));
                         fullpointlist.Add(pointlist[pointlist.Count - 1]);
-                        addpolygonmarker("Home", double.Parse(TXT_homelng.Text), double.Parse(TXT_homelat.Text), 0, null);
+                        addpolygonmarker("H", double.Parse(TXT_homelng.Text), double.Parse(TXT_homelat.Text), 0, null);
                     }
                 }
                 else
@@ -1325,17 +1327,19 @@ namespace MissionPlanner.GCSViews
             int count = wproute.Count;
             int counter = 0;
             PointLatLngAlt homepoint = new PointLatLngAlt();
+            PointLatLngAlt firstpoint = new PointLatLngAlt();
             PointLatLngAlt lastpoint = new PointLatLngAlt();
 
             if (count > 2)
             {
+                // homeroute = last, home, first
                 wproute.ForEach(x =>
                 {
                     counter++;
                     if (counter == 1) { homepoint = x; return; }
-                    if (counter == 2) { homeroute.Points.Add(x); homeroute.Points.Add(homepoint); }
+                    if (counter == 2) { firstpoint = x; }
                     if (counter == count - 1) { lastpoint = x; }
-                    if (counter == count) { homeroute.Points.Add(x); homeroute.Points.Add(lastpoint); return; }
+                    if (counter == count) { homeroute.Points.Add(lastpoint); homeroute.Points.Add(homepoint); homeroute.Points.Add(firstpoint); return; }
                     route.Points.Add(x);
                 });
 
@@ -1347,6 +1351,7 @@ namespace MissionPlanner.GCSViews
                 polygonsoverlay.Routes.Add(homeroute);
 
                 route.Stroke = new Pen(Color.Yellow, 4);
+                route.Stroke.DashStyle = DashStyle.Custom;
                 polygonsoverlay.Routes.Add(route);
             }
         }
@@ -1384,6 +1389,7 @@ namespace MissionPlanner.GCSViews
                 wppolygon.Points.AddRange(polygonPoints);
 
                 wppolygon.Stroke = new Pen(Color.Yellow, 4);
+                wppolygon.Stroke.DashStyle = DashStyle.Custom;
                 wppolygon.Fill = Brushes.Transparent;
 
                 if (polygonsoverlay.Polygons.Count == 0)
@@ -1410,7 +1416,7 @@ namespace MissionPlanner.GCSViews
                     continue;
                 try
                 {
-                    if (lla.Tag != null && lla.Tag != "Home" && !lla.Tag.Contains("ROI"))
+                    if (lla.Tag != null && lla.Tag != "H" && !lla.Tag.Contains("ROI"))
                     {
                         Commands.Rows[int.Parse(lla.Tag) - 1].Cells[Grad.Index].Value = (((lla.Alt - last.Alt) / (lla.GetDistance(last) * CurrentState.multiplierdist)) * 100).ToString("0.0");
 
@@ -2520,7 +2526,7 @@ namespace MissionPlanner.GCSViews
                 if (System.Windows.Forms.DialogResult.Cancel == InputBox.Show("WMS Server", "Enter the WMS server URL", ref url))
                     return;
 
-                string szCapabilityRequest = url + "?version=1.1.0&Request=GetCapabilities";
+                string szCapabilityRequest = url + "?version=1.1.0&Request=GetCapabilities&service=WMS";
 
                 XmlDocument xCapabilityResponse = MakeRequest(szCapabilityRequest);
                 ProcessWmsCapabilitesRequest(xCapabilityResponse);
@@ -2784,15 +2790,19 @@ namespace MissionPlanner.GCSViews
                     // adjust polyline point while we drag
                     try
                     {
-                        int? pIndex = (int?)CurentRectMarker.Tag;
-                        if (pIndex.HasValue)
+                        if (CurrentGMapMarker.Tag is int)
                         {
-                            if (pIndex < wppolygon.Points.Count)
+
+                            int? pIndex = (int?)CurentRectMarker.Tag;
+                            if (pIndex.HasValue)
                             {
-                                wppolygon.Points[pIndex.Value] = pnew;
-                                lock (thisLock)
+                                if (pIndex < wppolygon.Points.Count)
                                 {
-                                    MainMap.UpdatePolygonLocalPosition(wppolygon);
+                                    wppolygon.Points[pIndex.Value] = pnew;
+                                    lock (thisLock)
+                                    {
+                                        MainMap.UpdatePolygonLocalPosition(wppolygon);
+                                    }
                                 }
                             }
                         }

@@ -87,7 +87,7 @@ namespace wix
             //Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar+ 
             string file = "installer.wxs";
 
-            string outputfilename = "MissionPlanner";
+            string outputfilename = "MissionPlanner-PlayUAV";
 
             if (args.Length > 1)
                 outputfilename = args[1];
@@ -96,7 +96,7 @@ namespace wix
 
             header();
 
-            sw.WriteLine("<Directory Id=\"MissionPlanner\" Name=\"Mission Planner\">");
+            sw.WriteLine("<Directory Id=\"MissionPlanner\" Name=\"Mission Planner PlayUAV\">");
 
             sw.WriteLine(@"<Component Id=""InstallDirPermissions"" Guid=""{525389D7-EB3C-4d77-A5F6-A285CF99437D}"" KeyPath=""yes""> 
                         <CreateFolder> 
@@ -128,7 +128,7 @@ namespace wix
 
             st.WriteLine("pause");
 
-            st.WriteLine(@"""C:\Program Files\7-Zip\7z.exe"" a -tzip -xr!*.log -xr!*.log* -xr!cameras.xml -xr!firmware.hex -xr!*.zip -xr!stats.xml -xr!*.bin -xr!*.xyz -xr!*.sqlite -xr!*.dxf -xr!*.zip -xr!*.h -xr!*.param -xr!ParameterMetaData.xml -xr!translation -xr!mavelous_web -xr!stats.xml -xr!driver -xr!*.etag -xr!srtm -xr!*.rlog -xr!*.zip -xr!*.tlog -xr!config.xml -xr!gmapcache -xr!eeprom.bin -xr!dataflash.bin -xr!*.new -xr!*.log -xr!ArdupilotPlanner.log* -xr!cameras.xml -xr!firmware.hex -xr!*.zip -xr!stats.xml -xr!ParameterMetaData.xml -xr!*.etag -xr!*.rlog -xr!*.tlog -xr!config.xml -xr!gmapcache -xr!eeprom.bin -xr!dataflash.bin -xr!*.new " + fn + @".zip " + path + "*");
+            st.WriteLine(@"""D:\Program Files (x86)\7-Zip\7z.exe"" a -tzip -xr!*.log -xr!*.log* -xr!cameras.xml -xr!firmware.hex -xr!*.zip -xr!stats.xml -xr!*.bin -xr!*.xyz -xr!*.sqlite -xr!*.dxf -xr!*.zip -xr!*.h -xr!*.param -xr!ParameterMetaData.xml -xr!translation -xr!mavelous_web -xr!stats.xml -xr!driver -xr!*.etag -xr!srtm -xr!*.rlog -xr!*.zip -xr!*.tlog -xr!config.xml -xr!gmapcache -xr!eeprom.bin -xr!dataflash.bin -xr!*.new -xr!*.log -xr!ArdupilotPlanner.log* -xr!cameras.xml -xr!firmware.hex -xr!*.zip -xr!stats.xml -xr!ParameterMetaData.xml -xr!*.etag -xr!*.rlog -xr!*.tlog -xr!config.xml -xr!gmapcache -xr!eeprom.bin -xr!dataflash.bin -xr!*.new " + fn + @".zip " + path + "*");
 
             st.WriteLine("pause");
 
@@ -184,9 +184,9 @@ namespace wix
 <Wix xmlns=""http://schemas.microsoft.com/wix/2006/wi"" xmlns:netfx=""http://schemas.microsoft.com/wix/NetFxExtension"" xmlns:difx=""http://schemas.microsoft.com/wix/DifxAppExtension"" xmlns:iis='http://schemas.microsoft.com/wix/IIsExtension' >
 
 
-    <Product Id=""" + newid + @""" Name=""Mission Planner"" Language=""1033"" Version=""" + version + @""" Manufacturer=""Michael Oborne"" UpgradeCode=""{625389D7-EB3C-4d77-A5F6-A285CF99437D}"">
+    <Product Id=""" + newid + @""" Name=""Mission Planner PlayUAV"" Language=""1033"" Version=""" + version + @""" Manufacturer=""Michael Oborne"" UpgradeCode=""{625389D7-EB3C-4d77-A5F6-A285CF99437D}"">
 
-        <Package Description=""Mission Planner Installer"" Comments=""Mission Planner Installer"" Manufacturer=""Michael Oborne"" InstallerVersion=""200"" Compressed=""yes"" />
+        <Package Description=""Mission Planner PlayUAV Installer"" Comments=""Mission Planner PlayUAV Installer"" Manufacturer=""Michael Oborne"" InstallerVersion=""200"" Compressed=""yes"" />
 
 
 <Upgrade Id=""{625389D7-EB3C-4d77-A5F6-A285CF99437D}"">
@@ -220,7 +220,7 @@ namespace wix
             </Directory>
 
             <Directory Id=""ProgramMenuFolder"">
-                <Directory Id=""ApplicationProgramsFolder"" Name=""Mission Planner"" />
+                <Directory Id=""ApplicationProgramsFolder"" Name=""Mission Planner PlayUAV"" />
             </Directory>
 
         </Directory>
@@ -274,8 +274,8 @@ namespace wix
 
         <DirectoryRef Id=""ApplicationProgramsFolder"">
             <Component Id=""ApplicationShortcut"" Guid=""*"">
-                <Shortcut Id=""ApplicationStartMenuShortcut10"" Name=""Mission Planner"" Description=""Mission Planner"" Target=""[MissionPlanner]MissionPlanner.exe"" WorkingDirectory=""MissionPlanner"" />
-                <Shortcut Id=""UninstallProduct"" Name=""Uninstall Mission Planner"" Description=""Uninstalls My Application"" Target=""[System64Folder]msiexec.exe"" Arguments=""/x [ProductCode]"" />
+                <Shortcut Id=""ApplicationStartMenuShortcut10"" Name=""Mission Planner PlayUAV"" Description=""Mission Planner PlayUAV"" Target=""[MissionPlanner]MissionPlanner.exe"" WorkingDirectory=""MissionPlanner"" />
+                <Shortcut Id=""UninstallProduct"" Name=""Uninstall Mission Planner PlayUAV"" Description=""Uninstalls My Application"" Target=""[System64Folder]msiexec.exe"" Arguments=""/x [ProductCode]"" />
                 <RegistryValue Root=""HKCU"" Key=""Software\MichaelOborne\MissionPlanner"" Name=""installed"" Type=""integer"" Value=""1"" KeyPath=""yes"" />
 
                 <RemoveFolder Id=""dltApplicationProgramsFolder"" Directory=""ApplicationProgramsFolder"" On=""uninstall"" />
@@ -285,7 +285,7 @@ namespace wix
         </DirectoryRef>
 
 
-        <Feature Id=""Complete"" Title=""Mission Planner"" Level=""1"">
+        <Feature Id=""Complete"" Title=""Mission Planner PlayUAV"" Level=""1"">
             <ComponentRef Id=""InstallDirPermissions"" />
 ";
             sw.WriteLine(data);
@@ -314,7 +314,7 @@ namespace wix
             Event=""DoAction"" 
             Value=""LaunchApplication"">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish>
     </UI>
-    <Property Id=""WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"" Value=""Launch Mission Planner"" />
+    <Property Id=""WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT"" Value=""Launch Mission Planner PlayUAV"" />
 
     <!-- Step 3: Include the custom action -->
     <Property Id=""WixShellExecTarget"" Value=""[#" + mainexeid + @"]"" />

@@ -152,6 +152,7 @@ namespace MissionPlanner
         /// <summary>
         /// other planes in the area from adsb
         /// </summary>
+        internal object adsblock = new object();
         public Hashtable adsbPlanes = new Hashtable();
         public Hashtable adsbPlaneAge = new Hashtable();
 
@@ -676,7 +677,7 @@ namespace MissionPlanner
 
         void adsb_UpdatePlanePosition(object sender, EventArgs e)
         {
-            lock (adsbPlanes)
+            lock (adsblock)
             {
                 adsbPlanes[((MissionPlanner.Utilities.adsb.PointLatLngAltHdg)sender).Tag] = ((MissionPlanner.Utilities.adsb.PointLatLngAltHdg)sender);
                 adsbPlaneAge[((MissionPlanner.Utilities.adsb.PointLatLngAltHdg)sender).Tag] = DateTime.Now;
@@ -711,7 +712,8 @@ namespace MissionPlanner
                     MaximizeBox = false,
                     MinimizeBox = false,
                     FormBorderStyle = FormBorderStyle.FixedDialog,
-                    Text = "连接状态"
+
+                    Text = Strings.LinkStats
                 };
                 // Change the connection stats control, so that when/if the connection stats form is showing,
                 // there will be something to see
@@ -779,7 +781,7 @@ namespace MissionPlanner
             {
                 Share.webBrowser1.Visible = true;
                 Share.init = true;
-                Share.webBrowser1.Url = new Uri("http://www.playuav.com/analyzer/map");
+                Share.webBrowser1.Url = new Uri("http://www.playuav.com");
             }
             MyView.ShowScreen("Share");
 
@@ -1365,7 +1367,7 @@ namespace MissionPlanner
                 {
                     log.Info("Saving config");
 
-                    XmlTextWriter xmlwriter = new XmlTextWriter(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"config.xml", Encoding.ASCII);
+                    XmlTextWriter xmlwriter = new XmlTextWriter(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"config.xml", Encoding.UTF8);
                     xmlwriter.Formatting = Formatting.Indented;
 
                     xmlwriter.WriteStartDocument();
@@ -2167,8 +2169,21 @@ namespace MissionPlanner
 
             try
             {
-                KIndex.KIndexEvent += KIndex_KIndex;
-                KIndex.GetKIndex();
+                // check the last kindex date
+                if (MainV2.getConfig("kindexdate") == DateTime.Now.ToShortDateString())
+                {
+                    // set the cached kindex
+                    if (MainV2.getConfig("kindex") != "")
+                        KIndex_KIndex(int.Parse(MainV2.getConfig("kindex")),null);
+                }
+                else
+                {
+                    // get a new kindex
+                    KIndex.KIndexEvent += KIndex_KIndex;
+                    KIndex.GetKIndex();
+
+                    MainV2.config["kindexdate"] = DateTime.Now.ToShortDateString();
+                }
             }
             catch (Exception ex) { log.Error(ex); }
 
@@ -2243,6 +2258,7 @@ namespace MissionPlanner
         void KIndex_KIndex(object sender, EventArgs e)
         {
             CurrentState.KIndexstatic = (int)sender;
+            MainV2.config["kindex"] = CurrentState.KIndexstatic;
         }
 
         private void BGCreateMaps(object state)
@@ -2371,24 +2387,16 @@ namespace MissionPlanner
             }
             if (keyData == (Keys.Control | Keys.L)) // limits
             {
-                Form temp = new Form();
-                Control frm = new GCSViews.ConfigurationView.ConfigAP_Limits();
-                temp.Controls.Add(frm);
-                temp.Size = frm.Size;
-                frm.Dock = DockStyle.Fill;
-                ThemeManager.ApplyThemeTo(temp);
-                temp.Show();
+                
+
                 return true;
             }
             if (keyData == (Keys.Control | Keys.W)) // test ac config
             {
-                Wizard.Wizard cfg = new Wizard.Wizard();
-
-                cfg.ShowDialog(this);
 
                 return true;
             }
-            if (keyData == (Keys.Control | Keys.Z)) // test ac config
+            if (keyData == (Keys.Control | Keys.Z))
             {
                 MissionPlanner.GenOTP otp = new MissionPlanner.GenOTP();
 
