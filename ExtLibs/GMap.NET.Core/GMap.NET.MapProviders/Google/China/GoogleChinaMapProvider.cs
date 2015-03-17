@@ -1,8 +1,10 @@
 ﻿
 namespace GMap.NET.MapProviders
 {
-   using System;
+
     using GMap.NET.Projections;
+    using System;
+
    /// <summary>
    /// GoogleChinaMap provider
    /// </summary>
@@ -22,7 +24,10 @@ namespace GMap.NET.MapProviders
 
       public override PureProjection Projection
       {
-          get { return AMapProjection.Instance; }
+          get
+          {
+              return MercatorProjectionGCJ.Instance;
+          }
       }
 
       public string Version = "m@218";

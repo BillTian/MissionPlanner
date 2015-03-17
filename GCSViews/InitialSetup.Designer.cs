@@ -550,7 +550,7 @@
             this.backstageViewPlayUAVOSD.LinkText = "PlayUAVOSD";
             this.backstageViewPlayUAVOSD.Page = this.PlayUAVOSD1;
             this.backstageViewPlayUAVOSD.Parent = this.backstageViewPageopt;
-            this.backstageViewPlayUAVOSD.Show = true;
+            this.backstageViewPlayUAVOSD.Show = false;
             this.backstageViewPlayUAVOSD.Spacing = 30;
             resources.ApplyResources(this.backstageViewPlayUAVOSD, "backstageViewPlayUAVOSD");
 

@@ -117,61 +117,57 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lbl_gps.Text" xml:space="preserve">
-    <value>Does the autopilot have gps lock?</value>
-  </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>Verify Pre-Arm Test</value>
-  </data>
-  <data name="lbl_rc.Text" xml:space="preserve">
-    <value>Have you configured your RC transmitter?</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>Verify GPS</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>504, 54</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>Use this screen to verify that you meet all the basic requirements to arm and fly the autopilot.
+    <value>使用该界面来核验你是否符合自动驾驶仪的解锁以及飞行的基本要求。
 
-NOTE: this test will attempt to arm your autopilot, please remove any props.</value>
+注意：这个测试将尝试解锁你的自动驾驶仪，请移除所有螺旋桨。</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
-    <value>Verify Current Progress</value>
+    <value>核验当前进度</value>
   </data>
-  <data name="chk_compass.Text" xml:space="preserve">
-    <value>checkBox3</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>Verify Accel</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>Verify Compass</value>
-  </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Verify RC</value>
-  </data>
-  <data name="chk_gps.Text" xml:space="preserve">
-    <value>checkBox1</value>
-  </data>
-  <data name="lbl_accel.Text" xml:space="preserve">
-    <value>Have you completed an accel calibration?</value>
-  </data>
-  <data name="chk_accel.Text" xml:space="preserve">
-    <value>checkBox2</value>
-  </data>
-  <data name="chk_perarm.Text" xml:space="preserve">
-    <value>checkBox5</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>核验解锁前测试</value>
   </data>
   <data name="lbl_prearm.Text" xml:space="preserve">
-    <value>Can you arm the autopilot?
-Please try arming with your transmitter.</value>
+    <value>你能解锁自动驾驶仪吗？
+请尝试使用发射机解锁。
+注意：螺旋桨可能会转起来！</value>
   </data>
-  <data name="chk_rc.Text" xml:space="preserve">
-    <value>checkBox4</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>核验遥控</value>
   </data>
-  <data name="radialGradientBG1.Label.Text" xml:space="preserve">
-    <value>Verify</value>
+  <data name="lbl_rc.Text" xml:space="preserve">
+    <value>你是否配置好了遥控发射机？</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>核验GPS</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>核验加速度计</value>
   </data>
   <data name="lbl_compass.Text" xml:space="preserve">
-    <value>Have you completed a compass calibration?</value>
+    <value>你是否完成了罗盘校准？</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>核验罗盘</value>
+  </data>
+  <data name="lbl_accel.Text" xml:space="preserve">
+    <value>你是否完成了加速度计校准？</value>
+  </data>
+  <data name="lbl_gps.Text" xml:space="preserve">
+    <value>自动驾驶仪是否获得了GPS锁定？</value>
+  </data>
+  <data name="radialGradientBG1.Label.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 29</value>
+  </data>
+  <data name="radialGradientBG1.Label.Text" xml:space="preserve">
+    <value>核验</value>
   </data>
 </root>

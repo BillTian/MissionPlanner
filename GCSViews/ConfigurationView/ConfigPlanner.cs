@@ -128,7 +128,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             IAMStreamConfig videoStreamConfig = o as IAMStreamConfig;
             if (videoStreamConfig == null)
             {
-                throw new Exception("Failed to get IAMStreamConfig");
+                CustomMessageBox.Show("Failed to get IAMStreamConfig");
+                return;
             }
 
             hr = videoStreamConfig.GetNumberOfCapabilities(out count, out size);
@@ -621,6 +622,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     CMB_videosources_Click(this,null);
                     CMB_videosources.SelectedIndex = int.Parse(MainV2.config["video_device"].ToString());
+
+                    if (MainV2.getConfig("video_options") != "" && CMB_videosources.Text != "")
+                    {
+                        CMB_videoresolutions.SelectedIndex = int.Parse(MainV2.getConfig("video_options"));
+                    }
                 }            
             } catch {}
 

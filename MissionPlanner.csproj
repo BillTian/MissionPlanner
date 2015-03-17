@@ -395,22 +395,22 @@
     <Compile Include="GCSViews\ConfigurationView\PlayUAVOSD.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GCSViews\ConfigurationView\PlayUAVOSD.designer.cs">
+    <Compile Include="GCSViews\ConfigurationView\PlayUAVOSD.Designer.cs">
       <DependentUpon>PlayUAVOSD.cs</DependentUpon>
     </Compile>
     <Compile Include="GCSViews\ConfigurationView\Tools.cs" />
     <Compile Include="GCSViews\ConfigurationView\Tuple.cs" />
-    <Compile Include="GCSViews\Share.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="GCSViews\Share.Designer.cs">
-      <DependentUpon>Share.cs</DependentUpon>
-    </Compile>
     <Compile Include="GCSViews\FlightData2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="GCSViews\FlightData2.Designer.cs">
       <DependentUpon>FlightData2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GCSViews\Share.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GCSViews\Share.Designer.cs">
+      <DependentUpon>Share.cs</DependentUpon>
     </Compile>
     <Compile Include="Joystick\Joy_Do_Repeat_Servo.cs">
       <SubType>Form</SubType>
@@ -584,6 +584,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Strings.zh-Hans.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.zh-Hans.resx</DependentUpon>
+    </Compile>
     <Compile Include="Swarm\FollowPathControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -611,6 +616,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Antenna\Tracker.zh-TW.resx">
       <DependentUpon>Tracker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ConnectionControl.zh-Hans.resx">
+      <DependentUpon>ConnectionControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConnectionStats.zh-Hans.resx">
       <DependentUpon>ConnectionStats.cs</DependentUpon>
@@ -737,6 +745,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigFirmware.zh-Hans.resx">
       <DependentUpon>ConfigFirmware.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigFirmware.zh-Hant.resx">
       <DependentUpon>ConfigFirmware.cs</DependentUpon>
@@ -767,6 +776,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigHWAirspeed.zh-TW.resx">
       <DependentUpon>ConfigHWAirspeed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigHWBT.zh-Hans.resx">
+      <DependentUpon>ConfigHWBT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigHWCompass.zh-Hant.resx">
       <DependentUpon>ConfigHWCompass.cs</DependentUpon>
@@ -855,6 +867,9 @@
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigTradHeli.zh-TW.resx">
       <DependentUpon>ConfigTradHeli.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GCSViews\ConfigurationView\MinimOSD.resx">
+      <DependentUpon>MinimOSD.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\PlayUAVOSD.resx">
       <DependentUpon>PlayUAVOSD.cs</DependentUpon>
     </EmbeddedResource>
@@ -908,9 +923,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\Terminal.zh-TW.resx">
       <DependentUpon>Terminal.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GCSViews\ConfigurationView\MinimOSD.resx">
-      <DependentUpon>MinimOSD.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="georefimage.zh-Hant.resx">
       <DependentUpon>georefimage.cs</DependentUpon>
@@ -989,9 +1001,8 @@
     <EmbeddedResource Include="Strings.zh-Hans.resx">
       <SubType>Designer</SubType>
       <LastGenOutput>Strings.zh-Hans.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Utilities\UpdateT.resx" />
-    <EmbeddedResource Include="Utilities\UpdateT.zh-Hans.resx" />
     <EmbeddedResource Include="Warnings\WarningControl.resx">
       <DependentUpon>WarningControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1154,7 +1165,6 @@
     <None Include="airports.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <None Include="Drivers\amd64\ftd2xx.lib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -1213,7 +1223,6 @@
     <Compile Include="Utilities\StringRedirectWriter.cs" />
     <Compile Include="Utilities\TerrainFollow.cs" />
     <Compile Include="Utilities\Update.cs" />
-    <Compile Include="Utilities\UpdateT.Designer.cs" />
     <Compile Include="Utilities\VersionDetection.cs" />
     <Compile Include="Warnings\CustomWarning.cs" />
     <Compile Include="Warnings\WarningControl.cs">
@@ -1345,7 +1354,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConnectionControl.resx">
       <DependentUpon>ConnectionControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\Waypoints\Command.resx">
       <DependentUpon>Command.cs</DependentUpon>
@@ -1395,7 +1403,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainV2.zh-Hans.resx">
       <DependentUpon>MainV2.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="MovingBase.de-DE.resx">
       <DependentUpon>MovingBase.cs</DependentUpon>
@@ -1456,7 +1463,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigMandatory.resx">
       <DependentUpon>ConfigMandatory.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigMount.de-DE.resx">
       <DependentUpon>ConfigMount.cs</DependentUpon>
@@ -1466,7 +1472,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigOptional.resx">
       <DependentUpon>ConfigOptional.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\ConfigurationView\ConfigPlanner.it-IT.resx">
       <DependentUpon>ConfigPlanner.cs</DependentUpon>
@@ -2024,7 +2029,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ConnectionStats.resx">
       <DependentUpon>ConnectionStats.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ModifyandSet.resx">
       <DependentUpon>ModifyandSet.cs</DependentUpon>
@@ -2168,7 +2172,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\Simple.fr.resx">
       <DependentUpon>Simple.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="GCSViews\Simple.it-IT.resx">
       <DependentUpon>Simple.cs</DependentUpon>
@@ -6389,12 +6392,14 @@
     <None Include="Resources\PlusFramesGreen_06.png" />
     <None Include="Resources\pixhawk.jpg" />
     <Content Include="Resources\rover.png" />
-    <None Include="Resources\share.png" />
     <Content Include="Resources\splash.jpg" />
     <Content Include="Scripts\datetime.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\example2.py">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\example4 wp.py">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Scripts\example3.py">
@@ -6594,9 +6599,6 @@
       <Name>ZedGraph</Name>
       <EmbedInteropTypes>False</EmbedInteropTypes>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GCSViews\ExtTranslations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

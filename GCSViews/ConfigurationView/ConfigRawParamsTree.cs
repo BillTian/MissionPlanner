@@ -386,7 +386,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             this.ResumeLayout();
 
-            Common.MessageShowAgain("参数设置警告", "在这个页面里的所有参数不会进行最大/最小值校验. 请务必仔细检查你的输入.\n 为了安全起见，请使用标准/高级参数设置");
+            Common.MessageShowAgain(Strings.RawParamWarning, Strings.RawParamWarningi);
 
             CMB_paramfiles.Enabled = false;
             BUT_paramfileload.Enabled = false;

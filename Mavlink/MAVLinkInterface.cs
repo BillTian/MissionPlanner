@@ -731,6 +731,8 @@ Please check the following
                             continue;
                         }
 
+                        log.Info("setParam gotback "+ st + " : " +par.param_value);
+
                         MAV.param[st] = (par.param_value);
 
                         giveComport = false;
@@ -1284,16 +1286,6 @@ Please check the following
 
             log.InfoFormat("doCommand cmd {0} {1} {2} {3} {4} {5} {6} {7}",actionid.ToString(),p1,p2,p3,p4,p5,p6,p7);
 
-            // send old style, then new style
-            if (actionid == MAV_CMD.COMPONENT_ARM_DISARM)
-            {
-                req.target_component = (byte)MAV_COMPONENT.MAV_COMP_ID_SYSTEM_CONTROL;
-
-                generatePacket((byte)MAVLINK_MSG_ID.COMMAND_LONG, req);
-
-                req.target_component = MAV.compid;
-            }
-
             generatePacket((byte)MAVLINK_MSG_ID.COMMAND_LONG, req);
 
             DateTime start = DateTime.Now;
@@ -1399,29 +1391,37 @@ Please check the following
             }
             else
             {
-                ctl.flags = (byte)(SERIAL_CONTROL_FLAG.EXCLUSIVE | SERIAL_CONTROL_FLAG.RESPOND);// | SERIAL_CONTROL_FLAG.MULTI);
+                ctl.flags = (byte)SERIAL_CONTROL_FLAG.EXCLUSIVE;// | SERIAL_CONTROL_FLAG.MULTI);
             }
 
             if (data != null && data.Length != 0)
             {
+                int packets = (data.Length / 70) + 1;
                 int len = data.Length;
                 while (len > 0)
                 {
+                    if (packets == 1)
+                        ctl.flags |= (byte)SERIAL_CONTROL_FLAG.RESPOND;
+
                     byte n = (byte)Math.Min(70, len);
 
                     ctl.count = n;
                     Array.Copy(data, data.Length - len, ctl.data, 0, n);
 
-                    // dont flod the port
+                    // dont flood the port
                     System.Threading.Thread.Sleep(10);
 
                     generatePacket((byte)MAVLINK_MSG_ID.SERIAL_CONTROL, ctl);
 
                     len -= n;
+                    packets--;
                 } 
             }
             else
             {
+                if (!close)
+                    ctl.flags |= (byte)SERIAL_CONTROL_FLAG.RESPOND | (byte)SERIAL_CONTROL_FLAG.MULTI;
+
                 generatePacket((byte)MAVLINK_MSG_ID.SERIAL_CONTROL, ctl);
             }
         }
@@ -1570,7 +1570,7 @@ Please check the following
         /// Returns WP count
         /// </summary>
         /// <returns></returns>
-        public byte getWPCount()
+        public ushort getWPCount()
         {
             giveComport = true;
             byte[] buffer;
@@ -1612,7 +1612,7 @@ Please check the following
 
                         log.Info("wpcount: " + count.count);
                         giveComport = false;
-                        return (byte)count.count; // should be ushort, but apm has limited wp count < byte
+                        return count.count; // should be ushort, but apm has limited wp count < byte
                     }
                     else
                     {
