@@ -31,7 +31,8 @@ namespace MissionPlanner.Arduino
             vrubrainv51,
             vrubrainv52,
             vrgimbalv20,
-            vrugimbalv11
+            vrugimbalv11,
+            playuavosd
         }
 
         /// <summary>
@@ -152,6 +153,12 @@ namespace MissionPlanner.Arduino
                     {
                         log.Info("is a vrugimbal 1.1 bootloader");
                         return boards.vrugimbalv11;
+                    }
+
+                    if (obj2.Properties["PNPDeviceID"].Value.ToString().Contains(@"USB\VID_26AC&PID_0002"))
+                    {
+                        log.Info("is a playuav osd bootloader");
+                        return boards.playuavosd;
                     }
 
                 }

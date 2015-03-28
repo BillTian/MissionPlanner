@@ -13,12 +13,14 @@ using log4net;
 using px4uploader;
 using System.Collections;
 using System.Xml.Serialization;
+//using System.IO.Ports;
 
 namespace MissionPlanner.Utilities
 {
     public class Firmware
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+        static internal ICommsSerial comPortosdbl;
 
         public event ProgressEventHandler Progress;
 
@@ -113,7 +115,7 @@ namespace MissionPlanner.Utilities
                 //CustomMessageBox.Show("Missing FirmwareHistory.txt file");
                 return;
             }
-
+            comPortosdbl = new MissionPlanner.Comms.SerialPort();
             gholdurls = File.ReadAllLines(file);
             int a = 0;
             foreach (string gh in gholdurls)
@@ -141,7 +143,85 @@ namespace MissionPlanner.Utilities
                 }
             }
         }
+        //////////////////////////////rentt////////////////////////////
+        public enum Codebl : byte
+        {
+            // response codes
+            NOP = 0x00,
+            OK = 0x10,
+            FAILED = 0x11,
+            INSYNC = 0x12,
+            INVALID = 0x13,
 
+            // protocol commands
+            EOC = 0x20,
+            GET_SYNC = 0x21,
+            GET_DEVICE = 0x22,
+            CHIP_ERASE = 0x23,
+            START_TRANSFER = 0x24,      //tell the osd we will start send params
+            SET_PARAMS = 0x25,           //actually send params
+            GET_PARAMS = 0x26,          //recv params from osd
+            INFO_OSD_REV = 0x27,        //get the firmware revision
+            END_TRANSFER = 0x28,
+            BL_UPLOAD = 0x55,
+
+            PROG_MULTI_MAX = 60,        //# protocol max is 255, must be multiple of 4
+            READ_MULTI_MAX = 60,        //# protocol max is 255, something overflows with >= 64
+
+        }
+
+        public void __sendbl(byte c)
+        {
+            comPortosdbl.Write(new byte[] { c }, 0, 1);
+        }
+
+        public void __sendbl(byte[] c)
+        {
+            comPortosdbl.Write(c, 0, c.Length);
+        }
+
+        public byte[] __recvbl(int count = 1)
+        {
+            // this will auto timeout
+            // Console.WriteLine("recv "+count);
+            byte[] c = new byte[count];
+            int pos = 0;
+            while (pos < count)
+                pos += comPortosdbl.Read(c, pos, count - pos);
+
+            return c;
+        }
+
+        public int __recv_intbl()
+        {
+            byte[] raw = __recvbl(4);
+            //raw.Reverse();
+            int val = BitConverter.ToInt32(raw, 0);
+            return val;
+        }
+
+        public void __getSyncbl()
+        {
+            comPortosdbl.BaseStream.Flush();
+            byte c = __recvbl()[0];
+            if (c != (byte)Codebl.INSYNC)
+                throw new Exception(string.Format("unexpected {0:X} instead of INSYNC", (byte)c));
+            c = __recvbl()[0];
+            if (c == (byte)Codebl.INVALID)
+                throw new Exception(string.Format("playuavosd reports INVALID OPERATION", (byte)c));
+            if (c == (byte)Codebl.FAILED)
+                throw new Exception(string.Format("playuavosd reports OPERATION FAILED", (byte)c));
+            if (c != (byte)Codebl.OK)
+                throw new Exception(string.Format("unexpected {0:X} instead of OK", (byte)c));
+        }
+
+        public void __syncbl()
+        {
+            comPortosdbl.BaseStream.Flush();
+            __sendbl(new byte[] { (byte)Codebl.GET_SYNC, (byte)Codebl.EOC });
+            __getSyncbl();
+        }
+        //////////////////////////////rentt////////////////////////////
         /// <summary>
         /// Load xml from internet based on firmwareurl, and return softwarelist
         /// </summary>
@@ -827,6 +907,223 @@ namespace MissionPlanner.Utilities
         }
 
         /// <summary>
+        /// upload to playuav standalone
+        /// </summary>
+        /// <param name="filename"></param>
+        public bool UploadPlayUAVOSD(string filename)
+        {
+            Uploader up;
+            updateProgress(0, "Reading Hex File");
+            px4uploader.Firmware fw;
+            try
+            {
+                fw = px4uploader.Firmware.ProcessFirmware(filename);
+            }
+            catch (Exception ex)
+            {
+                CustomMessageBox.Show(Strings.ErrorFirmwareFile + "\n\n" + ex.ToString(), Strings.ERROR);
+                return false;
+            }
+
+            try
+            {
+                //if (comPortosdbl.IsOpen())
+                   comPortosdbl.Close();
+
+                try
+                {
+                    comPortosdbl.PortName = MainV2.comPortName;
+                    comPortosdbl.BaudRate = int.Parse(MainV2._connectionControl.CMB_baudrate.Text);
+                    comPortosdbl.ReadBufferSize = 1024 * 1024 * 4;
+                    comPortosdbl.Open();
+                }
+                catch { MessageBox.Show("打开端口错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return false; }
+
+                System.Threading.Thread.Sleep(500);
+
+                __syncbl();
+                __sendbl(new byte[] { (byte)Codebl.BL_UPLOAD, (byte)Codebl.EOC });
+                __getSyncbl();
+
+                comPortosdbl.BaseStream.Flush();
+                System.Threading.Thread.Sleep(500);
+                comPortosdbl.Close();
+                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+
+                // check if we are seeing heartbeats
+                //MainV2.comPort.BaseStream.Open();
+                //MainV2.comPort.giveComport = true;
+                //BoardDetect.boards board = BoardDetect.DetectBoard(MainV2.comPortName);
+
+                //if (MainV2.comPort.getHeartBeat().Length > 0)
+                //{
+                //    MainV2.comPort.doReboot(true);
+                //    MainV2.comPort.Close();
+
+                //    //specific action for VRBRAIN4 board that needs to be manually disconnected before uploading
+                //    if (board == BoardDetect.boards.vrbrainv40)
+                //    {
+                //        CustomMessageBox.Show("VRBRAIN 4 detected. Please unplug the board then press OK and plug back in.\n");
+                //    }
+                //}
+                //else
+                //{
+                //    MainV2.comPort.BaseStream.Close();
+                //    CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                //}
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+            }
+
+            DateTime DEADLINE = DateTime.Now.AddSeconds(30);
+
+            updateProgress(0, "Scanning comports");
+
+            while (DateTime.Now < DEADLINE)
+            {
+                string[] allports = SerialPort.GetPortNames();
+
+                foreach (string port in allports)
+                {
+                    log.Info(DateTime.Now.Millisecond + " Trying Port " + port);
+
+                    updateProgress(-1, "Connecting");
+
+                    try
+                    {
+                        up = new Uploader(port, 115200);
+                    }
+                    catch (Exception ex)
+                    {
+                        //System.Threading.Thread.Sleep(50);
+                        Console.WriteLine(ex.Message);
+                        continue;
+                    }
+
+                    try
+                    {
+                        up.identify();
+                        updateProgress(-1, "Identify");
+                        log.InfoFormat("Found board type {0} boardrev {1} bl rev {2} fwmax {3} on {4}", up.board_type, up.board_rev, up.bl_rev, up.fw_maxsize, port);
+
+                        up.ProgressEvent += new Uploader.ProgressEventHandler(up_ProgressEvent);
+                        up.LogEvent += new Uploader.LogEventHandler(up_LogEvent);
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine("Not There..");
+                        //Console.WriteLine(ex.Message);
+                        up.close();
+                        continue;
+                    }
+
+                    // test if pausing here stops - System.TimeoutException: The write timed out.
+                    System.Threading.Thread.Sleep(500);
+
+                    try
+                    {
+                        up.verifyotp();
+
+                        if (up.libre)
+                        {
+                            MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "libre", "");
+                        }
+                        else
+                        {
+                            MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "Pass", "");
+                        }
+                    }
+                    catch (Org.BouncyCastle.Security.InvalidKeyException ex)
+                    {
+                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "InvalidKeyException", "");
+                        log.Error(ex);
+                        CustomMessageBox.Show("You are using unsupported hardware.\nThis board does not contain a valid certificate of authenticity.\nPlease contact your hardware vendor about signing your hardware.", "Invalid Cert");
+                        up.skipotp = true;
+                    }
+                    catch (FormatException ex)
+                    {
+                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "FormatException", "");
+                        log.Error(ex);
+                        CustomMessageBox.Show("You are using unsupported hardware.\nThis board does not contain a valid certificate of authenticity.\nPlease contact your hardware vendor about signing your hardware.", "Invalid Cert");
+                        up.skipotp = true;
+                    }
+                    catch (IOException ex)
+                    {
+                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "IOException", "");
+                        log.Error(ex);
+                        CustomMessageBox.Show("lost communication with the board.", "lost comms");
+                        up.close();
+                        return false;
+                    }
+                    catch (TimeoutException ex)
+                    {
+                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "TimeoutException", "");
+                        log.Error(ex);
+                        CustomMessageBox.Show("lost communication with the board.", "lost comms");
+                        up.close();
+                        return false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MissionPlanner.Utilities.Tracking.AddEvent("FWUpload", "verifyotp", "Exception", "");
+                        log.Error(ex);
+                        CustomMessageBox.Show("lost communication with the board. " + ex.ToString(), "lost comms");
+                        up.close();
+                        return false;
+                    }
+
+                    try
+                    {
+                        up.currentChecksum(fw);
+                    }
+                    catch (IOException ex)
+                    {
+                        log.Error(ex);
+                        CustomMessageBox.Show("lost communication with the board.", "lost comms");
+                        up.close();
+                        return false;
+                    }
+                    catch
+                    {
+                        up.__reboot();
+                        up.close();
+                        CustomMessageBox.Show("No need to upload. already on the board");
+                        return true;
+                    }
+
+                    try
+                    {
+                        updateProgress(0, "Upload");
+                        up.upload(fw);
+                        updateProgress(100, "Upload Done");
+                    }
+                    catch (Exception ex)
+                    {
+                        updateProgress(0, "ERROR: " + ex.Message);
+                        log.Info(ex);
+                        Console.WriteLine(ex.ToString());
+                        return false;
+                    }
+                    finally
+                    {
+                        up.close();
+                    }
+
+                    // wait for IO firmware upgrade and boot to a mavlink state
+                    //CustomMessageBox.Show("Please wait for the musical tones to finish before clicking OK");
+
+                    return true;
+                }
+            }
+
+            updateProgress(0, "ERROR: No Response from board");
+            return false;
+        }
+
+        /// <summary>
         /// upload to vrbrain standalone
         /// </summary>
         /// <param name="filename"></param>
@@ -1002,6 +1299,19 @@ namespace MissionPlanner.Utilities
                 catch (MissingFieldException) 
                 {
                     CustomMessageBox.Show("Please update, your install is currupt",Strings.ERROR);
+                    return false;
+                }
+            }
+
+            if (board == BoardDetect.boards.playuavosd)
+            {
+                try
+                {
+                    return UploadPlayUAVOSD(filename);
+                }
+                catch (MissingFieldException)
+                {
+                    CustomMessageBox.Show("Please update, your install is currupt", Strings.ERROR);
                     return false;
                 }
             }

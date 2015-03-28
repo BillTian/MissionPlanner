@@ -13,7 +13,6 @@ using ArdupilotMega;
 using System.Xml;
 using System.Globalization;
 using MissionPlanner.Controls;
-using System.IO.Ports;
 using MissionPlanner.Comms;
 
 namespace MissionPlanner.GCSViews.ConfigurationView
@@ -200,11 +199,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         public void Activate()
         {
-            
+            Params.Rows.Add();
             Params.Rows[Params.RowCount - 1].Cells[0].Value = "X";
             Params.Rows[Params.RowCount - 1].Cells[1].Value = (float)1;
-            Params.Rows.Add();
 
+            Params.Rows.Add();
             Params.Rows[Params.RowCount - 1].Cells[0].Value = "Y";
             Params.Rows[Params.RowCount - 1].Cells[1].Value = (float)2;
        //     Params.Rows.Add();
@@ -538,11 +537,16 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             comPort.Close();
 
             MessageBox.Show("读出参数成功", "读出", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void test_Click(object sender, EventArgs e)
         {
-           
+            foreach (DataGridViewRow row in Params.Rows)
+            {
+                MessageBox.Show(row.Cells[0].Value.ToString(), row.Cells[1].Value.ToString());
+              
+            }
         }
 
     }
