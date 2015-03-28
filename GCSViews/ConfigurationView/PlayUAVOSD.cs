@@ -13,7 +13,6 @@ using ArdupilotMega;
 using System.Xml;
 using System.Globalization;
 using MissionPlanner.Controls;
-using System.IO.Ports;
 using MissionPlanner.Comms;
 
 namespace MissionPlanner.GCSViews.ConfigurationView
