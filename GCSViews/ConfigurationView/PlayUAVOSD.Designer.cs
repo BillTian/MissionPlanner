@@ -30,6 +30,11 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.Params = new System.Windows.Forms.DataGridView();
+            this.test = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.Params)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -52,12 +57,52 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // Params
+            // 
+            this.Params.AllowUserToAddRows = false;
+            this.Params.AllowUserToDeleteRows = false;
+            this.Params.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Params.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
+            this.Params.Location = new System.Drawing.Point(17, 22);
+            this.Params.Name = "Params";
+            this.Params.RowTemplate.Height = 23;
+            this.Params.Size = new System.Drawing.Size(638, 385);
+            this.Params.TabIndex = 2;
+            // 
+            // test
+            // 
+            this.test.Location = new System.Drawing.Point(282, 428);
+            this.test.Name = "test";
+            this.test.Size = new System.Drawing.Size(140, 24);
+            this.test.TabIndex = 3;
+            this.test.Text = "TEST";
+            this.test.UseVisualStyleBackColor = true;
+            this.test.Click += new System.EventHandler(this.test_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "参数";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Width = 200;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "值";
+            this.Column2.Name = "Column2";
+            this.Column2.Width = 300;
+            // 
             // PlayUAVOSD
             // 
+            this.Controls.Add(this.test);
+            this.Controls.Add(this.Params);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "PlayUAVOSD";
             this.Size = new System.Drawing.Size(673, 472);
+            ((System.ComponentModel.ISupportInitialize)(this.Params)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -66,6 +111,11 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView Params;
+        private System.Windows.Forms.Button test;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+
 
  
     }
