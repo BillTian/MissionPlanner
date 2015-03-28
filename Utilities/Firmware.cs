@@ -928,7 +928,7 @@ namespace MissionPlanner.Utilities
             try
             {
                 //if (comPortosdbl.IsOpen())
-                   comPortosdbl.Close();
+                comPortosdbl.Close();
 
                 try
                 {
@@ -948,9 +948,9 @@ namespace MissionPlanner.Utilities
                 comPortosdbl.BaseStream.Flush();
                 System.Threading.Thread.Sleep(500);
                 comPortosdbl.Close();
-                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+                //CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
 
-                // check if we are seeing heartbeats
+                //// check if we are seeing heartbeats
                 //MainV2.comPort.BaseStream.Open();
                 //MainV2.comPort.giveComport = true;
                 //BoardDetect.boards board = BoardDetect.DetectBoard(MainV2.comPortName);
