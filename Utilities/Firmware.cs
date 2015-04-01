@@ -939,14 +939,11 @@ namespace MissionPlanner.Utilities
                 }
                 catch { MessageBox.Show("打开端口错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return false; }
 
-                System.Threading.Thread.Sleep(500);
-
                 __syncbl();
                 __sendbl(new byte[] { (byte)Codebl.BL_UPLOAD, (byte)Codebl.EOC });
                 __getSyncbl();
 
                 comPortosdbl.BaseStream.Flush();
-                System.Threading.Thread.Sleep(500);
                 comPortosdbl.Close();
                 //CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
 
@@ -975,7 +972,7 @@ namespace MissionPlanner.Utilities
             catch (Exception ex)
             {
                 log.Error(ex);
-                CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
+ //               CustomMessageBox.Show("Please unplug the board, and then press OK and plug back in.\nMission Planner will look for 30 seconds to find the board");
             }
 
             DateTime DEADLINE = DateTime.Now.AddSeconds(30);
