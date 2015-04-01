@@ -407,6 +407,101 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Font_Size"], 0);
             _paramsAddr["Battery_Voltage_H_Alignment"] = 28;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_H_Alignment"], 2);
+
+            _paramsAddr["Battery_Current_Enable"] = 30;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Enable"], 1);
+            _paramsAddr["Battery_Current_H_Position"] = 32;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_H_Position"], 350);
+            _paramsAddr["Battery_Current_V_Position"] = 34;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_V_Position"], 14);
+            _paramsAddr["Battery_Current_Font_Size"] = 36;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Font_Size"], 0);
+            _paramsAddr["Battery_Current_H_Alignment"] = 38;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_H_Alignment"], 2);
+
+            _paramsAddr["Battery_Consumed_Enable"] = 40;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Enable"], 1);
+            _paramsAddr["Battery_Consumed_H_Position"] = 42;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_H_Position"], 350);
+            _paramsAddr["Battery_Consumed_V_Position"] = 44;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_V_Position"], 24);
+            _paramsAddr["Battery_Consumed_Font_Size"] = 46;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Font_Size"], 0);
+            _paramsAddr["Battery_Consumed_H_Alignment"] = 48;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_H_Alignment"], 2);
+
+            _paramsAddr["Flight_Mode_Enable"] = 50;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Enable"], 1);
+            _paramsAddr["Flight_Mode_H_Position"] = 52;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Position"], 0);
+            _paramsAddr["Flight_Mode_V_Position"] = 54;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_V_Position"], 4);
+            _paramsAddr["Flight_Mode_Font_Size"] = 56;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Font_Size"], 0);
+            _paramsAddr["Flight_Mode_H_Alignment"] = 58;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Alignment"], 0);
+
+            _paramsAddr["GPS_Status_Enable"] = 60;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Enable"], 1);
+            _paramsAddr["GPS_Status_H_Position"] = 62;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Position"], 0);
+            _paramsAddr["GPS_Status_V_Position"] = 64;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_V_Position"], 230);
+            _paramsAddr["GPS_Status_Font_Size"] = 66;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Font_Size"], 0);
+            _paramsAddr["GPS_Status_H_Alignment"] = 68;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Alignment"], 0);
+
+            _paramsAddr["GPS_Latitude_Enable"] = 70;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Enable"], 1);
+            _paramsAddr["GPS_Latitude_H_Position"] = 72;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_H_Position"], 200);
+            _paramsAddr["GPS_Latitude_V_Position"] = 74;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_V_Position"], 230);
+            _paramsAddr["GPS_Latitude_Font_Size"] = 76;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Font_Size"], 0);
+            _paramsAddr["GPS_Latitude_H_Alignment"] = 78;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_H_Alignment"], 0);
+
+            _paramsAddr["GPS_Longitude_Enable"] = 80;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Enable"], 1);
+            _paramsAddr["GPS_Longitude_H_Position"] = 82;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Position"], 300);
+            _paramsAddr["GPS_Longitude_V_Position"] = 84;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_V_Position"], 230);
+            _paramsAddr["GPS_Longitude_Font_Size"] = 86;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Font_Size"], 0);
+            _paramsAddr["GPS_Longitude_H_Alignment"] = 88;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Alignment"], 2);
+
+            _paramsAddr["Time_Enable"] = 90;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Enable"], 1);
+            _paramsAddr["Time_H_Position"] = 92;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Position"], 350);
+            _paramsAddr["Time_V_Position"] = 94;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_V_Position"], 220);
+            _paramsAddr["Time_Font_Size"] = 96;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Font_Size"], 0);
+            _paramsAddr["Time_H_Alignment"] = 98;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Alignment"], 2);
+
+            _paramsAddr["Altitude_Scale_Enable"] = 100;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Enable"], 1);
+            _paramsAddr["Altitude_Scale_H_Position"] = 102;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_H_Position"], 350);
+            _paramsAddr["Altitude_Scale_Align"] = 104;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Align"], 1);
+            _paramsAddr["Altitude_Scale_Source"] = 106;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Source"], 0);
+
+            _paramsAddr["Speed_Scale_Enable"] = 108;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Enable"], 1);
+            _paramsAddr["Speed_Scale_H_Position"] = 110;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_H_Position"], 0);
+            _paramsAddr["Speed_Scale_Align"] = 112;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Align"], 0);
+            _paramsAddr["Speed_Scale_Source"] = 114;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Source"], 0);
         }
 
         internal PlayUAVOSD.data genChildData(string root, string name, string value, string unit, string range, string desc)
@@ -454,41 +549,100 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
             roots.Add(dataAlarm);
 
-            //data dataArm = new PlayUAVOSD.data();
-            //dataArm.paramname = "Arm_State";
-            //dataArm.children.Add(genChildData(dataArm.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            //dataArm.children.Add(genChildData(dataArm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Enable"]), "", "0 - 350", "Horizontal Position"));
-            //dataArm.children.Add(genChildData(dataArm.paramname, "V_Position", getU16ParamString(eeprom, panArm_posY_ADDR), "", "0 - 230", "Vertical Position"));
-            //dataArm.children.Add(genChildData(dataArm.paramname, "Font_Size", getU16ParamString(eeprom, panArm_fontsize_ADDR), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            //dataArm.children.Add(genChildData(dataArm.paramname, "H_Alignment", getU16ParamString(eeprom, panArm_align_ADDR), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            //roots.Add(dataArm);
+            data dataArm = new PlayUAVOSD.data();
+            dataArm.paramname = "Arm_State";
+            dataArm.children.Add(genChildData(dataArm.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataArm);
 
-            //data dataBattVolt = new PlayUAVOSD.data();
-            //dataBattVolt.paramname = "Battery_Voltage";
-            //dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Enable", getU16ParamString(eeprom, panBattVolt_en_ADDR), "", "0, 1", "0:disabled, 1:enabled"));
-            //dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "H_Position", getU16ParamString(eeprom, panBattVolt_posX_ADDR), "", "0 - 350", "Horizontal Position"));
-            //dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "V_Position", getU16ParamString(eeprom, panBattVolt_posY_ADDR), "", "0 - 230", "Vertical Position"));
-            //dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Font_Size", getU16ParamString(eeprom, panBattVolt_fontsize_ADDR), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            //dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "H_Alignment", getU16ParamString(eeprom, panBattVolt_align_ADDR), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            //roots.Add(dataBattVolt);
+            data dataBattVolt = new PlayUAVOSD.data();
+            dataBattVolt.paramname = "Battery_Voltage";
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataBattVolt);
 
-            //data dataBattCurrent = new PlayUAVOSD.data();
-            //dataBattCurrent.paramname = "Battery Current";
-            //dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Enable", getU16ParamString(panBattCurrent_en_ADDR), "", "0, 1", "0:disabled, 1:enabled"));
-            //dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Position X", getU16ParamString(panBattCurrent_posX_ADDR), "", "0 - 350", "Horizontal Position"));
-            //dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Position Y", getU16ParamString(panBattCurrent_posY_ADDR), "", "0 - 230", "Vertical Position"));
-            //dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Font Size", getU16ParamString(panBattCurrent_fontsize_ADDR), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            //dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Horizontal Alignment", getU16ParamString(panBattCurrent_align_ADDR), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            //roots.Add(dataBattCurrent);
+            data dataBattCurrent = new PlayUAVOSD.data();
+            dataBattCurrent.paramname = "Battery_Current";
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataBattCurrent);
 
-            //data dataBattConsumed = new PlayUAVOSD.data();
-            //dataBattConsumed.paramname = "Battery Consumed";
-            //dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Enable", getU16ParamString(panBattConsumed_en_ADDR), "", "0, 1", "0:disabled, 1:enabled"));
-            //dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Position X", getU16ParamString(panBattConsumed_posX_ADDR), "", "0 - 350", "Horizontal Position"));
-            //dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Position Y", getU16ParamString(panBattConsumed_posY_ADDR), "", "0 - 230", "Vertical Position"));
-            //dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Font Size", getU16ParamString(panBattConsumed_fontsize_ADDR), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            //dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Horizontal Alignment", getU16ParamString(panBattConsumed_align_ADDR), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            //roots.Add(dataBattConsumed);
+            data dataBattConsumed = new PlayUAVOSD.data();
+            dataBattConsumed.paramname = "Battery_Consumed";
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataBattConsumed);
+
+            data dataFlightMode = new PlayUAVOSD.data();
+            dataFlightMode.paramname = "Flight_Mode";
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataFlightMode);
+
+            data dataGPSStatus = new PlayUAVOSD.data();
+            dataGPSStatus.paramname = "GPS_Status";
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPSStatus);
+
+            data dataGPSLat = new PlayUAVOSD.data();
+            dataGPSLat.paramname = "GPS_Latitude";
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPSLat);
+
+            data dataGPSLon = new PlayUAVOSD.data();
+            dataGPSLon.paramname = "GPS_Longitude";
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPSLon);
+
+            data dataTime = new PlayUAVOSD.data();
+            dataTime.paramname = "Time";
+            dataTime.children.Add(genChildData(dataTime.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Time_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataTime.children.Add(genChildData(dataTime.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Time_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataTime.children.Add(genChildData(dataTime.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Time_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataTime.children.Add(genChildData(dataTime.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Time_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataTime.children.Add(genChildData(dataTime.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Time_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataTime);
+
+            data dataAlt = new PlayUAVOSD.data();
+            dataAlt.paramname = "Altitude_Scale";
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Align", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Align"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            roots.Add(dataAlt);
+
+            data dataSpeed = new PlayUAVOSD.data();
+            dataSpeed.paramname = "Altitude_Scale";
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Align", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Align"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            roots.Add(dataSpeed);
 
             foreach (var item in roots)
             {
