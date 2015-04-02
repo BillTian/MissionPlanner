@@ -43,6 +43,7 @@
             // 
             // Save_To_OSD
             // 
+            this.Save_To_OSD.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Save_To_OSD.BackColor = System.Drawing.SystemColors.Control;
             this.Save_To_OSD.Location = new System.Drawing.Point(656, 20);
             this.Save_To_OSD.Name = "Save_To_OSD";
@@ -54,6 +55,7 @@
             // 
             // Load_from_OSD
             // 
+            this.Load_from_OSD.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Load_from_OSD.Location = new System.Drawing.Point(656, 56);
             this.Load_from_OSD.Name = "Load_from_OSD";
             this.Load_from_OSD.Size = new System.Drawing.Size(77, 30);
@@ -64,6 +66,7 @@
             // 
             // Load_Default
             // 
+            this.Load_Default.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Load_Default.Location = new System.Drawing.Point(645, 196);
             this.Load_Default.Name = "Load_Default";
             this.Load_Default.Size = new System.Drawing.Size(88, 24);
@@ -79,6 +82,9 @@
             this.Params.AllColumns.Add(this.olvColumn3);
             this.Params.AllColumns.Add(this.olvColumn4);
             this.Params.AllColumns.Add(this.olvColumn5);
+            this.Params.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Params.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Params.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
@@ -152,7 +158,7 @@
             this.Controls.Add(this.Load_from_OSD);
             this.Controls.Add(this.Params);
             this.Name = "PlayUAVOSD";
-            this.Size = new System.Drawing.Size(755, 464);
+            this.Size = new System.Drawing.Size(809, 489);
             ((System.ComponentModel.ISupportInitialize)(this.Params)).EndInit();
             this.ResumeLayout(false);
 

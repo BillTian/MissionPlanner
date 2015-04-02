@@ -333,7 +333,9 @@
     </Compile>
     <Compile Include="Controls\Waypoints\Spline2.cs" />
     <Compile Include="Controls\Waypoints\Spline.cs" />
-    <Compile Include="GCSViews\ArduinoSTK.cs" />
+    <Compile Include="GCSViews\ArduinoSTK.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="GCSViews\ConfigurationView\ConfigAccelerometerCalibrationTracker.cs">
       <SubType>UserControl</SubType>
     </Compile>
