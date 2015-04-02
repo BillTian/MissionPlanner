@@ -374,134 +374,246 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void setDefaultParams()
         {
-            //params address
-            _paramsAddr["Alarm_Enable"] = 0;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Enable"], 1);
-            _paramsAddr["Alarm_H_Position"] = 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_H_Position"], 0);
-            _paramsAddr["Alarm_V_Position"] = 4;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_V_Position"], 220);
-            _paramsAddr["Alarm_Font_Size"] = 6;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Font_Size"], 0);
-            _paramsAddr["Alarm_H_Alignment"] = 8;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_H_Alignment"], 0);
-
-            _paramsAddr["Arm_State_Enable"] = 10;
+            int address = 0;
+            
+            _paramsAddr["Arm_State_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Enable"], 1);
-            _paramsAddr["Arm_State_H_Position"] = 12;
+            _paramsAddr["Arm_State_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Position"], 0);
-            _paramsAddr["Arm_State_V_Position"] = 14;
+            _paramsAddr["Arm_State_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_V_Position"], 14);
-            _paramsAddr["Arm_State_Font_Size"] = 16;
+            _paramsAddr["Arm_State_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Font_Size"], 0);
-            _paramsAddr["Arm_State_H_Alignment"] = 18;
+            _paramsAddr["Arm_State_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Alignment"], 0);
 
-            _paramsAddr["Battery_Voltage_Enable"] = 20;
+            _paramsAddr["Battery_Voltage_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Enable"], 1);
-            _paramsAddr["Battery_Voltage_H_Position"] = 22;
+            _paramsAddr["Battery_Voltage_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_H_Position"], 350);
-            _paramsAddr["Battery_Voltage_V_Position"] = 24;
+            _paramsAddr["Battery_Voltage_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_V_Position"], 4);
-            _paramsAddr["Battery_Voltage_Font_Size"] = 26;
+            _paramsAddr["Battery_Voltage_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Font_Size"], 0);
-            _paramsAddr["Battery_Voltage_H_Alignment"] = 28;
+            _paramsAddr["Battery_Voltage_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_H_Alignment"], 2);
 
-            _paramsAddr["Battery_Current_Enable"] = 30;
+            _paramsAddr["Battery_Current_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Enable"], 1);
-            _paramsAddr["Battery_Current_H_Position"] = 32;
+            _paramsAddr["Battery_Current_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_H_Position"], 350);
-            _paramsAddr["Battery_Current_V_Position"] = 34;
+            _paramsAddr["Battery_Current_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_V_Position"], 14);
-            _paramsAddr["Battery_Current_Font_Size"] = 36;
+            _paramsAddr["Battery_Current_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Font_Size"], 0);
-            _paramsAddr["Battery_Current_H_Alignment"] = 38;
+            _paramsAddr["Battery_Current_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_H_Alignment"], 2);
 
-            _paramsAddr["Battery_Consumed_Enable"] = 40;
+            _paramsAddr["Battery_Consumed_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Enable"], 1);
-            _paramsAddr["Battery_Consumed_H_Position"] = 42;
+            _paramsAddr["Battery_Consumed_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_H_Position"], 350);
-            _paramsAddr["Battery_Consumed_V_Position"] = 44;
+            _paramsAddr["Battery_Consumed_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_V_Position"], 24);
-            _paramsAddr["Battery_Consumed_Font_Size"] = 46;
+            _paramsAddr["Battery_Consumed_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Font_Size"], 0);
-            _paramsAddr["Battery_Consumed_H_Alignment"] = 48;
+            _paramsAddr["Battery_Consumed_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_H_Alignment"], 2);
 
-            _paramsAddr["Flight_Mode_Enable"] = 50;
+            _paramsAddr["Flight_Mode_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Enable"], 1);
-            _paramsAddr["Flight_Mode_H_Position"] = 52;
+            _paramsAddr["Flight_Mode_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Position"], 0);
-            _paramsAddr["Flight_Mode_V_Position"] = 54;
+            _paramsAddr["Flight_Mode_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_V_Position"], 4);
-            _paramsAddr["Flight_Mode_Font_Size"] = 56;
+            _paramsAddr["Flight_Mode_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Font_Size"], 0);
-            _paramsAddr["Flight_Mode_H_Alignment"] = 58;
+            _paramsAddr["Flight_Mode_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Alignment"], 0);
 
-            _paramsAddr["GPS_Status_Enable"] = 60;
+            _paramsAddr["GPS_Status_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Enable"], 1);
-            _paramsAddr["GPS_Status_H_Position"] = 62;
+            _paramsAddr["GPS_Status_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Position"], 0);
-            _paramsAddr["GPS_Status_V_Position"] = 64;
+            _paramsAddr["GPS_Status_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_V_Position"], 230);
-            _paramsAddr["GPS_Status_Font_Size"] = 66;
+            _paramsAddr["GPS_Status_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Font_Size"], 0);
-            _paramsAddr["GPS_Status_H_Alignment"] = 68;
+            _paramsAddr["GPS_Status_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Alignment"], 0);
 
-            _paramsAddr["GPS_Latitude_Enable"] = 70;
+            _paramsAddr["GPS_Latitude_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Enable"], 1);
-            _paramsAddr["GPS_Latitude_H_Position"] = 72;
+            _paramsAddr["GPS_Latitude_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_H_Position"], 200);
-            _paramsAddr["GPS_Latitude_V_Position"] = 74;
+            _paramsAddr["GPS_Latitude_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_V_Position"], 230);
-            _paramsAddr["GPS_Latitude_Font_Size"] = 76;
+            _paramsAddr["GPS_Latitude_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Font_Size"], 0);
-            _paramsAddr["GPS_Latitude_H_Alignment"] = 78;
+            _paramsAddr["GPS_Latitude_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_H_Alignment"], 0);
 
-            _paramsAddr["GPS_Longitude_Enable"] = 80;
+            _paramsAddr["GPS_Longitude_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Enable"], 1);
-            _paramsAddr["GPS_Longitude_H_Position"] = 82;
+            _paramsAddr["GPS_Longitude_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Position"], 300);
-            _paramsAddr["GPS_Longitude_V_Position"] = 84;
+            _paramsAddr["GPS_Longitude_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_V_Position"], 230);
-            _paramsAddr["GPS_Longitude_Font_Size"] = 86;
+            _paramsAddr["GPS_Longitude_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Font_Size"], 0);
-            _paramsAddr["GPS_Longitude_H_Alignment"] = 88;
+            _paramsAddr["GPS_Longitude_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Alignment"], 2);
 
-            _paramsAddr["Time_Enable"] = 90;
+            _paramsAddr["Time_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Enable"], 1);
-            _paramsAddr["Time_H_Position"] = 92;
+            _paramsAddr["Time_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Position"], 350);
-            _paramsAddr["Time_V_Position"] = 94;
+            _paramsAddr["Time_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_V_Position"], 220);
-            _paramsAddr["Time_Font_Size"] = 96;
+            _paramsAddr["Time_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Font_Size"], 0);
-            _paramsAddr["Time_H_Alignment"] = 98;
+            _paramsAddr["Time_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Alignment"], 2);
 
-            _paramsAddr["Altitude_Scale_Enable"] = 100;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Enable"], 1);
-            _paramsAddr["Altitude_Scale_H_Position"] = 102;
+            _paramsAddr["Altitude_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Mode"], 1);
+            _paramsAddr["Altitude_TALT_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_H_Position"], 200);
+            _paramsAddr["Altitude_TALT_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_V_Position"], 200);
+            _paramsAddr["Altitude_TALT_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_Font_Size"], 0);
+            _paramsAddr["Altitude_TALT_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_H_Alignment"], 0);
+            _paramsAddr["Altitude_Scale_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_H_Position"], 350);
-            _paramsAddr["Altitude_Scale_Align"] = 104;
+            _paramsAddr["Altitude_Scale_Align"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Align"], 1);
-            _paramsAddr["Altitude_Scale_Source"] = 106;
+            _paramsAddr["Altitude_Scale_Source"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Source"], 0);
 
-            _paramsAddr["Speed_Scale_Enable"] = 108;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Enable"], 1);
-            _paramsAddr["Speed_Scale_H_Position"] = 110;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_H_Position"], 0);
-            _paramsAddr["Speed_Scale_Align"] = 112;
+            _paramsAddr["Speed_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Mode"], 1);
+            _paramsAddr["Speed_TSPD_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_H_Position"], 350);
+            _paramsAddr["Speed_TSPD_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_V_Position"], 350);
+            _paramsAddr["Speed_TSPD_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_Font_Size"], 0);
+            _paramsAddr["Speed_TSPD_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_H_Alignment"], 0);
+            _paramsAddr["Speed_Scale_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_H_Position"], 10);
+            _paramsAddr["Speed_Scale_Align"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Align"], 0);
-            _paramsAddr["Speed_Scale_Source"] = 114;
+            _paramsAddr["Speed_Scale_Source"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Source"], 0);
+
+            _paramsAddr["Throttle_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_Enable"], 1);
+            _paramsAddr["Throttle_Scale_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_Scale_Enable"], 1);
+            _paramsAddr["Throttle_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_H_Position"], 25);
+            _paramsAddr["Throttle_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_V_Position"], 210);
+            
+            //we combination the direction of compass, way-point, home together.one mode is traditional. another is more intuitively IMO
+            _paramsAddr["CWH_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Mode"], 1);
+            _paramsAddr["CWH_Home_Distance_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Enable"], 1);
+            _paramsAddr["CWH_Home_Distance_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Position"], 350);
+            _paramsAddr["CWH_Home_Distance_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_V_Position"], 220);
+            _paramsAddr["CWH_Home_Distance_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Font_Size"], 0);
+            _paramsAddr["CWH_Home_Distance_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Alignment"], 0);
+            _paramsAddr["CWH_WP_Distance_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Enable"], 1);
+            _paramsAddr["CWH_WP_Distance_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Position"], 350);
+            _paramsAddr["CWH_WP_Distance_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_V_Position"], 220);
+            _paramsAddr["CWH_WP_Distance_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Font_Size"], 0);
+            _paramsAddr["CWH_WP_Distance_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Alignment"], 0);
+            _paramsAddr["CWH_Tmode_Compass_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Compass_Enable"], 1);
+            _paramsAddr["CWH_Tmode_Compass_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Compass_V_Position"], 1);
+            _paramsAddr["CWH_Tmode_Home_Dir_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_Enable"], 25);
+            _paramsAddr["CWH_Tmode_Home_Dir_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_H_Position"], 210);
+            _paramsAddr["CWH_Tmode_Home_Dir_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_V_Position"], 210);
+            _paramsAddr["CWH_Tmode_WP_Dir_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"], 25);
+            _paramsAddr["CWH_Tmode_WP_Dir_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_H_Position"], 210);
+            _paramsAddr["CWH_Tmode_WP_Dir_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_V_Position"], 210);
+            _paramsAddr["CWH_Nmode_Compass_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Compass_Enable"], 1);
+            _paramsAddr["CWH_Nmode_Home_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Home_Enable"], 1);
+            _paramsAddr["CWH_Nmode_WP_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_WP_Enable"], 1);
+            _paramsAddr["CWH_Nmode_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_H_Position"], 275);
+            _paramsAddr["CWH_Nmode_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_V_Position"], 190);
+            _paramsAddr["CWH_Nmode_Radius"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Radius"], 20);
+            _paramsAddr["CWH_Nmode_Home_Radius"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Home_Radius"], 25);
+            _paramsAddr["CWH_Nmode_WP_Radius"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_WP_Radius"], 25);
+
+            //Attitude
+            _paramsAddr["Attitude_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_Mode"], 0);
+
+            _paramsAddr["Units_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Units_Mode"], 0);
+       
+            //should use bit mask? enable/disable maybe more intuition
+            _paramsAddr["Alarm_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_H_Position"], 0);
+            _paramsAddr["Alarm_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_V_Position"], 220);
+            _paramsAddr["Alarm_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Font_Size"], 2);
+            _paramsAddr["Alarm_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_H_Alignment"], 1);
+            _paramsAddr["Alarm_Min_Speed_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_Speed_Enable"], 1);
+            _paramsAddr["Alarm_Min_Speed"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_Speed"], 2);
+            _paramsAddr["Alarm_Max_Speed_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Max_Speed_Enable"], 1);
+            _paramsAddr["Alarm_Max_Speed"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Max_Speed"], 30);
+            _paramsAddr["Alarm_Min_Alt_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_Alt_Enable"], 1);
+            _paramsAddr["Alarm_Min_Alt"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_Alt"], 1);
+            _paramsAddr["Alarm_Max_Alt_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Max_Alt_Enable"], 1);
+            _paramsAddr["Alarm_Max_Alt"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Max_Alt"], 500);
+            _paramsAddr["Alarm_Min_BattVol_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_BattVol_Enable"], 1);
+            _paramsAddr["Alarm_Min_BattVol"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_BattVol"], 0);
+            _paramsAddr["Alarm_Min_BattPercent_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_BattPercent_Enable"], 1);
+            _paramsAddr["Alarm_Min_BattPercent"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_Min_BattPercent"], 0);
         }
 
         internal PlayUAVOSD.data genChildData(string root, string name, string value, string unit, string range, string desc)
@@ -539,15 +651,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             };
 
             List<data> roots = new List<data>();
-
-            data dataAlarm = new PlayUAVOSD.data();
-            dataAlarm.paramname = "Alarm";
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Position"]), "", "0 - 350", "Horizontal Position"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_V_Position"]), "", "0 - 230", "Vertical Position"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            roots.Add(dataAlarm);
 
             data dataArm = new PlayUAVOSD.data();
             dataArm.paramname = "Arm_State";
@@ -631,18 +734,94 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             roots.Add(dataTime);
 
             data dataAlt = new PlayUAVOSD.data();
-            dataAlt.paramname = "Altitude_Scale";
-            dataAlt.children.Add(genChildData(dataAlt.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlt.children.Add(genChildData(dataAlt.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
-            dataAlt.children.Add(genChildData(dataAlt.paramname, "Align", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Align"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataAlt.paramname = "Altitude";
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Mode"]), "", "0, 1", "0:Traditional, 1:Scale"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_Align", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Align"]), "", "0, 1", "0:left 1:right"));
             roots.Add(dataAlt);
 
             data dataSpeed = new PlayUAVOSD.data();
-            dataSpeed.paramname = "Altitude_Scale";
-            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
-            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Align", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Align"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            roots.Add(dataSpeed);
+            dataSpeed.paramname = "Speed";
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Mode"]), "", "0, 1", "0:Traditional, 1:Scale"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_Align", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Align"]), "", "0, 1", "0:left 1:right"));
+            roots.Add(dataAlt);
+
+            data dataThrottle = new PlayUAVOSD.data();
+            dataThrottle.paramname = "Throttle";
+            dataThrottle.children.Add(genChildData(dataThrottle.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataThrottle.children.Add(genChildData(dataThrottle.paramname, "Scale_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataThrottle.children.Add(genChildData(dataThrottle.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataThrottle.children.Add(genChildData(dataThrottle.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_V_Position"]), "", "0 - 230", "Vertical Position"));
+            roots.Add(dataThrottle);
+
+            data dataCWH = new PlayUAVOSD.data();
+            dataCWH.paramname = "CWH";
+            dataCWH.desc = "Compass, Way-point and Home";
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Mode"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "_Tmode_WP_Dir_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Compass_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Compass_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Home_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Home_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Radius"]), "", "0 - 230", "Radius of the circle"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Home_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Home_Radius"]), "", "0 - 230", "distance from the center"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Radius"]), "", "0 - 230", "distance from the center"));
+            roots.Add(dataCWH);
+
+            data dataAtti = new PlayUAVOSD.data();
+            dataAtti.paramname = "Attitude";
+            dataAtti.desc = "Flight Attitude";
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_Mode"]), "", "0, 1", "0:MissionPlanner GUI, 1:3D"));
+            roots.Add(dataAtti);
+
+            roots.Add(genChildData("", "Units_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Units_Mode"]), "", "0, 1", "0:metric 1:imperial"));
+
+            data dataAlarm = new PlayUAVOSD.data();
+            dataAlarm.paramname = "Alarm";
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Speed_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Speed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Speed"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Speed_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Speed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Speed"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Alt_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Alt_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Alt"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Alt_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Alt_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Alt"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattVol_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattVol_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattVol", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattVol"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattPercent_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattPercent_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattPercent", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattPercent"]), "", "0 - 99", ""));
+            roots.Add(dataAlarm);
 
             foreach (var item in roots)
             {

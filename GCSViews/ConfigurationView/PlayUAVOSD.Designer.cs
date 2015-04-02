@@ -43,12 +43,13 @@
             // 
             // Save_To_OSD
             // 
+            this.Save_To_OSD.BackColor = System.Drawing.SystemColors.Control;
             this.Save_To_OSD.Location = new System.Drawing.Point(656, 20);
             this.Save_To_OSD.Name = "Save_To_OSD";
             this.Save_To_OSD.Size = new System.Drawing.Size(77, 30);
             this.Save_To_OSD.TabIndex = 0;
             this.Save_To_OSD.Text = "保存参数";
-            this.Save_To_OSD.UseVisualStyleBackColor = true;
+            this.Save_To_OSD.UseVisualStyleBackColor = false;
             this.Save_To_OSD.Click += new System.EventHandler(this.btn_Save_To_OSD_Click);
             // 
             // Load_from_OSD
@@ -93,7 +94,7 @@
             this.Params.RootKeyValueString = "";
             this.Params.RowHeight = 26;
             this.Params.ShowGroups = false;
-            this.Params.Size = new System.Drawing.Size(622, 468);
+            this.Params.Size = new System.Drawing.Size(635, 457);
             this.Params.TabIndex = 79;
             this.Params.UseAlternatingBackColors = true;
             this.Params.UseCompatibleStateImageBehavior = false;
@@ -146,13 +147,12 @@
             // 
             // PlayUAVOSD
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.Params);
             this.Controls.Add(this.Load_Default);
-            this.Controls.Add(this.Load_from_OSD);
             this.Controls.Add(this.Save_To_OSD);
+            this.Controls.Add(this.Load_from_OSD);
+            this.Controls.Add(this.Params);
             this.Name = "PlayUAVOSD";
-            //this.Size = new System.Drawing.Size(756, 472);
+            this.Size = new System.Drawing.Size(755, 464);
             ((System.ComponentModel.ISupportInitialize)(this.Params)).EndInit();
             this.ResumeLayout(false);
 
