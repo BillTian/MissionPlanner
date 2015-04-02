@@ -164,7 +164,14 @@ S15: MAX_WINDOW=131
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                File.Copy(openFileDialog1.FileName, firmwarefile, true);
+                try
+                {
+                    File.Copy(openFileDialog1.FileName, firmwarefile, true);
+                }
+                catch (Exception ex) {
+                    CustomMessageBox.Show("Error copying file\n"+ex.ToString(), "ERROR");
+                    return false;
+                }
                 return true;
             }
 

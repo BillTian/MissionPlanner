@@ -979,6 +979,9 @@ Please check the following
                 {
                     break;
                 }
+                if (!logreadmode && !BaseStream.IsOpen)
+                    throw new Exception("Not Connected");
+
             } while (indexsreceived.Count < param_total);
 
             if (indexsreceived.Count != param_total)
@@ -1858,15 +1861,15 @@ Please check the following
         /// </summary>
         /// <param name="startwp"></param>
         /// <param name="endwp"></param>
-        public void setWPPartialUpdate(short startwp, short endwp)
+        public void setWPPartialUpdate(ushort startwp, ushort endwp)
         {
             mavlink_mission_write_partial_list_t req = new mavlink_mission_write_partial_list_t();
 
             req.target_system = MAV.sysid;
             req.target_component = MAV.compid;
 
-            req.start_index = startwp;
-            req.end_index = endwp;
+            req.start_index = (short)startwp;
+            req.end_index = (short)endwp;
 
             generatePacket((byte)MAVLINK_MSG_ID.MISSION_WRITE_PARTIAL_LIST, req);
         }
@@ -1944,7 +1947,6 @@ Please check the following
         /// <param name="current">0 = no , 2 = guided mode</param>
         public MAV_MISSION_RESULT setWP(Locationwp loc, ushort index, MAV_FRAME frame, byte current = 0, byte autocontinue = 1)
         {
-            giveComport = true;
             mavlink_mission_item_t req = new mavlink_mission_item_t();
 
             req.target_system = MAV.sysid;
@@ -1966,6 +1968,15 @@ Please check the following
             req.param4 = loc.p4;
 
             req.seq = index;
+
+            return setWP(req);
+        }
+
+        public MAV_MISSION_RESULT setWP(mavlink_mission_item_t req)
+        {
+            giveComport = true;
+
+            ushort index = req.seq;
 
             log.InfoFormat("setWP {6} frame {0} cmd {1} p1 {2} x {3} y {4} z {5}", req.frame, req.command, req.param1, req.x, req.y, req.z, index);
 
@@ -2252,7 +2263,7 @@ Please check the following
                         readcount++;
                         if (logreadmode)
                         {
-                                buffer = readlogPacketMavlink();
+                            buffer = readlogPacketMavlink();
                         }
                         else
                         {
@@ -2507,35 +2518,38 @@ Please check the following
                 if ((buffer[0] == 'U' || buffer[0] == 254) && buffer.Length >= buffer[1])
                 {
                     // check if we lost pacakets based on seqno
-                        byte packetSeqNo = buffer[2];
-                        int expectedPacketSeqNo = ((MAVlist[sysid].recvpacketcount + 1) % 0x100);
+                    byte packetSeqNo = buffer[2];
+                    int expectedPacketSeqNo = ((MAVlist[sysid].recvpacketcount + 1) % 0x100);
 
+                    {
+                        // the seconds part it to work around a 3dr radio bug sending dup seqno's
+                        if (packetSeqNo != expectedPacketSeqNo && packetSeqNo != MAVlist[sysid].recvpacketcount)
                         {
-                            if (packetSeqNo != expectedPacketSeqNo)
+                            MAVlist[sysid].synclost++; // actualy sync loss's
+                            int numLost = 0;
+
+                            if (packetSeqNo < ((MAVlist[sysid].recvpacketcount + 1))) // recvpacketcount = 255 then   10 < 256 = true if was % 0x100 this would fail
                             {
-                                MAVlist[sysid].synclost++; // actualy sync loss's
-                                int numLost = 0;
-
-                                if (packetSeqNo < ((MAVlist[sysid].recvpacketcount + 1))) // recvpacketcount = 255 then   10 < 256 = true if was % 0x100 this would fail
-                                {
-                                    numLost = 0x100 - expectedPacketSeqNo + packetSeqNo;
-                                }
-                                else
-                                {
-                                    numLost = packetSeqNo - MAV.recvpacketcount;
-                                }
-                                MAVlist[sysid].packetslost += numLost;
-                                WhenPacketLost.OnNext(numLost);
-
-                                log.InfoFormat("lost pkts new seqno {0} pkts lost {1}", packetSeqNo, numLost);
+                                numLost = 0x100 - expectedPacketSeqNo + packetSeqNo;
                             }
+                            else
+                            {
+                                numLost = packetSeqNo - MAV.recvpacketcount;
+                            }
+                            MAVlist[sysid].packetslost += numLost;
+                            WhenPacketLost.OnNext(numLost);
 
-                            MAVlist[sysid].packetsnotlost++;
-
-                            MAVlist[sysid].recvpacketcount = packetSeqNo;
+                            log.InfoFormat("{2} lost pkts new seqno {0} pkts lost {1}", packetSeqNo, numLost, sysid);
                         }
-                        WhenPacketReceived.OnNext(1);
-  
+
+                        MAVlist[sysid].packetsnotlost++;
+
+                        //Console.WriteLine("{0} {1}", sysid, packetSeqNo);
+
+                        MAVlist[sysid].recvpacketcount = packetSeqNo;
+                    }
+                    WhenPacketReceived.OnNext(1);
+
                     // packet stats
                     if (double.IsInfinity(packetspersecond[buffer[5]]))
                         packetspersecond[buffer[5]] = 0;

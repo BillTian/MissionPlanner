@@ -140,6 +140,7 @@ namespace MissionPlanner
         const float deg2rad = (float)(1.0 / rad2deg);
 
         string wpno = "";
+        public bool selected = false;
 
         public GMapMarkerWP(PointLatLng p, string wpno)
             : base(p, GMarkerGoogleType.green)
@@ -148,7 +149,13 @@ namespace MissionPlanner
         }
 
         public override void OnRender(Graphics g)
-        {
+        {        
+            if (selected)
+            {
+                g.FillEllipse(Brushes.Red, new Rectangle(this.LocalPosition, this.Size));
+                g.DrawArc(Pens.Red,new Rectangle(this.LocalPosition,this.Size),0,360);
+            }
+
             base.OnRender(g);
 
             var midw = LocalPosition.X + 10 ;
@@ -159,7 +166,7 @@ namespace MissionPlanner
             if (txtsize.Width > 15)
                 midw -= 4;
 
-                g.DrawString(wpno, SystemFonts.DefaultFont, Brushes.DarkRed , new PointF(midw, midh));
+                g.DrawString(wpno, SystemFonts.DefaultFont, Brushes.Black , new PointF(midw, midh));
 
             //Matrix temp = g.Transform;
             //g.TranslateTransform(LocalPosition.X, LocalPosition.Y);
@@ -790,6 +797,10 @@ namespace MissionPlanner
             input = input.Replace("{vsp}", (MainV2.comPort.MAV.cs.verticalspeed).ToString("0.0"));
 
             input = input.Replace("{curr}", (MainV2.comPort.MAV.cs.current).ToString("0.0"));
+
+            input = input.Replace("{hdop}", (MainV2.comPort.MAV.cs.gpshdop).ToString("0.00"));
+
+            input = input.Replace("{satcount}", (MainV2.comPort.MAV.cs.satcount).ToString("0"));
 
             return input;
         }
