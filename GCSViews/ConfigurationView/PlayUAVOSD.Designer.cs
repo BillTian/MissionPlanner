@@ -38,6 +38,7 @@
             this.olvColumn3 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
+            this.Sav_To_EEPROM = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Params)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,20 +46,20 @@
             // 
             this.Save_To_OSD.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Save_To_OSD.BackColor = System.Drawing.SystemColors.Control;
-            this.Save_To_OSD.Location = new System.Drawing.Point(656, 20);
+            this.Save_To_OSD.Location = new System.Drawing.Point(632, 54);
             this.Save_To_OSD.Name = "Save_To_OSD";
-            this.Save_To_OSD.Size = new System.Drawing.Size(77, 30);
+            this.Save_To_OSD.Size = new System.Drawing.Size(101, 30);
             this.Save_To_OSD.TabIndex = 0;
-            this.Save_To_OSD.Text = "保存参数";
+            this.Save_To_OSD.Text = "保存到内存";
             this.Save_To_OSD.UseVisualStyleBackColor = false;
             this.Save_To_OSD.Click += new System.EventHandler(this.btn_Save_To_OSD_Click);
             // 
             // Load_from_OSD
             // 
             this.Load_from_OSD.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Load_from_OSD.Location = new System.Drawing.Point(656, 56);
+            this.Load_from_OSD.Location = new System.Drawing.Point(632, 18);
             this.Load_from_OSD.Name = "Load_from_OSD";
-            this.Load_from_OSD.Size = new System.Drawing.Size(77, 30);
+            this.Load_from_OSD.Size = new System.Drawing.Size(101, 30);
             this.Load_from_OSD.TabIndex = 1;
             this.Load_from_OSD.Text = "读取参数";
             this.Load_from_OSD.UseVisualStyleBackColor = true;
@@ -67,11 +68,11 @@
             // Load_Default
             // 
             this.Load_Default.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Load_Default.Location = new System.Drawing.Point(645, 196);
+            this.Load_Default.Location = new System.Drawing.Point(632, 196);
             this.Load_Default.Name = "Load_Default";
-            this.Load_Default.Size = new System.Drawing.Size(88, 24);
+            this.Load_Default.Size = new System.Drawing.Size(101, 24);
             this.Load_Default.TabIndex = 3;
-            this.Load_Default.Text = "读取默认参数";
+            this.Load_Default.Text = "加载默认参数";
             this.Load_Default.UseVisualStyleBackColor = true;
             this.Load_Default.Click += new System.EventHandler(this.btn_Load_Default_Click);
             // 
@@ -82,9 +83,9 @@
             this.Params.AllColumns.Add(this.olvColumn3);
             this.Params.AllColumns.Add(this.olvColumn4);
             this.Params.AllColumns.Add(this.olvColumn5);
-            this.Params.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Params.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.Params.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Params.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.olvColumn1,
@@ -100,7 +101,7 @@
             this.Params.RootKeyValueString = "";
             this.Params.RowHeight = 26;
             this.Params.ShowGroups = false;
-            this.Params.Size = new System.Drawing.Size(635, 457);
+            this.Params.Size = new System.Drawing.Size(584, 457);
             this.Params.TabIndex = 79;
             this.Params.UseAlternatingBackColors = true;
             this.Params.UseCompatibleStateImageBehavior = false;
@@ -151,8 +152,19 @@
             this.olvColumn5.Width = 210;
             this.olvColumn5.WordWrap = true;
             // 
+            // Sav_To_EEPROM
+            // 
+            this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 125);
+            this.Sav_To_EEPROM.Name = "Sav_To_EEPROM";
+            this.Sav_To_EEPROM.Size = new System.Drawing.Size(101, 46);
+            this.Sav_To_EEPROM.TabIndex = 80;
+            this.Sav_To_EEPROM.Text = "保存到EEPROM";
+            this.Sav_To_EEPROM.UseVisualStyleBackColor = true;
+            this.Sav_To_EEPROM.Click += new System.EventHandler(this.Sav_To_EEPROM_Click);
+            // 
             // PlayUAVOSD
             // 
+            this.Controls.Add(this.Sav_To_EEPROM);
             this.Controls.Add(this.Load_Default);
             this.Controls.Add(this.Save_To_OSD);
             this.Controls.Add(this.Load_from_OSD);
@@ -175,6 +187,7 @@
         private BrightIdeasSoftware.OLVColumn olvColumn3;
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvColumn5;
+        private System.Windows.Forms.Button Sav_To_EEPROM;
 
 
  

@@ -55,6 +55,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             GET_PARAMS = 0x26,          //recv params from osd
             INFO_OSD_REV = 0x27,        //get the firmware revision
             END_TRANSFER = 0x28,        
+            SAVE_TO_EEPROM = 0x29,
 
             PROG_MULTI_MAX = 60,        //# protocol max is 255, must be multiple of 4
             READ_MULTI_MAX = 60,        //# protocol max is 255, something overflows with >= 64
@@ -216,6 +217,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void btn_Save_To_OSD_Click(object sender, EventArgs e)
         {
+            try
+            {
+
             if (comPort.IsOpen)
                 comPort.Close();
 
@@ -261,6 +265,52 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
+            }
+            catch { MessageBox.Show("写入错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+        }
+
+        private void Sav_To_EEPROM_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                if (comPort.IsOpen)
+                    comPort.Close();
+
+                try
+                {
+                    comPort.PortName = MainV2.comPortName;
+                    comPort.BaudRate = int.Parse(MainV2._connectionControl.CMB_baudrate.Text);
+                    comPort.ReadBufferSize = 1024;
+                    comPort.Open();
+                }
+                catch { MessageBox.Show("打开端口错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+
+                System.Threading.Thread.Sleep(500);
+
+                // make sure we are in sync before starting
+                self.__sync();
+
+                //get the board version first
+                self.osd_rev = self.__getInfo(Code.INFO_OSD_REV);
+
+                //not matched, send the default params to EEPROM
+                if (self.osd_rev != VER)
+                {
+                    //TODO
+                }
+
+                //send command
+                __send(new byte[] { (byte)Code.SAVE_TO_EEPROM, (byte)Code.EOC });
+                __getSync();
+
+                comPort.BaseStream.Flush();
+                comPort.Close();
+
+                MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch { MessageBox.Show("写入EEPROM错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
         }
 
         private void btn_Load_from_OSD_Click(object sender, EventArgs e)
@@ -309,10 +359,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             //CRC校验?
 
+            eeprom = eepromtmp;
+            processToScreen();
+
             //comPort.BaseStream.Flush();
             System.Threading.Thread.Sleep(500);
             comPort.Close();
-
+            
             MessageBox.Show("读出参数成功", "读出", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
         }
@@ -379,13 +432,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["Arm_State_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Enable"], 1);
             _paramsAddr["Arm_State_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Position"], 0);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Position"], 350);
             _paramsAddr["Arm_State_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_V_Position"], 14);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_V_Position"], 44);
             _paramsAddr["Arm_State_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Font_Size"], 0);
             _paramsAddr["Arm_State_H_Alignment"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Alignment"], 0);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Alignment"], 2);
 
             _paramsAddr["Battery_Voltage_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Enable"], 1);
@@ -423,13 +476,13 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["Flight_Mode_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Enable"], 1);
             _paramsAddr["Flight_Mode_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Position"], 0);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Position"], 350);
             _paramsAddr["Flight_Mode_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_V_Position"], 4);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_V_Position"], 34);
             _paramsAddr["Flight_Mode_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Font_Size"], 0);
             _paramsAddr["Flight_Mode_H_Alignment"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Alignment"], 0);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Alignment"], 2);
 
             _paramsAddr["GPS_Status_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Enable"], 1);
@@ -462,7 +515,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["GPS_Longitude_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Font_Size"], 0);
             _paramsAddr["GPS_Longitude_H_Alignment"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Alignment"], 2);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Alignment"], 0);
 
             _paramsAddr["Time_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Enable"], 1);
@@ -524,9 +577,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["CWH_Home_Distance_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Enable"], 1);
             _paramsAddr["CWH_Home_Distance_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Position"], 350);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Position"], 70);
             _paramsAddr["CWH_Home_Distance_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_V_Position"], 220);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_V_Position"], 4);
             _paramsAddr["CWH_Home_Distance_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Font_Size"], 0);
             _paramsAddr["CWH_Home_Distance_H_Alignment"] = address; address += 2;
@@ -534,9 +587,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["CWH_WP_Distance_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Enable"], 1);
             _paramsAddr["CWH_WP_Distance_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Position"], 350);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Position"], 70);
             _paramsAddr["CWH_WP_Distance_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_V_Position"], 220);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_V_Position"], 14);
             _paramsAddr["CWH_WP_Distance_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Font_Size"], 0);
             _paramsAddr["CWH_WP_Distance_H_Alignment"] = address; address += 2;
@@ -564,9 +617,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["CWH_Nmode_WP_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_WP_Enable"], 1);
             _paramsAddr["CWH_Nmode_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_H_Position"], 275);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_H_Position"], 30);
             _paramsAddr["CWH_Nmode_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_V_Position"], 190);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_V_Position"], 35);
             _paramsAddr["CWH_Nmode_Radius"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Radius"], 20);
             _paramsAddr["CWH_Nmode_Home_Radius"] = address; address += 2;
@@ -651,6 +704,14 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             };
 
             List<data> roots = new List<data>();
+
+            data dataAtti = new PlayUAVOSD.data();
+            dataAtti.paramname = "Attitude";
+            dataAtti.desc = "Flight Attitude";
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_Mode"]), "", "0, 1", "0:MissionPlanner GUI, 1:3D"));
+            roots.Add(dataAtti);
+
+            roots.Add(genChildData("", "Units_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Units_Mode"]), "", "0, 1", "0:metric 1:imperial"));
 
             data dataArm = new PlayUAVOSD.data();
             dataArm.paramname = "Arm_State";
@@ -766,7 +827,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             data dataCWH = new PlayUAVOSD.data();
             dataCWH.paramname = "CWH";
             dataCWH.desc = "Compass, Way-point and Home";
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Mode"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Mode"]), "", "0, 1", "0:Tradition, 1:Animation"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_V_Position"]), "", "0 - 230", "Vertical Position"));
@@ -795,14 +856,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Radius"]), "", "0 - 230", "distance from the center"));
             roots.Add(dataCWH);
 
-            data dataAtti = new PlayUAVOSD.data();
-            dataAtti.paramname = "Attitude";
-            dataAtti.desc = "Flight Attitude";
-            dataAtti.children.Add(genChildData(dataAtti.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_Mode"]), "", "0, 1", "0:MissionPlanner GUI, 1:3D"));
-            roots.Add(dataAtti);
-
-            roots.Add(genChildData("", "Units_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Units_Mode"]), "", "0, 1", "0:metric 1:imperial"));
-
+            
             data dataAlarm = new PlayUAVOSD.data();
             dataAlarm.paramname = "Alarm";
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Position"]), "", "0 - 350", "Horizontal Position"));
@@ -841,5 +895,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             eeprom = paramdefault;
             processToScreen();
         }
+
+        
     }
 }
