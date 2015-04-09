@@ -115,7 +115,7 @@
             this.olvColumn1.AspectName = "paramname";
             this.olvColumn1.CellPadding = null;
             this.olvColumn1.IsEditable = false;
-            this.olvColumn1.Text = "Command";
+            this.olvColumn1.Text = "参数名";
             this.olvColumn1.Width = 160;
             // 
             // olvColumn2
@@ -124,7 +124,7 @@
             this.olvColumn2.AutoCompleteEditor = false;
             this.olvColumn2.AutoCompleteEditorMode = System.Windows.Forms.AutoCompleteMode.None;
             this.olvColumn2.CellPadding = null;
-            this.olvColumn2.Text = "Value";
+            this.olvColumn2.Text = "值";
             this.olvColumn2.Width = 80;
             // 
             // olvColumn3
@@ -132,14 +132,14 @@
             this.olvColumn3.AspectName = "unit";
             this.olvColumn3.CellPadding = null;
             this.olvColumn3.IsEditable = false;
-            this.olvColumn3.Text = "Unit";
+            this.olvColumn3.Text = "单位";
             // 
             // olvColumn4
             // 
             this.olvColumn4.AspectName = "range";
             this.olvColumn4.CellPadding = null;
             this.olvColumn4.IsEditable = false;
-            this.olvColumn4.Text = "Range";
+            this.olvColumn4.Text = "范围";
             this.olvColumn4.Width = 100;
             this.olvColumn4.WordWrap = true;
             // 
@@ -148,12 +148,13 @@
             this.olvColumn5.AspectName = "desc";
             this.olvColumn5.CellPadding = null;
             this.olvColumn5.IsEditable = false;
-            this.olvColumn5.Text = "Description";
+            this.olvColumn5.Text = "描述";
             this.olvColumn5.Width = 210;
             this.olvColumn5.WordWrap = true;
             // 
             // Sav_To_EEPROM
             // 
+            this.Sav_To_EEPROM.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 125);
             this.Sav_To_EEPROM.Name = "Sav_To_EEPROM";
             this.Sav_To_EEPROM.Size = new System.Drawing.Size(101, 46);

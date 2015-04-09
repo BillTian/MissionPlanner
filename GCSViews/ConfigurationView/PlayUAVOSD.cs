@@ -431,6 +431,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             
             _paramsAddr["Arm_State_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Enable"], 1);
+            _paramsAddr["Arm_State_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_Panel"], 1);
             _paramsAddr["Arm_State_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Arm_State_H_Position"], 350);
             _paramsAddr["Arm_State_V_Position"] = address; address += 2;
@@ -442,6 +444,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["Battery_Voltage_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Enable"], 1);
+            _paramsAddr["Battery_Voltage_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_Panel"], 1);
             _paramsAddr["Battery_Voltage_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Voltage_H_Position"], 350);
             _paramsAddr["Battery_Voltage_V_Position"] = address; address += 2;
@@ -453,6 +457,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["Battery_Current_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Enable"], 1);
+            _paramsAddr["Battery_Current_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_Panel"], 1);
             _paramsAddr["Battery_Current_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Current_H_Position"], 350);
             _paramsAddr["Battery_Current_V_Position"] = address; address += 2;
@@ -464,6 +470,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["Battery_Consumed_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Enable"], 1);
+            _paramsAddr["Battery_Consumed_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_Panel"], 1);
             _paramsAddr["Battery_Consumed_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Battery_Consumed_H_Position"], 350);
             _paramsAddr["Battery_Consumed_V_Position"] = address; address += 2;
@@ -475,6 +483,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["Flight_Mode_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Enable"], 1);
+            _paramsAddr["Flight_Mode_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_Panel"], 1);
             _paramsAddr["Flight_Mode_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Flight_Mode_H_Position"], 350);
             _paramsAddr["Flight_Mode_V_Position"] = address; address += 2;
@@ -486,6 +496,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["GPS_Status_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Enable"], 1);
+            _paramsAddr["GPS_Status_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_Panel"], 1);
             _paramsAddr["GPS_Status_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Position"], 0);
             _paramsAddr["GPS_Status_V_Position"] = address; address += 2;
@@ -495,8 +507,23 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["GPS_Status_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Status_H_Alignment"], 0);
 
+            _paramsAddr["GPS_HDOP_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_Enable"], 1);
+            _paramsAddr["GPS_HDOP_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_Panel"], 1);
+            _paramsAddr["GPS_HDOP_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_H_Position"], 50);
+            _paramsAddr["GPS_HDOP_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_V_Position"], 230);
+            _paramsAddr["GPS_HDOP_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_Font_Size"], 0);
+            _paramsAddr["GPS_HDOP_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_HDOP_H_Alignment"], 0);
+
             _paramsAddr["GPS_Latitude_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Enable"], 1);
+            _paramsAddr["GPS_Latitude_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_Panel"], 1);
             _paramsAddr["GPS_Latitude_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Latitude_H_Position"], 200);
             _paramsAddr["GPS_Latitude_V_Position"] = address; address += 2;
@@ -508,8 +535,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["GPS_Longitude_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Enable"], 1);
+            _paramsAddr["GPS_Longitude_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_Panel"], 1);
             _paramsAddr["GPS_Longitude_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Position"], 300);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Position"], 280);
             _paramsAddr["GPS_Longitude_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_V_Position"], 230);
             _paramsAddr["GPS_Longitude_Font_Size"] = address; address += 2;
@@ -517,8 +546,62 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["GPS_Longitude_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["GPS_Longitude_H_Alignment"], 0);
 
+            _paramsAddr["GPS2_Status_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_Enable"], 1);
+            _paramsAddr["GPS2_Status_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_Panel"], 2);
+            _paramsAddr["GPS2_Status_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_H_Position"], 0);
+            _paramsAddr["GPS2_Status_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_V_Position"], 230);
+            _paramsAddr["GPS2_Status_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_Font_Size"], 0);
+            _paramsAddr["GPS2_Status_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Status_H_Alignment"], 0);
+
+            _paramsAddr["GPS2_HDOP_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_Enable"], 1);
+            _paramsAddr["GPS2_HDOP_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_Panel"], 2);
+            _paramsAddr["GPS2_HDOP_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_H_Position"], 50);
+            _paramsAddr["GPS2_HDOP_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_V_Position"], 230);
+            _paramsAddr["GPS2_HDOP_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_Font_Size"], 0);
+            _paramsAddr["GPS2_HDOP_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_HDOP_H_Alignment"], 0);
+
+            _paramsAddr["GPS2_Latitude_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_Enable"], 1);
+            _paramsAddr["GPS2_Latitude_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_Panel"], 2);
+            _paramsAddr["GPS2_Latitude_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_H_Position"], 200);
+            _paramsAddr["GPS2_Latitude_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_V_Position"], 230);
+            _paramsAddr["GPS2_Latitude_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_Font_Size"], 0);
+            _paramsAddr["GPS2_Latitude_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Latitude_H_Alignment"], 0);
+
+            _paramsAddr["GPS2_Longitude_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_Enable"], 1);
+            _paramsAddr["GPS2_Longitude_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_Panel"], 2);
+            _paramsAddr["GPS2_Longitude_H_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_H_Position"], 280);
+            _paramsAddr["GPS2_Longitude_V_Position"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_V_Position"], 230);
+            _paramsAddr["GPS2_Longitude_Font_Size"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_Font_Size"], 0);
+            _paramsAddr["GPS2_Longitude_H_Alignment"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["GPS2_Longitude_H_Alignment"], 0);
+
             _paramsAddr["Time_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Enable"], 1);
+            _paramsAddr["Time_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Time_Panel"], 1);
             _paramsAddr["Time_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Position"], 350);
             _paramsAddr["Time_V_Position"] = address; address += 2;
@@ -528,16 +611,22 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["Time_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Time_H_Alignment"], 2);
 
-            _paramsAddr["Altitude_Mode"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Mode"], 1);
+            _paramsAddr["Altitude_TALT_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_Enable"], 1);
+            _paramsAddr["Altitude_TALT_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_Panel"], 2);
             _paramsAddr["Altitude_TALT_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_H_Position"], 200);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_H_Position"], 20);
             _paramsAddr["Altitude_TALT_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_V_Position"], 200);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_V_Position"], 160);
             _paramsAddr["Altitude_TALT_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_Font_Size"], 0);
             _paramsAddr["Altitude_TALT_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_TALT_H_Alignment"], 0);
+            _paramsAddr["Altitude_Scale_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Enable"], 1);
+            _paramsAddr["Altitude_Scale_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Panel"], 1);
             _paramsAddr["Altitude_Scale_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_H_Position"], 350);
             _paramsAddr["Altitude_Scale_Align"] = address; address += 2;
@@ -545,16 +634,22 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             _paramsAddr["Altitude_Scale_Source"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Altitude_Scale_Source"], 0);
 
-            _paramsAddr["Speed_Mode"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Mode"], 1);
+            _paramsAddr["Speed_TSPD_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_Enable"], 1);
+            _paramsAddr["Speed_TSPD_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_Panel"], 2);
             _paramsAddr["Speed_TSPD_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_H_Position"], 350);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_H_Position"], 20);
             _paramsAddr["Speed_TSPD_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_V_Position"], 350);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_V_Position"], 180);
             _paramsAddr["Speed_TSPD_Font_Size"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_Font_Size"], 0);
             _paramsAddr["Speed_TSPD_H_Alignment"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_TSPD_H_Alignment"], 0);
+            _paramsAddr["Speed_Scale_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Enable"], 1);
+            _paramsAddr["Speed_Scale_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_Panel"], 1);
             _paramsAddr["Speed_Scale_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Speed_Scale_H_Position"], 10);
             _paramsAddr["Speed_Scale_Align"] = address; address += 2;
@@ -564,6 +659,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             _paramsAddr["Throttle_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_Enable"], 1);
+            _paramsAddr["Throttle_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_Panel"], 1);
             _paramsAddr["Throttle_Scale_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_Scale_Enable"], 1);
             _paramsAddr["Throttle_H_Position"] = address; address += 2;
@@ -572,10 +669,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             u16toEPPROM(paramdefault, (int)_paramsAddr["Throttle_V_Position"], 210);
             
             //we combination the direction of compass, way-point, home together.one mode is traditional. another is more intuitively IMO
-            _paramsAddr["CWH_Mode"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Mode"], 1);
             _paramsAddr["CWH_Home_Distance_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Enable"], 1);
+            _paramsAddr["CWH_Home_Distance_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_Panel"], 1);
             _paramsAddr["CWH_Home_Distance_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Position"], 70);
             _paramsAddr["CWH_Home_Distance_V_Position"] = address; address += 2;
@@ -586,6 +683,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Home_Distance_H_Alignment"], 0);
             _paramsAddr["CWH_WP_Distance_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Enable"], 1);
+            _paramsAddr["CWH_WP_Distance_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_Panel"], 1);
             _paramsAddr["CWH_WP_Distance_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Position"], 70);
             _paramsAddr["CWH_WP_Distance_V_Position"] = address; address += 2;
@@ -596,20 +695,30 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_WP_Distance_H_Alignment"], 0);
             _paramsAddr["CWH_Tmode_Compass_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Compass_Enable"], 1);
+            _paramsAddr["CWH_Tmode_Compass_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Compass_Panel"], 2);
             _paramsAddr["CWH_Tmode_Compass_V_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Compass_V_Position"], 1);
             _paramsAddr["CWH_Tmode_Home_Dir_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_Enable"], 25);
+            _paramsAddr["CWH_Tmode_Home_Dir_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_Panel"], 2);
             _paramsAddr["CWH_Tmode_Home_Dir_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_H_Position"], 210);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_H_Position"], 300);
             _paramsAddr["CWH_Tmode_Home_Dir_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_V_Position"], 210);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_Home_Dir_V_Position"], 150);
             _paramsAddr["CWH_Tmode_WP_Dir_Enable"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"], 25);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"], 1);
+            _paramsAddr["CWH_Tmode_WP_Dir_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_Panel"], 2);
             _paramsAddr["CWH_Tmode_WP_Dir_H_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_H_Position"], 210);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_H_Position"], 300);
             _paramsAddr["CWH_Tmode_WP_Dir_V_Position"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_V_Position"], 210);
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Tmode_WP_Dir_V_Position"], 160);
+            _paramsAddr["CWH_Nmode_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Enable"], 1);
+            _paramsAddr["CWH_Nmode_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Panel"], 1);
             _paramsAddr["CWH_Nmode_Compass_Enable"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_Compass_Enable"], 1);
             _paramsAddr["CWH_Nmode_Home_Enable"] = address; address += 2;
@@ -628,12 +737,41 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             u16toEPPROM(paramdefault, (int)_paramsAddr["CWH_Nmode_WP_Radius"], 25);
 
             //Attitude
-            _paramsAddr["Attitude_Mode"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_Mode"], 0);
+            _paramsAddr["Attitude_MP_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_MP_Enable"], 1);
+            _paramsAddr["Attitude_MP_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_MP_Panel"], 1);
+            _paramsAddr["Attitude_MP_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_MP_Mode"], 0);
+            _paramsAddr["Attitude_3D_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_3D_Enable"], 1);
+            _paramsAddr["Attitude_3D_Panel"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Attitude_3D_Panel"], 2);
 
-            _paramsAddr["Units_Mode"] = address; address += 2;
-            u16toEPPROM(paramdefault, (int)_paramsAddr["Units_Mode"], 0);
-       
+            //misc
+            _paramsAddr["Misc_Units_Mode"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Misc_Units_Mode"], 0);
+            _paramsAddr["Misc_Max_Panels"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["Misc_Max_Panels"], 2);
+            
+            //PWM Config
+            _paramsAddr["PWM_Video_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Video_Enable"], 1);
+            _paramsAddr["PWM_Video_Min_Value"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Video_Min_Value"], 900);
+            _paramsAddr["PWM_Video_Max_Value"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Video_Max_Value"], 2000);
+            _paramsAddr["PWM_Video_Gear_Shift"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Video_Gear_Shift"], 200);
+            _paramsAddr["PWM_Panel_Enable"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Panel_Enable"], 1);
+            _paramsAddr["PWM_Panel_Min_Value"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Panel_Min_Value"], 900);
+            _paramsAddr["PWM_Panel_Max_Value"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Panel_Max_Value"], 2000);
+            _paramsAddr["PWM_Panel_Gear_Shift"] = address; address += 2;
+            u16toEPPROM(paramdefault, (int)_paramsAddr["PWM_Panel_Gear_Shift"], 200);
+
             //should use bit mask? enable/disable maybe more intuition
             _paramsAddr["Alarm_H_Position"] = address; address += 2;
             u16toEPPROM(paramdefault, (int)_paramsAddr["Alarm_H_Position"], 0);
@@ -707,24 +845,50 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataAtti = new PlayUAVOSD.data();
             dataAtti.paramname = "Attitude";
-            dataAtti.desc = "Flight Attitude";
-            dataAtti.children.Add(genChildData(dataAtti.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_Mode"]), "", "0, 1", "0:MissionPlanner GUI, 1:3D"));
+            dataAtti.desc = "飞行姿态";
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "MP_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_MP_Enable"]), "", "0, 1", "MissionPlanner地面站类似的界面,0:禁用, 1:启用"));
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "MP_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_MP_Panel"]), "", "1到最大页面", "在哪个页面显示"));
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "MP_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_MP_Mode"]), "", "0, 1", "0:北约, 1:俄制"));
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "3D_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_3D_Enable"]), "", "0, 1", "3D界面,0:禁用, 1:启用"));
+            dataAtti.children.Add(genChildData(dataAtti.paramname, "3D_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Attitude_3D_Panel"]), "", "1到最大页面", "在哪个页面显示"));
             roots.Add(dataAtti);
 
-            roots.Add(genChildData("", "Units_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Units_Mode"]), "", "0, 1", "0:metric 1:imperial"));
+            data dataMisc = new PlayUAVOSD.data();
+            dataMisc.paramname = "Misc";
+            dataMisc.desc = "杂项";
+            dataMisc.children.Add(genChildData(dataMisc.paramname, "Units_Mode", getU16ParamString(eeprom, (int)_paramsAddr["Misc_Units_Mode"]), "", "0, 1", "0:公制 1:英制"));
+            dataMisc.children.Add(genChildData(dataMisc.paramname, "Max_Panels", getU16ParamString(eeprom, (int)_paramsAddr["Misc_Max_Panels"]), "", ">=1", "最大显示页面"));
+            roots.Add(dataMisc);
+
+            data dataPWM = new PlayUAVOSD.data();
+            dataPWM.paramname = "PWM";
+            dataPWM.desc = "切换视频输入以及显示页面";
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Video_Enable", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Video_Enable"]), "", "0, 1", "0:禁用, 1:启用"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Video_Min_Value", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Video_Min_Value"]), "", "900 +- N", "通道最小输出，可以通过校准遥控那里得到"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Video_Max_Value", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Video_Max_Value"]), "", "2000 +- N", "通道最大输出，同上"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Video_Gear_Shift", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Video_Gear_Shift"]), "", "N", "允许的误差范围，太大可能切换没反应，太小可能会引起干扰"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Panel_Enable", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Panel_Enable"]), "", "0, 1", "0:禁用, 1:启用"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Panel_Min_Value", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Panel_Min_Value"]), "", "900 +- N", "通道最小输出，可以通过校准遥控那里得到"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Panel_Max_Value", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Panel_Max_Value"]), "", "2000 +- N", "通道最大输出，同上"));
+            dataPWM.children.Add(genChildData(dataPWM.paramname, "Panel_Gear_Shift", getU16ParamString(eeprom, (int)_paramsAddr["PWM_Panel_Gear_Shift"]), "", "N", "允许的误差范围，太大可能切换没反应，太小可能会引起干扰"));
+            roots.Add(dataPWM);
 
             data dataArm = new PlayUAVOSD.data();
             dataArm.paramname = "Arm_State";
-            dataArm.children.Add(genChildData(dataArm.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataArm.children.Add(genChildData(dataArm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Position"]), "", "0 - 350", "Horizontal Position"));
-            dataArm.children.Add(genChildData(dataArm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_V_Position"]), "", "0 - 230", "Vertical Position"));
-            dataArm.children.Add(genChildData(dataArm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
-            dataArm.children.Add(genChildData(dataArm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataArm.desc = "解锁状态";
+            dataArm.children.Add(genChildData(dataArm.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Enable"]), "", "0, 1", "0:禁用, 1:启用"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Panel"]), "", "1到最大页面", "在哪个页面显示"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Position"]), "", "0 - 350", "水平位置"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_V_Position"]), "", "0 - 230", "垂直位置"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_Font_Size"]), "", "0, 1, 2", "0:小号, 1:正常, 2:大号"));
+            dataArm.children.Add(genChildData(dataArm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Arm_State_H_Alignment"]), "", "0, 1, 2", "0:左对齐,  1:居中, 2:右对齐"));
             roots.Add(dataArm);
 
             data dataBattVolt = new PlayUAVOSD.data();
             dataBattVolt.paramname = "Battery_Voltage";
+            dataBattVolt.desc = "电池电压";
             dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataBattVolt.children.Add(genChildData(dataBattVolt.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Voltage_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -733,7 +897,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataBattCurrent = new PlayUAVOSD.data();
             dataBattCurrent.paramname = "Battery_Current";
+            dataBattCurrent.desc = "电池电流";
             dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataBattCurrent.children.Add(genChildData(dataBattCurrent.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Current_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -742,7 +908,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataBattConsumed = new PlayUAVOSD.data();
             dataBattConsumed.paramname = "Battery_Consumed";
+            dataBattConsumed.desc = "已消耗电流，百分比";
             dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataBattConsumed.children.Add(genChildData(dataBattConsumed.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Battery_Consumed_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -751,7 +919,9 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataFlightMode = new PlayUAVOSD.data();
             dataFlightMode.paramname = "Flight_Mode";
+            dataFlightMode.desc = "飞行模式";
             dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataFlightMode.children.Add(genChildData(dataFlightMode.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Flight_Mode_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -760,16 +930,31 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataGPSStatus = new PlayUAVOSD.data();
             dataGPSStatus.paramname = "GPS_Status";
+            dataGPSStatus.desc = "GPS1 状态";
             dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataGPSStatus.children.Add(genChildData(dataGPSStatus.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Status_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
             roots.Add(dataGPSStatus);
 
+            data dataGPSHDOP = new PlayUAVOSD.data();
+            dataGPSHDOP.paramname = "GPS_HDOP";
+            dataGPSHDOP.desc = "GPS1 水平精度";
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_Panel"]), "", "1 - Max_Panels", "which panel to display"));
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPSHDOP.children.Add(genChildData(dataGPSHDOP.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_HDOP_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPSHDOP);
+
             data dataGPSLat = new PlayUAVOSD.data();
             dataGPSLat.paramname = "GPS_Latitude";
+            dataGPSLat.desc = "GPS1 纬度";
             dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataGPSLat.children.Add(genChildData(dataGPSLat.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Latitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -778,16 +963,64 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataGPSLon = new PlayUAVOSD.data();
             dataGPSLon.paramname = "GPS_Longitude";
+            dataGPSLon.desc = "GPS1 经度";
             dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataGPSLon.children.Add(genChildData(dataGPSLon.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS_Longitude_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
             roots.Add(dataGPSLon);
 
+            data dataGPS2Status = new PlayUAVOSD.data();
+            dataGPS2Status.paramname = "GPS2_Status";
+            dataGPS2Status.desc = "GPS2 状态";
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_Panel"]), "", "1 - Max_Panels", "which panel to display"));
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPS2Status.children.Add(genChildData(dataGPS2Status.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Status_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPS2Status);
+
+            data dataGPS2HDOP = new PlayUAVOSD.data();
+            dataGPS2HDOP.paramname = "GPS2_HDOP";
+            dataGPS2HDOP.desc = "GPS2 水平精度";
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_Panel"]), "", "1 - Max_Panels", "which panel to display"));
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPS2HDOP.children.Add(genChildData(dataGPS2HDOP.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_HDOP_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPS2HDOP);
+
+            data dataGPS2Lat = new PlayUAVOSD.data();
+            dataGPS2Lat.paramname = "GPS2_Latitude";
+            dataGPS2Lat.desc = "GPS2 纬度";
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_Panel"]), "", "1 - Max_Panels", "which panel to display"));
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPS2Lat.children.Add(genChildData(dataGPS2Lat.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Latitude_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPS2Lat);
+
+            data dataGPS2Lon = new PlayUAVOSD.data();
+            dataGPS2Lon.paramname = "GPS2_Longitude";
+            dataGPS2Lon.desc = "GPS2 经度";
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_Panel"]), "", "1 - Max_Panels", "which panel to display"));
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
+            dataGPS2Lon.children.Add(genChildData(dataGPS2Lon.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["GPS2_Longitude_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            roots.Add(dataGPS2Lon);
+
             data dataTime = new PlayUAVOSD.data();
             dataTime.paramname = "Time";
+            dataTime.desc = "飞行时间";
             dataTime.children.Add(genChildData(dataTime.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Time_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataTime.children.Add(genChildData(dataTime.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Time_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataTime.children.Add(genChildData(dataTime.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Time_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataTime.children.Add(genChildData(dataTime.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Time_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataTime.children.Add(genChildData(dataTime.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Time_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
@@ -796,29 +1029,39 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataAlt = new PlayUAVOSD.data();
             dataAlt.paramname = "Altitude";
-            dataAlt.children.Add(genChildData(dataAlt.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Mode"]), "", "0, 1", "0:Traditional, 1:Scale"));
+            dataAlt.desc = "高度";
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_Enable"]), "", "0, 1", "Traditional hud. 0:disabled, 1:enabled"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "TALT_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_TALT_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Enable"]), "", "0, 1", "Scale hud. 0:disabled, 1:enabled"));
+            dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataAlt.children.Add(genChildData(dataAlt.paramname, "Scale_Align", getU16ParamString(eeprom, (int)_paramsAddr["Altitude_Scale_Align"]), "", "0, 1", "0:left 1:right"));
             roots.Add(dataAlt);
 
             data dataSpeed = new PlayUAVOSD.data();
             dataSpeed.paramname = "Speed";
-            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Mode"]), "", "0, 1", "0:Traditional, 1:Scale"));
+            dataSpeed.desc = "速度";
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_Enable"]), "", "0, 1", "Traditional hud. 0:disabled, 1:enabled"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "TSPD_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Speed_TSPD_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Enable"]), "", "0, 1", "Scale hud. 0:disabled, 1:enabled"));
+            dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_Panel", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataSpeed.children.Add(genChildData(dataSpeed.paramname, "Scale_Align", getU16ParamString(eeprom, (int)_paramsAddr["Speed_Scale_Align"]), "", "0, 1", "0:left 1:right"));
             roots.Add(dataAlt);
 
             data dataThrottle = new PlayUAVOSD.data();
             dataThrottle.paramname = "Throttle";
+            dataThrottle.desc = "油门";
             dataThrottle.children.Add(genChildData(dataThrottle.paramname, "Enable", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataThrottle.children.Add(genChildData(dataThrottle.paramname, "Panel", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataThrottle.children.Add(genChildData(dataThrottle.paramname, "Scale_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_Scale_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
             dataThrottle.children.Add(genChildData(dataThrottle.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataThrottle.children.Add(genChildData(dataThrottle.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Throttle_V_Position"]), "", "0 - 230", "Vertical Position"));
@@ -826,56 +1069,65 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             data dataCWH = new PlayUAVOSD.data();
             dataCWH.paramname = "CWH";
-            dataCWH.desc = "Compass, Way-point and Home";
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Mode", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Mode"]), "", "0, 1", "0:Tradition, 1:Animation"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Position"]), "", "0 - 350", "Horizontal Position"));
+            dataCWH.desc = "指南针，航点，家的距离，显示模式以及方向等";
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Enable"]), "", "0, 1", "是否显示家的距离0:否, 1:是"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Panel"]), "", "1 - Max_Panels", "家的距离显示在那个页面"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Position"]), "", "0 - 350", "水平位置"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Home_Distance_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Home_Distance_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Enable"]), "", "0, 1", "是否显示航点距离0:否, 1:是"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "WP_Distance_H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["CWH_WP_Distance_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_Enable"]), "", "0, 1", "是否显示传统样式的指南针0:否, 1:是"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Compass_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Compass_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_Home_Dir_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_Home_Dir_V_Position"]), "", "0 - 230", "Vertical Position"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "_Tmode_WP_Dir_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_Enable"]), "", "0, 1", "是否显示传统样式的家的方向0:否, 1:是"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Tmode_WP_Dir_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Tmode_WP_Dir_V_Position"]), "", "0 - 230", "Vertical Position"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Enable"]), "", "0, 1", "是否显示动画样式的家，指南针，航点组合. 0:disabled, 1:enabled"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Panel", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Panel"]), "", "1 - Max_Panels", "which panel to display"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Compass_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Compass_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Home_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Home_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Enable", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_H_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_V_Position", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_V_Position"]), "", "0 - 230", "Vertical Position"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Radius"]), "", "0 - 230", "Radius of the circle"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Home_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Home_Radius"]), "", "0 - 230", "distance from the center"));
-            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Radius"]), "", "0 - 230", "distance from the center"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Radius"]), "", "0 - 230", "圆圈的半径"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_Home_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_Home_Radius"]), "", "0 - 230", "把家显示在离圆心多少距离的圆上"));
+            dataCWH.children.Add(genChildData(dataCWH.paramname, "Nmode_WP_Radius", getU16ParamString(eeprom, (int)_paramsAddr["CWH_Nmode_WP_Radius"]), "", "0 - 230", "把航点显示在离圆心多少距离的圆上"));
             roots.Add(dataCWH);
 
             
             data dataAlarm = new PlayUAVOSD.data();
             dataAlarm.paramname = "Alarm";
+            dataAlarm.desc = "警告设置";
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Position"]), "", "0 - 350", "Horizontal Position"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "V_Position", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_V_Position"]), "", "0 - 230", "Vertical Position"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Font_Size", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Font_Size"]), "", "0, 1, 2", "0:small, 1:normal, 2:large"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "H_Alignment", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_H_Alignment"]), "", "0, 1, 2", "0:left,  1:center, 2:right"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Speed_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Speed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Speed"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Speed"]), "", "", "速度低于这个值将报警"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Speed_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Speed_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Speed"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Speed", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Speed"]), "", "", "速度高于这个值将报警"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Alt_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Alt_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Alt"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_Alt"]), "", "", "高度低于这个值将报警"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Alt_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Alt_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Alt"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Max_Alt", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Max_Alt"]), "", "", "高度高于这个值将报警"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattVol_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattVol_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattVol", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattVol"]), "", "", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattVol", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattVol"]), "", "", "电池电压低于这个值将报警"));
             dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattPercent_Enable", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattPercent_Enable"]), "", "0, 1", "0:disabled, 1:enabled"));
-            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattPercent", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattPercent"]), "", "0 - 99", ""));
+            dataAlarm.children.Add(genChildData(dataAlarm.paramname, "Min_BattPercent", getU16ParamString(eeprom, (int)_paramsAddr["Alarm_Min_BattPercent"]), "", "0 - 99", "电池用量百分比低于这个值将报警"));
             roots.Add(dataAlarm);
+
+            
 
             foreach (var item in roots)
             {
