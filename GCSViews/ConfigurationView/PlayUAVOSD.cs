@@ -263,7 +263,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             System.Threading.Thread.Sleep(500);
             comPort.Close();
 
-            MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.None);
 
             }
             catch { MessageBox.Show("写入错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
@@ -307,7 +307,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 comPort.BaseStream.Flush();
                 comPort.Close();
 
-                MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("写入参数成功", "写入", MessageBoxButtons.OK, MessageBoxIcon.None);
 
             }
             catch { MessageBox.Show("写入EEPROM错误", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
@@ -366,7 +366,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             System.Threading.Thread.Sleep(500);
             comPort.Close();
             
-            MessageBox.Show("读出参数成功", "读出", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("读出参数成功", "读出", MessageBoxButtons.OK, MessageBoxIcon.None);
 
         }
 
@@ -378,6 +378,11 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 //double min = 0;
                 //double max = 0;
+                if (((data)e.RowObject).children.Count > 0)
+                {
+                    e.Cancel = true;
+                    return;
+                }
 
                 float newvalue = 0;
 
@@ -397,7 +402,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 //        }
                 //    }
                 //}
-
+                
                 _changes[((data)e.RowObject).paramname] = newvalue;
                 string paramsfullname = ((data)e.RowObject).root + "_" + ((data)e.RowObject).paramname;
                 u16toEPPROM(eeprom, (int)_paramsAddr[paramsfullname], Convert.ToInt16(newvalue));
@@ -835,6 +840,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 return false;
             };
 
+          
+
             Params.ChildrenGetter = delegate(object x)
             {
                 data y = (data)x;
@@ -1136,6 +1143,10 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 {
                     Params.AddObject(((List<data>)item.children)[0]);
                     continue;
+                }
+                else
+                {
+
                 }
 
                 Params.AddObject(item);
