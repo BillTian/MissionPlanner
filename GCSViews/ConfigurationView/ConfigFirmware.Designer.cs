@@ -80,6 +80,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.pictureAntennaTracker = new MissionPlanner.Controls.ImageLabel();
             this.lbl_licence = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lbl_playuavosd = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxHilimage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAPHil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxACHil)).BeginInit();
@@ -296,10 +297,18 @@ namespace MissionPlanner.GCSViews.ConfigurationView
             this.linkLabel1.TabStop = true;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
+            // lbl_playuavosd
+            // 
+            resources.ApplyResources(this.lbl_playuavosd, "lbl_playuavosd");
+            this.lbl_playuavosd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lbl_playuavosd.Name = "lbl_playuavosd";
+            this.lbl_playuavosd.Click += new System.EventHandler(this.lbl_playuavosd_Click);
+            // 
             // ConfigFirmware
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lbl_playuavosd);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.lbl_licence);
             this.Controls.Add(this.pictureAntennaTracker);
@@ -345,6 +354,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
         private Controls.ImageLabel pictureAntennaTracker;
         private Label lbl_licence;
         private LinkLabel linkLabel1;
+        private Label lbl_playuavosd;
 
     }
 }

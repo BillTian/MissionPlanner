@@ -471,5 +471,82 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 CustomMessageBox.Show("http://copter.ardupilot.com/wiki/motor-setup/",Strings.ERROR); 
             }
         }
+
+        private void lbl_playuavosd_Click(object sender, EventArgs e)
+        {
+            string baseurl = "http://www.playuav.com/download/playuavosd.hex";
+            
+
+            try
+            {
+                // Create a request using a URL that can receive a post. 
+                WebRequest request = WebRequest.Create(baseurl);
+                request.Timeout = 10000;
+                // Set the Method property of the request to POST.
+                request.Method = "GET";
+                // Get the request stream.
+                Stream dataStream; //= request.GetRequestStream();
+                // Get the response.
+                WebResponse response = request.GetResponse();
+                // Display the status.
+                log.Info(((HttpWebResponse)response).StatusDescription);
+                // Get the stream containing content returned by the server.
+                dataStream = response.GetResponseStream();
+
+                long bytes = response.ContentLength;
+                long contlen = bytes;
+
+                byte[] buf1 = new byte[1024];
+
+                FileStream fs = new FileStream(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"playuavosd.hex", FileMode.Create);
+
+                lbl_status.Text = "Downloading from Internet";
+
+                this.Refresh();
+                Application.DoEvents();
+
+                dataStream.ReadTimeout = 30000;
+
+                while (dataStream.CanRead)
+                {
+                    try
+                    {
+                        progress.Value = 50;// (int)(((float)(response.ContentLength - bytes) / (float)response.ContentLength) * 100);
+                        this.progress.Refresh();
+                    }
+                    catch { }
+                    int len = dataStream.Read(buf1, 0, 1024);
+                    if (len == 0)
+                        break;
+                    bytes -= len;
+                    fs.Write(buf1, 0, len);
+                }
+
+                fs.Close();
+                dataStream.Close();
+                response.Close();
+
+                lbl_status.Text = "Done";
+                Application.DoEvents();
+
+                //upload firmware
+                fw.Progress -= fw_Progress;
+                fw.Progress += fw_Progress1;
+
+                BoardDetect.boards boardtype = BoardDetect.boards.none;
+                try
+                {
+                    boardtype = BoardDetect.DetectBoard(MainV2.comPortName);
+                }
+                catch
+                {
+                    CustomMessageBox.Show("Can not connect to com port and detect board type", Strings.ERROR);
+                    return;
+                }
+
+                fw.UploadFlash(MainV2.comPortName, fs.Name, boardtype);
+            }
+            catch { CustomMessageBox.Show("Error receiving firmware", Strings.ERROR); return; }
+        }
     }
 }
