@@ -155,9 +155,9 @@
             // Sav_To_EEPROM
             // 
             this.Sav_To_EEPROM.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 125);
+            this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 160);
             this.Sav_To_EEPROM.Name = "Sav_To_EEPROM";
-            this.Sav_To_EEPROM.Size = new System.Drawing.Size(101, 46);
+            this.Sav_To_EEPROM.Size = new System.Drawing.Size(101, 30);
             this.Sav_To_EEPROM.TabIndex = 80;
             this.Sav_To_EEPROM.Text = "保存到EEPROM";
             this.Sav_To_EEPROM.UseVisualStyleBackColor = true;

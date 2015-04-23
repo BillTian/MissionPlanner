@@ -61,7 +61,9 @@
     <Content Include="mavtestgen.py" />
     <Content Include="mavutil.py" />
     <Content Include="message_definitions\ardupilotmega.xml" />
-    <Content Include="message_definitions\common.xml" />
+    <Content Include="message_definitions\common.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="mavschema.xsd">
