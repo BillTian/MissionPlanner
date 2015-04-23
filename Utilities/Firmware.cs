@@ -468,6 +468,8 @@ namespace MissionPlanner.Utilities
 
                 string baseurl = temp.urlpx4v2;
 
+                if (baseurl == "") return;
+
                 ReplaceMirrorUrl(ref baseurl);
 
                 Uri url = new Uri(new Uri(baseurl), "git-version.txt");

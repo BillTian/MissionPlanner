@@ -252,7 +252,8 @@ namespace MissionPlanner.Controls
         Color _hudcolor = Color.White;
         Pen whitePen = new Pen(Color.White, 2);
 
-        public Image bgimage { set { while (inOnPaint) { System.Threading.Thread.Sleep(1); } if (_bgimage != null) _bgimage.Dispose(); try { _bgimage = (Image)value; } catch { _bgimage = null; } this.Invalidate(); } }
+        object bgimagelock = new object();
+        public Image bgimage { set { lock (bgimagelock) { try { _bgimage = (Image)value; } catch { _bgimage = null; } this.Invalidate(); } } }
         Image _bgimage;
 
         // move these global as they rarely change - reduce GC
@@ -961,7 +962,10 @@ namespace MissionPlanner.Controls
                 if (_bgimage != null)
                 {
                     bgon = false;
-                    graphicsObject.DrawImage(_bgimage, 0, 0, this.Width, this.Height);
+                    lock (bgimagelock)
+                    {
+                        graphicsObject.DrawImage(_bgimage, 0, 0, this.Width, this.Height);
+                    }
 
                     if (hudon == false)
                     {
@@ -1733,7 +1737,7 @@ namespace MissionPlanner.Controls
                 if (failsafe == true)
                 {
 
-                    drawstring(graphicsObject, HUDT.FAILSAFE, font, fontsize + 20, (SolidBrush)Brushes.Red, -85, halfheight / -5);
+                    drawstring(graphicsObject, HUDT.FAILSAFE, font, fontsize + 20, (SolidBrush)Brushes.Red, -85, halfheight / - Convert.ToInt32(HUDT.FailsafeH));
                     statuslast = status;
                 }
 
