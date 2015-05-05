@@ -39,6 +39,8 @@
             this.olvColumn4 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.olvColumn5 = ((BrightIdeasSoftware.OLVColumn)(new BrightIdeasSoftware.OLVColumn()));
             this.Sav_To_EEPROM = new System.Windows.Forms.Button();
+            this.btn_save_file = new System.Windows.Forms.Button();
+            this.btn_load_file = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Params)).BeginInit();
             this.SuspendLayout();
             // 
@@ -163,8 +165,29 @@
             this.Sav_To_EEPROM.UseVisualStyleBackColor = true;
             this.Sav_To_EEPROM.Click += new System.EventHandler(this.Sav_To_EEPROM_Click);
             // 
+            // btn_save_file
+            // 
+            this.btn_save_file.Location = new System.Drawing.Point(632, 225);
+            this.btn_save_file.Name = "btn_save_file";
+            this.btn_save_file.Size = new System.Drawing.Size(100, 25);
+            this.btn_save_file.TabIndex = 81;
+            this.btn_save_file.Text = "保存文件";
+            this.btn_save_file.UseVisualStyleBackColor = true;
+            this.btn_save_file.Click += new System.EventHandler(this.btn_save_file_Click);
+            // 
+            // btn_load_file
+            // 
+            this.btn_load_file.Location = new System.Drawing.Point(634, 257);
+            this.btn_load_file.Name = "btn_load_file";
+            this.btn_load_file.Size = new System.Drawing.Size(97, 24);
+            this.btn_load_file.TabIndex = 82;
+            this.btn_load_file.Text = "加载文件";
+            this.btn_load_file.UseVisualStyleBackColor = true;
+            // 
             // PlayUAVOSD
             // 
+            this.Controls.Add(this.btn_load_file);
+            this.Controls.Add(this.btn_save_file);
             this.Controls.Add(this.Sav_To_EEPROM);
             this.Controls.Add(this.Load_Default);
             this.Controls.Add(this.Save_To_OSD);
@@ -189,6 +212,8 @@
         private BrightIdeasSoftware.OLVColumn olvColumn4;
         private BrightIdeasSoftware.OLVColumn olvColumn5;
         private System.Windows.Forms.Button Sav_To_EEPROM;
+        private System.Windows.Forms.Button btn_save_file;
+        private System.Windows.Forms.Button btn_load_file;
 
 
  
