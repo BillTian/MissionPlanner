@@ -55,6 +55,7 @@
             this.Save_To_OSD.Text = "保存到内存";
             this.Save_To_OSD.UseVisualStyleBackColor = false;
             this.Save_To_OSD.Click += new System.EventHandler(this.btn_Save_To_OSD_Click);
+            this.Save_To_OSD.MouseEnter += new System.EventHandler(this.Save_To_OSD_MouseEnter);
             // 
             // Load_from_OSD
             // 
@@ -103,7 +104,7 @@
             this.Params.RootKeyValueString = "";
             this.Params.RowHeight = 26;
             this.Params.ShowGroups = false;
-            this.Params.Size = new System.Drawing.Size(584, 457);
+            this.Params.Size = new System.Drawing.Size(622, 457);
             this.Params.TabIndex = 79;
             this.Params.UseAlternatingBackColors = true;
             this.Params.UseCompatibleStateImageBehavior = false;
@@ -157,19 +158,21 @@
             // Sav_To_EEPROM
             // 
             this.Sav_To_EEPROM.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 160);
+            this.Sav_To_EEPROM.Location = new System.Drawing.Point(632, 90);
             this.Sav_To_EEPROM.Name = "Sav_To_EEPROM";
             this.Sav_To_EEPROM.Size = new System.Drawing.Size(101, 30);
             this.Sav_To_EEPROM.TabIndex = 80;
-            this.Sav_To_EEPROM.Text = "保存到EEPROM";
+            this.Sav_To_EEPROM.Text = "保存到FLASH";
             this.Sav_To_EEPROM.UseVisualStyleBackColor = true;
             this.Sav_To_EEPROM.Click += new System.EventHandler(this.Sav_To_EEPROM_Click);
+            this.Sav_To_EEPROM.MouseEnter += new System.EventHandler(this.Sav_To_EEPROM_MouseEnter);
             // 
             // btn_save_file
             // 
-            this.btn_save_file.Location = new System.Drawing.Point(632, 225);
+            this.btn_save_file.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn_save_file.Location = new System.Drawing.Point(632, 256);
             this.btn_save_file.Name = "btn_save_file";
-            this.btn_save_file.Size = new System.Drawing.Size(100, 25);
+            this.btn_save_file.Size = new System.Drawing.Size(101, 25);
             this.btn_save_file.TabIndex = 81;
             this.btn_save_file.Text = "保存文件";
             this.btn_save_file.UseVisualStyleBackColor = true;
@@ -177,12 +180,14 @@
             // 
             // btn_load_file
             // 
-            this.btn_load_file.Location = new System.Drawing.Point(634, 257);
+            this.btn_load_file.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn_load_file.Location = new System.Drawing.Point(632, 226);
             this.btn_load_file.Name = "btn_load_file";
-            this.btn_load_file.Size = new System.Drawing.Size(97, 24);
+            this.btn_load_file.Size = new System.Drawing.Size(101, 24);
             this.btn_load_file.TabIndex = 82;
             this.btn_load_file.Text = "加载文件";
             this.btn_load_file.UseVisualStyleBackColor = true;
+            this.btn_load_file.Click += new System.EventHandler(this.btn_load_file_Click);
             // 
             // PlayUAVOSD
             // 
