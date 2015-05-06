@@ -419,6 +419,9 @@
     <Compile Include="GCSViews\Share.Designer.cs">
       <DependentUpon>Share.cs</DependentUpon>
     </Compile>
+    <Compile Include="Georefimage.Designer.cs">
+      <DependentUpon>georefimage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Joystick\Joy_Do_Repeat_Servo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -591,6 +594,12 @@
     </Compile>
     <Compile Include="ScriptConsole.Designer.cs">
       <DependentUpon>ScriptConsole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SerialInjectGPS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SerialInjectGPS.Designer.cs">
+      <DependentUpon>SerialInjectGPS.cs</DependentUpon>
     </Compile>
     <Compile Include="Strings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1008,6 +1017,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ScriptConsole.zh-TW.resx">
       <DependentUpon>ScriptConsole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SerialInjectGPS.resx">
+      <DependentUpon>SerialInjectGPS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings.resx">
       <SubType>Designer</SubType>

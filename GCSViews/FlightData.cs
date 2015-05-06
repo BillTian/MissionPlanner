@@ -400,7 +400,7 @@ namespace MissionPlanner.GCSViews
                 {
 
                     lbl1.Location = new Point(x, y);
-                    lbl1.Size = new System.Drawing.Size(75, 13);
+                    lbl1.Size = new System.Drawing.Size(90, 13);
                     lbl1.Text = field.Name;
                     lbl1.Name = field.Name;
                     lbl1.Visible = true;
@@ -432,7 +432,7 @@ namespace MissionPlanner.GCSViews
 
                 if (y > tabStatus.Height - 30)
                 {
-                    x += 140;
+                    x = lbl2.Right + 10;//+= 165;
                     y = 10;
                 }
             }
@@ -841,7 +841,7 @@ namespace MissionPlanner.GCSViews
                                 timeerror = 0;
                             }
                         }
-                        if (ts > 1000)
+                        if (Math.Abs(ts) > 1000)
                             ts = 1000;
                     }
 
@@ -953,7 +953,7 @@ namespace MissionPlanner.GCSViews
                     }
 
                     // update map
-                    if (tracklast.AddSeconds(1.2) < DateTime.Now && gMapControl1.Visible)
+                    if (tracklast.AddSeconds(1.2) < DateTime.Now)
                     {
                         if (MainV2.config["CHK_maprotation"] != null && MainV2.config["CHK_maprotation"].ToString() == "True")
                         {
@@ -1137,11 +1137,11 @@ namespace MissionPlanner.GCSViews
                                     }
                                     else if (MAV.cs.firmware == MainV2.Firmwares.ArduTracker)
                                     {
-                                        routes.Markers.Add(new GMapMarkerAntennaTracker(portlocation,MAV.cs.yaw));
+                                        routes.Markers.Add(new GMapMarkerAntennaTracker(portlocation, MAV.cs.yaw, MAV.cs.target_bearing));
                                     }
                                     else
                                     {
-                                        routes.Markers.Add(new GMapMarkerQuad(portlocation, MAV.cs.yaw, MAV.cs.groundcourse, MAV.cs.nav_bearing));
+                                        routes.Markers.Add(new GMapMarkerQuad(portlocation, MAV.cs.yaw, MAV.cs.groundcourse, MAV.cs.nav_bearing,MAV.sysid));
                                     }
                                 }
                             }
@@ -1208,7 +1208,10 @@ namespace MissionPlanner.GCSViews
 
                         gMapControl1.HoldInvalidation = false;
 
-                        gMapControl1.Invalidate();
+                        if (gMapControl1.Visible)
+                        {
+                            gMapControl1.Invalidate();
+                        }
 
                         tracklast = DateTime.Now;
                     }  
@@ -3167,11 +3170,11 @@ namespace MissionPlanner.GCSViews
 
         private void setHomeHereToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CustomMessageBox.Show("Not implemented yet");
-            return;
-            //MainV2.comPort.getWP(0);
-
-            //MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, gotolocation.Lat, gotolocation.Lng, 0);
+            if (MainV2.comPort.BaseStream.IsOpen)
+            {
+                MainV2.comPort.doCommand(MAVLink.MAV_CMD.DO_SET_HOME, 0, 0, 0, 0, (float) MouseDownStart.Lat,
+                    (float) MouseDownStart.Lng, (float) srtm.getAltitude(MouseDownStart.Lat, MouseDownStart.Lng).alt);
+            }
         }
 
         private void BUT_matlab_Click(object sender, EventArgs e)
@@ -3192,21 +3195,15 @@ namespace MissionPlanner.GCSViews
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Binary Log|*.bin;*.BIN";
+            ofd.Multiselect = true;
 
             ofd.ShowDialog();
 
-            if (File.Exists(ofd.FileName))
+            foreach (string logfile in ofd.FileNames)
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "log|*.log";
-                sfd.FileName = Path.GetFileNameWithoutExtension(ofd.FileName) + ".log";
+                string outfilename = Path.GetFileNameWithoutExtension(logfile) + ".log";
 
-                DialogResult res = sfd.ShowDialog();
-
-                if (res == System.Windows.Forms.DialogResult.OK)
-                {
-                    BinaryLog.ConvertBin(ofd.FileName,sfd.FileName);
-                }
+                BinaryLog.ConvertBin(logfile, outfilename);
             }
         }
 
@@ -3347,12 +3344,28 @@ namespace MissionPlanner.GCSViews
 
         private void but_autotune_Click(object sender, EventArgs e)
         {
-            MainV2.comPort.setMode(new MAVLink.mavlink_set_mode_t() 
-            { 
-                base_mode = (byte)MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED,
-                custom_mode = 15,  // #define AUTOTUNE    15                  // autotune the vehicle's roll and pitch gains
-                target_system = MainV2.comPort.MAV.sysid 
-            });
+            if (MainV2.comPort.BaseStream.IsOpen)
+            {
+                MainV2.comPort.setMode(new MAVLink.mavlink_set_mode_t()
+                {
+                    base_mode = (byte) MAVLink.MAV_MODE_FLAG.CUSTOM_MODE_ENABLED,
+                    custom_mode = 15,
+                    // #define AUTOTUNE    15                  // autotune the vehicle's roll and pitch gains
+                    target_system = MainV2.comPort.MAV.sysid
+                });
+            }
+        }
+
+        private void takeOffToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MainV2.comPort.BaseStream.IsOpen)
+            {
+                flyToHereAltToolStripMenuItem_Click(null, null);
+
+                MainV2.comPort.setMode("GUIDED");
+
+                MainV2.comPort.doCommand(MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, MainV2.comPort.MAV.GuidedMode.z);
+            }
         }
 
     }

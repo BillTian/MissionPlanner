@@ -3705,11 +3705,11 @@ namespace MissionPlanner.GCSViews
                 }
                 else if (MainV2.comPort.MAV.aptype == MAVLink.MAV_TYPE.ANTENNA_TRACKER)
                 {
-                    routesoverlay.Markers.Add(new GMapMarkerAntennaTracker(currentloc, MainV2.comPort.MAV.cs.yaw));
+                    routesoverlay.Markers.Add(new GMapMarkerAntennaTracker(currentloc, MainV2.comPort.MAV.cs.yaw, MainV2.comPort.MAV.cs.target_bearing));
                 }
                 else
                 {
-                    routesoverlay.Markers.Add(new GMapMarkerQuad(currentloc, MainV2.comPort.MAV.cs.yaw, MainV2.comPort.MAV.cs.groundcourse, MainV2.comPort.MAV.cs.nav_bearing));
+                    routesoverlay.Markers.Add(new GMapMarkerQuad(currentloc, MainV2.comPort.MAV.cs.yaw, MainV2.comPort.MAV.cs.groundcourse, MainV2.comPort.MAV.cs.nav_bearing,MainV2.comPort.MAV.sysid));
                 }
 
                 if (MainV2.comPort.MAV.cs.mode.ToLower() == "guided" && MainV2.comPort.MAV.GuidedMode.x != 0)
@@ -5525,14 +5525,23 @@ namespace MissionPlanner.GCSViews
             int altchange = 0;
             float multiplyer = 1;
 
-            if (altdif.Contains("*"))
+            try
             {
-                multiplyer = float.Parse(altdif.Replace('*', ' '));
+                if (altdif.Contains("*"))
+                {
+                    multiplyer = float.Parse(altdif.Replace('*', ' '));
+                }
+                else
+                {
+                    altchange = int.Parse(altdif);
+                }
             }
-            else
+            catch
             {
-                altchange = int.Parse(altdif);
+                CustomMessageBox.Show(Strings.InvalidNumberEntered, Strings.ERROR);
+                return;
             }
+
 
             foreach (DataGridViewRow line in Commands.Rows)
             {

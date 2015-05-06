@@ -1023,20 +1023,11 @@ namespace MissionPlanner
 
             MainV2.Comports.Add(com2);
 
-            CMB_mavs.DataSource = MainV2.Comports;
+            
 
 
         }
 
-        private void CMB_mavs_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (var port in MainV2.Comports) {
-
-                if (port.ToString() == CMB_mavs.Text) {
-                    MainV2.comPort = port;
-                }
-            }
-        }
 
         private void BUT_swarm_Click(object sender, EventArgs e)
         {
@@ -1710,6 +1701,17 @@ namespace MissionPlanner
             renderer.SetFormat(new BitmapFormat(512, 512, ChromaType.RV32));
 
             player.Play();
+        }
+
+        private void but_armandtakeoff_Click(object sender, EventArgs e)
+        {
+            MainV2.comPort.setMode("Stabilize");
+
+            MainV2.comPort.doARM(true);
+
+            MainV2.comPort.setMode("GUIDED");
+
+            MainV2.comPort.doCommand(MAVLink.MAV_CMD.TAKEOFF, 0, 0, 0, 0, 0, 0, 10);
         }
     }
 }

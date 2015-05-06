@@ -477,8 +477,11 @@ namespace MissionPlanner
         public float hwvoltage { get; set; }
         [DisplayText("Board Voltage")]
         public float boardvoltage { get; set; }
-        [DisplayText("Serov Rail Voltage")]
+        [DisplayText("Servo Rail Voltage")]
         public float servovoltage { get; set; }
+        [DisplayText("Voltage Flags")]
+        public MAVLink.MAV_POWER_STATUS voltageflag { get; set; }
+        
         public ushort i2cerrors { get; set; }
 
         // requested stream rates
@@ -517,6 +520,12 @@ namespace MissionPlanner
         bool useLocation = false;
         bool gotwind = false;
         internal bool batterymonitoring = false;
+
+        // for calc of sitl speedup
+        internal DateTime lastimutime = DateTime.MinValue;
+        internal double imutime = 0;
+
+        public float speedup { get; set; }
 
         internal bool MONO = false;
 
@@ -622,6 +631,9 @@ namespace MissionPlanner
                         {
                             linkqualitygcs = (ushort)((parent.packetsnotlost / (parent.packetsnotlost + parent.packetslost)) * 100.0);
                         }
+
+                        if (linkqualitygcs > 100)
+                            linkqualitygcs = 100;
                     }
 
                     if (datetime.Second != lastsecondcounter.Second)
@@ -774,6 +786,8 @@ namespace MissionPlanner
 
                         boardvoltage = power.Vcc;
                         servovoltage = power.Vservo;
+
+                        voltageflag = (MAVLink.MAV_POWER_STATUS) power.flags;
                     }
                     
 
@@ -1210,6 +1224,19 @@ namespace MissionPlanner
                         mx = imu.xmag;
                         my = imu.ymag;
                         mz = imu.zmag;
+
+                        var timesec = imu.time_usec*1.0e-6;
+
+                        var deltawall = (DateTime.Now - lastimutime).TotalSeconds;
+
+                        var deltaimu = timesec - imutime;
+
+                        //Console.WriteLine( + " " + deltawall + " " + deltaimu + " " + System.Threading.Thread.CurrentThread.Name);
+                        if (speedup > 0)
+                            speedup = (float)(speedup * 0.95 + (deltaimu / deltawall) * 0.05);
+
+                        imutime = timesec;
+                        lastimutime = DateTime.Now;
 
                         //MAVLink.packets[(byte)MAVLink.MSG_NAMES.RAW_IMU] = null;
                     }

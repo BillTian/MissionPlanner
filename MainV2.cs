@@ -2086,8 +2086,6 @@ namespace MissionPlanner
 
         protected override void OnLoad(EventArgs e)
         {
-            
-
             // check if its defined, and force to show it if not known about
             if (config["menu_autohide"] == null)
             {
@@ -2189,7 +2187,9 @@ namespace MissionPlanner
 
             ThreadPool.QueueUserWorkItem(BGLoadAirports);
 
-            ThreadPool.QueueUserWorkItem(BGCreateMaps); 
+            ThreadPool.QueueUserWorkItem(BGCreateMaps);
+
+            ThreadPool.QueueUserWorkItem(BGGetAlmanac);
 
             try
             {
@@ -2291,6 +2291,20 @@ namespace MissionPlanner
                   config["newuser"] = DateTime.Now.ToShortDateString();
               }
               */
+        }
+
+        private void BGGetAlmanac(object state)
+        {
+            // prep for future
+            try
+            {
+                if (getConfig("almanac_date") != DateTime.Now.ToShortDateString())
+                {
+                    Common.getFilefromNet("http://alp.u-blox.com/current_1d.alp", "current_d1.alp");
+                    config["almanac_date"] = DateTime.Now.ToShortDateString();
+                }
+            }
+            catch { }
         }
 
         void KIndex_KIndex(object sender, EventArgs e)
@@ -2428,8 +2442,10 @@ namespace MissionPlanner
             if (keyData == (Keys.Control | Keys.X)) // select sysid
             {
                 MissionPlanner.Controls.SysidSelector id = new SysidSelector();
+                id.TopMost = true;
+                id.Show();
 
-                id.ShowDialog();
+                return true;
             }
             if (keyData == (Keys.Control | Keys.L)) // limits
             {

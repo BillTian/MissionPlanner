@@ -50,7 +50,7 @@ namespace MissionPlanner.Controls
 
         public void ShowScreen(string name)
         {
-            if (current != null)
+            if (current != null && current.Control != null)
             {
                 // hide current screen
                 current.Visible = false;
@@ -77,7 +77,18 @@ namespace MissionPlanner.Controls
 
                     GC.Collect();
 
-                    current.Control = (MyUserControl)Activator.CreateInstance(type);
+                    // create new instance on gui thread
+                    if (MainControl.InvokeRequired)
+                    {
+                        MainControl.Invoke((MethodInvoker) delegate
+                        {
+                            current.Control = (MyUserControl) Activator.CreateInstance(type);
+                        });
+                    }
+                    else
+                    {
+                        current.Control = (MyUserControl)Activator.CreateInstance(type);
+                    }
 
                     // set the next new instance as not visible
                     current.Control.Visible = false;
@@ -139,7 +150,13 @@ namespace MissionPlanner.Controls
         {
             public string Name;
             public MyUserControl Control;
-            public bool Visible { get { return Control.Visible; } set { Control.Visible = value; } }
+
+            public bool Visible
+            {
+                get { return Control.Visible; }
+                set { Control.Visible = value; }
+            }
+
             public bool Persistent;
 
             public Screen(string Name, MyUserControl Control, bool Persistent = false)

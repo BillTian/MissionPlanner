@@ -12,6 +12,7 @@ using System.Drawing;
 using System.Threading;
 using MissionPlanner.Controls;
 using System.ComponentModel;
+using System.Linq;
 using log4net;
 using MissionPlanner.Comms;
 using MissionPlanner.Utilities;
@@ -1939,6 +1940,22 @@ Please check the following
         }
 
         /// <summary>
+        /// used to injecy data into the gps ie rtcm/sbp/ubx
+        /// </summary>
+        /// <param name="data"></param>
+        public void InjectGpsData(byte[] data, byte length)
+        {
+            mavlink_gps_inject_data_t gps = new mavlink_gps_inject_data_t();
+
+            gps.data = data.Take(length).ToArray();
+            gps.len = length;
+            gps.target_component = MAV.compid;
+            gps.target_system = MAV.sysid;
+
+            generatePacket((byte)MAVLINK_MSG_ID.GPS_INJECT_DATA, gps);
+        }
+
+        /// <summary>
         /// Save wp to eeprom
         /// </summary>
         /// <param name="loc">location struct</param>
@@ -2155,9 +2172,11 @@ Please check the following
 
             generatePacket((byte)MAVLINK_MSG_ID.DIGICAM_CONTROL, req);
 
+            MainV2.comPort.doCommand(MAV_CMD.DO_DIGICAM_CONTROL, 0, 0, 0, 0, 1, 0, 0);
+
             //MAVLINK_MSG_ID.CAMERA_FEEDBACK;
 
-                //mavlink_camera_feedback_t
+            //mavlink_camera_feedback_t
         }
 
         public void setMountConfigure(MAV_MOUNT_MODE mountmode, bool stabroll, bool stabpitch, bool stabyaw)
@@ -2522,20 +2541,22 @@ Please check the following
                     int expectedPacketSeqNo = ((MAVlist[sysid].recvpacketcount + 1) % 0x100);
 
                     {
-                        // the seconds part it to work around a 3dr radio bug sending dup seqno's
+                        // the seconds part is to work around a 3dr radio bug sending dup seqno's
                         if (packetSeqNo != expectedPacketSeqNo && packetSeqNo != MAVlist[sysid].recvpacketcount)
                         {
                             MAVlist[sysid].synclost++; // actualy sync loss's
                             int numLost = 0;
 
-                            if (packetSeqNo < ((MAVlist[sysid].recvpacketcount + 1))) // recvpacketcount = 255 then   10 < 256 = true if was % 0x100 this would fail
+                            if (packetSeqNo < ((MAVlist[sysid].recvpacketcount + 1)))
+                                // recvpacketcount = 255 then   10 < 256 = true if was % 0x100 this would fail
                             {
                                 numLost = 0x100 - expectedPacketSeqNo + packetSeqNo;
                             }
                             else
                             {
-                                numLost = packetSeqNo - MAV.recvpacketcount;
+                                numLost = packetSeqNo - MAVlist[sysid].recvpacketcount;
                             }
+
                             MAVlist[sysid].packetslost += numLost;
                             WhenPacketLost.OnNext(numLost);
 

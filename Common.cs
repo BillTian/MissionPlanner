@@ -334,13 +334,15 @@ namespace MissionPlanner
         float heading = 0;
         float cog = -1;
         float target = -1;
+        private int sysid = -1;
 
-        public GMapMarkerQuad(PointLatLng p, float heading, float cog, float target)
+        public GMapMarkerQuad(PointLatLng p, float heading, float cog, float target, int sysid)
             : base(p)
         {
             this.heading = heading;
             this.cog = cog;
             this.target = target;
+            this.sysid = sysid;
             Size = icon.Size;
         }
 
@@ -365,7 +367,10 @@ namespace MissionPlanner
                 g.RotateTransform(heading);
             }
             catch { }
+
             g.DrawImageUnscaled(icon, icon.Width / -2 + 2, icon.Height / -2);
+
+            g.DrawString(sysid.ToString(),new Font(FontFamily.GenericMonospace,15,FontStyle.Bold),Brushes.Red,-8,-8);
 
             g.Transform = temp;
         }
@@ -428,11 +433,14 @@ namespace MissionPlanner
         private readonly Bitmap icon = global::MissionPlanner.Properties.Resources.Antenna_Tracker_01;
 
         float heading = 0;
+        private float target = 0;
 
-        public GMapMarkerAntennaTracker(PointLatLng p, float heading)
+        public GMapMarkerAntennaTracker(PointLatLng p, float heading, float target)
             : base(p)
         {
             Size = icon.Size;
+            this.heading = heading;
+            this.target = target;
         }
 
         public override void OnRender(Graphics g)
@@ -444,7 +452,11 @@ namespace MissionPlanner
 
             try
             {
+                // heading
                 g.DrawLine(new Pen(Color.Red, 2), 0.0f, 0.0f, (float)Math.Cos((heading - 90) * deg2rad) * length, (float)Math.Sin((heading - 90) * deg2rad) * length);
+
+                // target
+                g.DrawLine(new Pen(Color.Orange, 2), 0.0f, 0.0f, (float)Math.Cos((target - 90) * deg2rad) * length, (float)Math.Sin((target - 90) * deg2rad) * length);
             }
             catch { }
 
@@ -666,6 +678,7 @@ namespace MissionPlanner
                 temp.Add(new KeyValuePair<int, string>(0, "MANUAL"));
                 temp.Add(new KeyValuePair<int, string>(1, "STOP"));
                 temp.Add(new KeyValuePair<int, string>(2, "SCAN"));
+                temp.Add(new KeyValuePair<int, string>(3, "SERVO_TEST"));
                 temp.Add(new KeyValuePair<int, string>(10, "AUTO"));
                 temp.Add(new KeyValuePair<int, string>(16, "INITIALISING"));
 
