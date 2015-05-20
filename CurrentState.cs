@@ -15,6 +15,8 @@ namespace MissionPlanner
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
+        public event EventHandler csCallBack;
+
         internal MAVState parent;
 
         // multipliers
@@ -564,6 +566,8 @@ namespace MissionPlanner
         private DateTime lastsecondcounter = DateTime.Now;
         private PointLatLngAlt lastpos = new PointLatLngAlt();
 
+        DateTime lastdata = DateTime.MinValue;
+
         public string GetNameandUnit(string name)
         {
             string desc = name;
@@ -623,7 +627,7 @@ namespace MissionPlanner
                     //check if valid mavinterface
                     if (parent != null && parent.packetsnotlost != 0)
                     {
-                        if ((DateTime.Now - mavinterface.lastvalidpacket).TotalSeconds > 10)
+                        if ((DateTime.Now - MAV.lastvalidpacket).TotalSeconds > 10)
                         {
                             linkqualitygcs = 0;
                         }
@@ -659,6 +663,23 @@ namespace MissionPlanner
 
                         if (!gotwind)
                             dowindcalc();
+                    }
+
+                    // re-request streams
+                    if (!(lastdata.AddSeconds(8) > DateTime.Now) && mavinterface.BaseStream.IsOpen)
+                    {
+                        try
+                        {
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.EXTENDED_STATUS, MAV.cs.ratestatus, MAV.sysid); // mode
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.POSITION, MAV.cs.rateposition, MAV.sysid); // request gps
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.EXTRA1, MAV.cs.rateattitude, MAV.sysid); // request attitude
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.EXTRA2, MAV.cs.rateattitude, MAV.sysid); // request vfr
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.EXTRA3, MAV.cs.ratesensors, MAV.sysid); // request extra stuff - tridge
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.RAW_SENSORS, MAV.cs.ratesensors, MAV.sysid); // request raw sensor
+                            mavinterface.requestDatastream(MAVLink.MAV_DATA_STREAM.RC_CHANNELS, MAV.cs.raterc, MAV.sysid); // request rc info
+                        }
+                        catch { log.Error("Failed to request rates"); }
+                        lastdata = DateTime.Now.AddSeconds(30); // prevent flooding
                     }
 
                     byte[] bytearray = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.RC_CHANNELS_SCALED];
@@ -752,10 +773,14 @@ namespace MissionPlanner
                         var systime = bytearray.ByteArrayToStructure<MAVLink.mavlink_system_time_t>(6);
 
                         DateTime date1 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+                        try
+                        {
+                            date1 = date1.AddMilliseconds(systime.time_unix_usec/1000);
 
-                        date1 = date1.AddMilliseconds(systime.time_unix_usec / 1000);
+                            gpstime = date1;
+                        }
+                        catch { }
 
-                        gpstime = date1;
                     }
 
                     bytearray = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.HWSTATUS];
@@ -768,6 +793,45 @@ namespace MissionPlanner
                         i2cerrors = hwstatus.I2Cerr;
 
                         //MAVLink.packets[(byte)MAVLink.MSG_NAMES.HWSTATUS] = null;
+                    }
+
+                    bytearray = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.EKF_STATUS_REPORT];
+                    if (bytearray != null)
+                    {
+                        var ekfstatus = bytearray.ByteArrayToStructure<MAVLink.mavlink_ekf_status_report_t>(6);
+
+                        ekfvelv = ekfstatus.velocity_variance;
+                        ekfcompv = ekfstatus.compass_variance;
+                        ekfposhor = ekfstatus.pos_horiz_variance;
+                        ekfposvert = ekfstatus.pos_vert_variance;
+                        ekfteralt = ekfstatus.terrain_alt_variance;
+
+                        for (int a = 1; a < (int)MAVLink.EKF_STATUS_FLAGS.ENUM_END; a = a << 1)
+                        {
+                            int currentbit = (ekfstatus.flags & a);
+                            if (currentbit == 0)
+                            {
+                                var currentflag =
+                                    (MAVLink.EKF_STATUS_FLAGS)
+                                        Enum.Parse(typeof (MAVLink.EKF_STATUS_FLAGS), a.ToString());
+                                switch (currentflag)
+                                {
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_ATTITUDE:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_HORIZ:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_VELOCITY_VERT:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_REL:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_HORIZ_ABS:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_ABS:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_POS_VERT_AGL:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_CONST_POS_MODE:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_REL:
+                                    case MAVLink.EKF_STATUS_FLAGS.EKF_PRED_POS_HORIZ_ABS:
+                                        messageHigh = Strings.ERROR + " " + currentflag.ToString().Replace("_"," ");
+                                        messageHighTime = DateTime.Now;
+                                        break;
+                                }
+                            }
+                        }
                     }
 
                     bytearray = MAV.packets[(byte)MAVLink.MAVLINK_MSG_ID.RANGEFINDER];
@@ -882,57 +946,57 @@ namespace MissionPlanner
 
                         if (sensors_health.gps != sensors_enabled.gps && sensors_present.gps)
                         {
-                            messageHigh = "Bad GPS Health";
+                            messageHigh = Strings.BadGPSHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.gyro != sensors_enabled.gyro && sensors_present.gyro)
                         {
-                            messageHigh = "Bad Gyro Health";
+                            messageHigh = Strings.BadGyroHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.accelerometer != sensors_enabled.accelerometer && sensors_present.accelerometer)
                         {
-                            messageHigh = "Bad Accel Health";
+                            messageHigh = Strings.BadAccelHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.compass != sensors_enabled.compass && sensors_present.compass)
                         {
-                            messageHigh = "Bad Compass Health";
+                            messageHigh = Strings.BadCompassHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.barometer != sensors_enabled.barometer && sensors_present.barometer)
                         {
-                            messageHigh = "Bad Baro Health";
+                            messageHigh = Strings.BadBaroHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.LASER_POSITION != sensors_enabled.LASER_POSITION && sensors_present.LASER_POSITION)
                         {
-                            messageHigh = "Bad LiDAR Health";
+                            messageHigh = Strings.BadLiDARHealth;
                             messageHighTime = DateTime.Now;
                         }                            
                         else if (sensors_health.optical_flow != sensors_enabled.optical_flow && sensors_present.optical_flow)
                         {
-                            messageHigh = "Bad OptFlow Health";
+                            messageHigh = Strings.BadOptFlowHealth;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.terrain != sensors_enabled.terrain && sensors_present.terrain)
                         {
-                            messageHigh = "Bad or No Terrain Data";
+                            messageHigh = Strings.BadorNoTerrainData;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.geofence != sensors_enabled.geofence && sensors_present.geofence)
                         {
-                            messageHigh = "Geofence Breach";
+                            messageHigh = Strings.GeofenceBreach;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.ahrs != sensors_enabled.ahrs && sensors_present.ahrs)
                         {
-                            messageHigh = "Bad AHRS";
+                            messageHigh = Strings.BadAHRS;
                             messageHighTime = DateTime.Now;
                         }
                         else if (sensors_health.rc_receiver != sensors_enabled.rc_receiver && sensors_present.rc_receiver)
                         {
-                            messageHigh = "NO RC Receiver";
+                            messageHigh = Strings.NORCReceiver;
                             messageHighTime = DateTime.Now;
                         }
                         
@@ -1000,7 +1064,7 @@ namespace MissionPlanner
                         pitch = att.pitch * rad2deg;
                         yaw = att.yaw * rad2deg;
 
-                        //                    Console.WriteLine(roll + " " + pitch + " " + yaw);
+                        //Console.WriteLine(MAV.sysid + " " +roll + " " + pitch + " " + yaw);
 
                         //MAVLink.packets[(byte)MAVLink.MSG_NAMES.ATTITUDE] = null;
                     }
@@ -1295,6 +1359,13 @@ namespace MissionPlanner
                     }
                 }
 
+                try
+                {
+                    if (csCallBack != null)
+                        csCallBack(this, null);
+                }
+                catch { }
+
                 //Console.Write(DateTime.Now.Millisecond + " start ");
                 // update form
                 try
@@ -1487,5 +1558,15 @@ namespace MissionPlanner
         public short opt_y { get; set; }
         [DisplayText("flow quality")]
         public byte opt_qua { get; set; }
+
+        public float ekfvelv { get; set; }
+
+        public float ekfcompv { get; set; }
+
+        public float ekfposhor { get; set; }
+
+        public float ekfposvert { get; set; }
+
+        public float ekfteralt { get; set; }
     }
 }

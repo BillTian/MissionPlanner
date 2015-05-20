@@ -34,12 +34,6 @@ namespace MissionPlanner.Log
 
         const int typecoloum = 2;
 
-        int m_timeStart = 0;
-        int m_timeInterval = 100;
-        Dictionary<int, int> m_timeTable = new Dictionary<int, int>();
-        int[] m_timeKeys;
-        int m_currSampleID = 0;
-
         List<PointPairList> listdata = new List<PointPairList>();
         GMapOverlay mapoverlay;
 		GMapOverlay markeroverlay;
@@ -250,7 +244,6 @@ namespace MissionPlanner.Log
             mapoverlay = new GMapOverlay("overlay");
             markeroverlay = new GMapOverlay("markers");
 
-
             myGMAP1.MapProvider = GCSViews.FlightData.mymap.MapProvider;
 
             myGMAP1.Overlays.Add(mapoverlay);
@@ -274,7 +267,6 @@ namespace MissionPlanner.Log
             TimeCache = new List<TextObj>();
 
             seenmessagetypes = new Hashtable();
-            m_timeTable = new Dictionary<int, int>();
 
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Log Files|*.log;*.bin";
@@ -335,8 +327,8 @@ namespace MissionPlanner.Log
 
                             seenmessagetypes[item.msgtype] = "";
 
-                            // check first 30000 lines for max coloums needed
-                            if (b > 30000 && largelog)
+                            // check first 500000 lines for max coloums needed
+                            if (b > 500000 && largelog)
                                 break;
 
                             if (largelog)
@@ -399,9 +391,6 @@ namespace MissionPlanner.Log
                     column.SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
 
-
-				BuildTimeTable(m_dtCSV, DFLog.logformat);
-
                 log.Info("Done timetable " + (GC.GetTotalMemory(false) / 1024.0 / 1024.0));
 
                 DrawMap();
@@ -441,75 +430,6 @@ namespace MissionPlanner.Log
                 }
             }
         }
-
-        private void BuildTimeTable(DataTable dt, Dictionary<string, DFLog.Label> logfmt)
-        {
-
-            m_timeStart = 0;
-            m_timeTable.Clear();
-            m_timeInterval = 100;
-
-            int timeIndex = -1;
-            string timeType = "";
-
-            if (logfmt.ContainsKey("IMU"))
-            {
-                if (timeIndex < 0)
-                {
-                    timeIndex = DFLog.FindMessageOffset("IMU", "TimeMS");
-                    if (timeIndex >= 0)
-                        timeType = "IMU";
-                }
-            }
-
-            if (logfmt.ContainsKey("GPS"))
-            {
-                if (timeIndex < 0)
-                {
-                    timeIndex = DFLog.FindMessageOffset("GPS", "TimeMS");
-                    if (timeIndex >= 0)
-                        timeType = "GPS";
-                }
-                if (timeIndex < 0)
-                {
-                    timeIndex = DFLog.FindMessageOffset("GPS", "T");
-                    if (timeIndex >= 0)
-                        timeType = "GPS";
-                }
-            }
-
-
-            if (timeIndex >= 0)
-            {
-                int i = 0;
-                int lastmillis = -1;
-                for (i = 0; i < dt.Rows.Count; i++)
-                {
-                    DataRow datarow = dt.Rows[i];
-                    if (datarow[1].ToString() == timeType)
-                    {
-                        int millis = int.Parse(datarow[timeIndex].ToString());
-
-                        if (m_timeStart == 0)
-                            m_timeStart = millis;
-                        if (millis != lastmillis)
-                        {
-                            int diff = millis - lastmillis;
-                            if (diff > 0)
-                                m_timeInterval = Math.Min(m_timeInterval, diff);
-
-                            m_timeTable.Add(millis, i);
-                            lastmillis = millis;
-                        }
-                    }
-                }
-
-                m_timeKeys = new int[m_timeTable.Count];
-                m_timeTable.Keys.CopyTo(m_timeKeys, 0);
-            }
-
-        }
-
 
         private void ResetTreeView(Hashtable seenmessagetypes)
         {
@@ -690,7 +610,6 @@ namespace MissionPlanner.Log
             // Fill the axis background with a gradient
             //myPane.Chart.Fill = new Fill(Color.White, Color.LightGray, 45.0f);
 
-
             // Calculate the Axis Scale Ranges
             try
             {
@@ -824,8 +743,8 @@ namespace MissionPlanner.Log
                         {
                             if (dataModifier.doOffsetFirst)
                             {
-                                value += dataModifier.scalar;
-                                value *= dataModifier.offset;
+                                value += dataModifier.offset;
+                                value *= dataModifier.scalar;
                             }
                             else
                             {
@@ -833,9 +752,20 @@ namespace MissionPlanner.Log
                                 value += dataModifier.offset;
                             }
                         }
-                        // XDate time = new XDate(DateTime.Parse(datarow.Cells[1].Value.ToString()));
 
-                        list1.Add(a, value);
+                        if (chk_time.Checked)
+                        {
+                            var e = new DataGridViewCellValueEventArgs(1, (int) a);
+                            dataGridView1_CellValueNeeded(dataGridView1, e);
+
+                            XDate time = new XDate(DateTime.Parse(e.Value.ToString()));
+
+                            list1.Add(time, value);
+                        }
+                        else
+                        {
+                            list1.Add(a, value);
+                        }
                     }
                     catch { error++; log.Info("Bad Data : " + type + " " + col + " " + a); if (error >= 500) { CustomMessageBox.Show("There is to much bad data - failing"); break; } }
                 }
@@ -1841,8 +1771,6 @@ namespace MissionPlanner.Log
         {
             bool zoomgraph = false;
 
-            m_currSampleID = SampleID;
-
             markeroverlay.Markers.Clear();
 
             PointLatLng pt1;
@@ -1915,10 +1843,18 @@ namespace MissionPlanner.Log
                 GoToSample(x, true, true, false);
             }
         }
-       
 
+        private void chk_time_CheckedChanged(object sender, EventArgs e)
+        {
+            chk_time.Enabled = false;
 
+            zg1.GraphPane.XAxis.Title.Text = "Time (sec)";
 
-        
+            zg1.GraphPane.XAxis.Type = AxisType.Date;
+            zg1.GraphPane.XAxis.Scale.Format = "HH:mm:ss";
+            zg1.GraphPane.XAxis.Scale.MajorUnit = DateUnit.Minute;
+            zg1.GraphPane.XAxis.Scale.MinorUnit = DateUnit.Second;
+
+        }
     }
 }

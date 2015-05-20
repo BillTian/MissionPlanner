@@ -40,7 +40,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
             if (keyData == (Keys.Control | Keys.Q))
             {
-                CustomMessageBox.Show("These are the latest trunk firmware, use at your own risk!!!", "trunk");
+                CustomMessageBox.Show(Strings.TrunkWarning, Strings.Trunk);
                 firmwareurl = "https://raw.github.com/diydrones/binary/master/dev/firmwarelatest.xml";
                 softwares.Clear();
                 UpdateFWList();            
@@ -228,7 +228,8 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         void findfirmware(Utilities.Firmware.software fwtoupload)
         {
-            DialogResult dr = CustomMessageBox.Show("你确定要上传固件 " + fwtoupload.name + "?", "继续", MessageBoxButtons.YesNo);
+
+            DialogResult dr = CustomMessageBox.Show(Strings.AreYouSureYouWantToUpload + fwtoupload.name + Strings.QuestionMark, Strings.Continue, MessageBoxButtons.YesNo);
             if (dr == System.Windows.Forms.DialogResult.Yes)
             {
                 try
@@ -255,7 +256,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 else
                 {
-                    CustomMessageBox.Show("Error uploading firmware",Strings.ERROR);
+                    CustomMessageBox.Show(Strings.ErrorUploadingFirmware, Strings.ERROR);
                 }
             }
 
@@ -337,7 +338,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 }
                 catch
                 {
-                    CustomMessageBox.Show("Can not connect to com port and detect board type", Strings.ERROR);
+                    CustomMessageBox.Show(Strings.CanNotConnectToComPortAnd, Strings.ERROR);
                     return;
                 }
 
@@ -347,7 +348,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
         private void lbl_devfw_Click(object sender, EventArgs e)
         {
-            CustomMessageBox.Show("These are beta firmware, use at your own risk!!!", "Beta");
+            CustomMessageBox.Show(Strings.BetaWarning, Strings.Beta);
             firmwareurl = "https://raw.github.com/diydrones/binary/master/dev/firmware2.xml";
             softwares.Clear();
             UpdateFWList();
@@ -383,7 +384,7 @@ namespace MissionPlanner.GCSViews.ConfigurationView
 
                 FileStream fs = new FileStream(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"px4io.bin", FileMode.Create);
 
-                lbl_status.Text = "Downloading from Internet";
+                lbl_status.Text = Strings.DownloadingFromInternet;
 
                 this.Refresh();
                 Application.DoEvents();
@@ -471,82 +472,6 @@ namespace MissionPlanner.GCSViews.ConfigurationView
                 CustomMessageBox.Show("http://copter.ardupilot.com/wiki/motor-setup/",Strings.ERROR); 
             }
         }
-
-        private void lbl_playuavosd_Click(object sender, EventArgs e)
-        {
-            string baseurl = "http://www.playuav.com/download/playuavosd.hex";
-            
-
-            try
-            {
-                // Create a request using a URL that can receive a post. 
-                WebRequest request = WebRequest.Create(baseurl);
-                request.Timeout = 10000;
-                // Set the Method property of the request to POST.
-                request.Method = "GET";
-                // Get the request stream.
-                Stream dataStream; //= request.GetRequestStream();
-                // Get the response.
-                WebResponse response = request.GetResponse();
-                // Display the status.
-                log.Info(((HttpWebResponse)response).StatusDescription);
-                // Get the stream containing content returned by the server.
-                dataStream = response.GetResponseStream();
-
-                long bytes = response.ContentLength;
-                long contlen = bytes;
-
-                byte[] buf1 = new byte[1024];
-
-                FileStream fs = new FileStream(Path.GetDirectoryName(Application.ExecutablePath) + Path.DirectorySeparatorChar + @"playuavosd.hex", FileMode.Create);
-
-                lbl_status.Text = "Downloading from Internet";
-
-                this.Refresh();
-                Application.DoEvents();
-
-                dataStream.ReadTimeout = 30000;
-
-                while (dataStream.CanRead)
-                {
-                    try
-                    {
-                        progress.Value = 50;// (int)(((float)(response.ContentLength - bytes) / (float)response.ContentLength) * 100);
-                        this.progress.Refresh();
-                    }
-                    catch { }
-                    int len = dataStream.Read(buf1, 0, 1024);
-                    if (len == 0)
-                        break;
-                    bytes -= len;
-                    fs.Write(buf1, 0, len);
-                }
-
-                fs.Close();
-                dataStream.Close();
-                response.Close();
-
-                lbl_status.Text = "Done";
-                Application.DoEvents();
-
-                //upload firmware
-                fw.Progress -= fw_Progress;
-                fw.Progress += fw_Progress1;
-
-                BoardDetect.boards boardtype = BoardDetect.boards.none;
-                try
-                {
-                    boardtype = BoardDetect.DetectBoard(MainV2.comPortName);
-                }
-                catch
-                {
-                    CustomMessageBox.Show("Can not connect to com port and detect board type", Strings.ERROR);
-                    return;
-                }
-
-                fw.UploadFlash(MainV2.comPortName, fs.Name, boardtype);
-            }
-            catch { CustomMessageBox.Show("Error receiving firmware", Strings.ERROR); return; }
-        }
+   
     }
 }

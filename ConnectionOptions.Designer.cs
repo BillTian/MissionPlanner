@@ -1,6 +1,6 @@
 ﻿namespace MissionPlanner
 {
-    partial class SerialInjectGPS
+    partial class ConnectionOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SerialInjectGPS));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionOptions));
             this.CMB_serialport = new System.Windows.Forms.ComboBox();
             this.BUT_connect = new MissionPlanner.Controls.MyButton();
             this.CMB_baudrate = new System.Windows.Forms.ComboBox();
@@ -60,19 +60,18 @@
             resources.GetString("CMB_baudrate.Items4"),
             resources.GetString("CMB_baudrate.Items5"),
             resources.GetString("CMB_baudrate.Items6"),
-            resources.GetString("CMB_baudrate.Items7"),
-            resources.GetString("CMB_baudrate.Items8")});
+            resources.GetString("CMB_baudrate.Items7")});
             resources.ApplyResources(this.CMB_baudrate, "CMB_baudrate");
             this.CMB_baudrate.Name = "CMB_baudrate";
             // 
-            // SerialInjectGPS
+            // ConnectionOptions
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.CMB_baudrate);
             this.Controls.Add(this.BUT_connect);
             this.Controls.Add(this.CMB_serialport);
-            this.Name = "SerialInjectGPS";
+            this.Name = "ConnectionOptions";
             this.ResumeLayout(false);
 
         }

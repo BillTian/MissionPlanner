@@ -70,6 +70,51 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to upload .
+        /// </summary>
+        public static string AreYouSureYouWantToUpload {
+            get {
+                return ResourceManager.GetString("AreYouSureYouWantToUpload", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Accel Health.
+        /// </summary>
+        public static string BadAccelHealth {
+            get {
+                return ResourceManager.GetString("BadAccelHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad AHRS.
+        /// </summary>
+        public static string BadAHRS {
+            get {
+                return ResourceManager.GetString("BadAHRS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Baro Health.
+        /// </summary>
+        public static string BadBaroHealth {
+            get {
+                return ResourceManager.GetString("BadBaroHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Compass Health.
+        /// </summary>
+        public static string BadCompassHealth {
+            get {
+                return ResourceManager.GetString("BadCompassHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bad Lat/Lng.
         /// </summary>
         public static string BadCoords {
@@ -79,11 +124,83 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bad GPS Health.
+        /// </summary>
+        public static string BadGPSHealth {
+            get {
+                return ResourceManager.GetString("BadGPSHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad Gyro Health.
+        /// </summary>
+        public static string BadGyroHealth {
+            get {
+                return ResourceManager.GetString("BadGyroHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad LiDAR Health.
+        /// </summary>
+        public static string BadLiDARHealth {
+            get {
+                return ResourceManager.GetString("BadLiDARHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad OptFlow Health.
+        /// </summary>
+        public static string BadOptFlowHealth {
+            get {
+                return ResourceManager.GetString("BadOptFlowHealth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bad or No Terrain Data.
+        /// </summary>
+        public static string BadorNoTerrainData {
+            get {
+                return ResourceManager.GetString("BadorNoTerrainData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Basic Tuning.
         /// </summary>
         public static string BasicTuning {
             get {
                 return ResourceManager.GetString("BasicTuning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beta.
+        /// </summary>
+        public static string Beta {
+            get {
+                return ResourceManager.GetString("Beta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are beta firmware, use at your own risk!!!.
+        /// </summary>
+        public static string BetaWarning {
+            get {
+                return ResourceManager.GetString("BetaWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can not connect to com port and detect board type.
+        /// </summary>
+        public static string CanNotConnectToComPortAnd {
+            get {
+                return ResourceManager.GetString("CanNotConnectToComPortAnd", resourceCulture);
             }
         }
         
@@ -175,6 +292,15 @@ namespace MissionPlanner {
         public static string ConnectingMavlink {
             get {
                 return ResourceManager.GetString("ConnectingMavlink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        public static string Continue {
+            get {
+                return ResourceManager.GetString("Continue", resourceCulture);
             }
         }
         
@@ -398,6 +524,15 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error uploading firmware.
+        /// </summary>
+        public static string ErrorUploadingFirmware {
+            get {
+                return ResourceManager.GetString("ErrorUploadingFirmware", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extended Tuning.
         /// </summary>
         public static string ExtendedTuning {
@@ -484,6 +619,15 @@ namespace MissionPlanner {
         public static string GeoFence {
             get {
                 return ResourceManager.GetString("GeoFence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geofence Breach.
+        /// </summary>
+        public static string GeofenceBreach {
+            get {
+                return ResourceManager.GetString("GeofenceBreach", resourceCulture);
             }
         }
         
@@ -706,6 +850,15 @@ namespace MissionPlanner {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to NO RC Receiver.
+        /// </summary>
+        public static string NORCReceiver {
+            get {
+                return ResourceManager.GetString("NORCReceiver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to OK.
         /// </summary>
         public static string OK {
@@ -785,6 +938,15 @@ namespace MissionPlanner {
         public static string ProgrammedOK {
             get {
                 return ResourceManager.GetString("ProgrammedOK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ?.
+        /// </summary>
+        public static string QuestionMark {
+            get {
+                return ResourceManager.GetString("QuestionMark", resourceCulture);
             }
         }
         
@@ -903,6 +1065,24 @@ namespace MissionPlanner {
         public static string Timeout {
             get {
                 return ResourceManager.GetString("Timeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to trunk.
+        /// </summary>
+        public static string Trunk {
+            get {
+                return ResourceManager.GetString("Trunk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to These are the latest trunk firmware, use at your own risk!!!.
+        /// </summary>
+        public static string TrunkWarning {
+            get {
+                return ResourceManager.GetString("TrunkWarning", resourceCulture);
             }
         }
         

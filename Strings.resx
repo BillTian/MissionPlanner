@@ -456,4 +456,64 @@ Please use Standard/Advanced Params for the safe settings</value>
   <data name="Start" xml:space="preserve">
     <value>Start</value>
   </data>
+  <data name="AreYouSureYouWantToUpload" xml:space="preserve">
+    <value>Are you sure you want to upload </value>
+  </data>
+  <data name="Beta" xml:space="preserve">
+    <value>Beta</value>
+  </data>
+  <data name="BetaWarning" xml:space="preserve">
+    <value>These are beta firmware, use at your own risk!!!</value>
+  </data>
+  <data name="CanNotConnectToComPortAnd" xml:space="preserve">
+    <value>Can not connect to com port and detect board type</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="ErrorUploadingFirmware" xml:space="preserve">
+    <value>Error uploading firmware</value>
+  </data>
+  <data name="QuestionMark" xml:space="preserve">
+    <value>?</value>
+  </data>
+  <data name="Trunk" xml:space="preserve">
+    <value>trunk</value>
+  </data>
+  <data name="TrunkWarning" xml:space="preserve">
+    <value>These are the latest trunk firmware, use at your own risk!!!</value>
+  </data>
+  <data name="BadGPSHealth" xml:space="preserve">
+    <value>Bad GPS Health</value>
+  </data>
+  <data name="BadGyroHealth" xml:space="preserve">
+    <value>Bad Gyro Health</value>
+  </data>
+  <data name="BadAccelHealth" xml:space="preserve">
+    <value>Bad Accel Health</value>
+  </data>
+  <data name="BadCompassHealth" xml:space="preserve">
+    <value>Bad Compass Health</value>
+  </data>
+  <data name="BadBaroHealth" xml:space="preserve">
+    <value>Bad Baro Health</value>
+  </data>
+  <data name="BadLiDARHealth" xml:space="preserve">
+    <value>Bad LiDAR Health</value>
+  </data>
+  <data name="BadOptFlowHealth" xml:space="preserve">
+    <value>Bad OptFlow Health</value>
+  </data>
+  <data name="BadorNoTerrainData" xml:space="preserve">
+    <value>Bad or No Terrain Data</value>
+  </data>
+  <data name="GeofenceBreach" xml:space="preserve">
+    <value>Geofence Breach</value>
+  </data>
+  <data name="BadAHRS" xml:space="preserve">
+    <value>Bad AHRS</value>
+  </data>
+  <data name="NORCReceiver" xml:space="preserve">
+    <value>NO RC Receiver</value>
+  </data>
 </root>

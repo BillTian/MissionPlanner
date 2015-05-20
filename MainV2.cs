@@ -1,33 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Configuration;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
 using System.Collections;
-using System.Net;
-using System.Text.RegularExpressions;
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Globalization;
 using System.Threading;
-using System.Net.Sockets;
 using MissionPlanner.Utilities;
 using IronPython.Hosting;
 using log4net;
 using MissionPlanner.Controls;
-using System.Security.Cryptography;
 using MissionPlanner.Comms;
-using MissionPlanner.Arduino;
 using Transitions;
-using System.Web.Script.Serialization;
 using System.Speech.Synthesis;
-using MissionPlanner;
-using MissionPlanner.Joystick;
-using System.Collections.ObjectModel;
 
 namespace MissionPlanner
 {
@@ -851,7 +840,7 @@ namespace MissionPlanner
             MyView.ShowScreen("Terminal");
         }
 
-        private void doDisconnect()
+        public void doDisconnect(MAVLinkInterface comPort)
         {
             log.Info("We are disconnecting");
             try
@@ -904,10 +893,10 @@ namespace MissionPlanner
             this.MenuConnect.Image = global::MissionPlanner.Properties.Resources.light_connect_icon;
         }
 
-        private void doConnect()
+        public void doConnect(MAVLinkInterface comPort, string portname, string baud)
         {
             log.Info("We are connecting");
-            switch (_connectionControl.CMB_serialport.Text)
+            switch (portname)
             {
                 case "TCP":
                     comPort.BaseStream = new TcpSerial();
@@ -930,7 +919,7 @@ namespace MissionPlanner
             // Here we want to reset the connection stats counter etc.
             this.ResetConnectionStats();
 
-            MainV2.comPort.MAV.cs.ResetInternals();
+            comPort.MAV.cs.ResetInternals();
 
             //cleanup any log being played
             comPort.logreadmode = false;
@@ -941,7 +930,7 @@ namespace MissionPlanner
             try
             {
                 // do autoscan
-                if (_connectionControl.CMB_serialport.Text == "AUTO")
+                if (portname == "AUTO")
                 {
                     Comms.CommsSerialScan.Scan(false);
 
@@ -965,12 +954,12 @@ namespace MissionPlanner
 
                 log.Info("Set Portname");
                 // set port, then options
-                comPort.BaseStream.PortName = _connectionControl.CMB_serialport.Text;
+                comPort.BaseStream.PortName = portname;
 
                 log.Info("Set Baudrate");
                 try
                 {
-                    comPort.BaseStream.BaudRate = int.Parse(_connectionControl.CMB_baudrate.Text);
+                    comPort.BaseStream.BaudRate = int.Parse(baud);
                 }
                 catch (Exception exp)
                 {
@@ -1031,10 +1020,21 @@ namespace MissionPlanner
                     // user selection of sysid
                     MissionPlanner.Controls.SysidSelector id = new SysidSelector();
 
-                    id.ShowDialog();
+                    id.Show();
                 }
 
-                comPort.getParamList();
+                // create a copy
+                int[] list = comPort.sysidseen.ToArray();
+
+                // get all the params
+                foreach (var sysid in list)
+                {
+                    comPort.sysidcurrent = sysid;
+                    comPort.getParamList();
+                }
+
+                // set to first seen
+                comPort.sysidcurrent = list[0];
 
                 // detect firmware we are conected to.
                 if (comPort.MAV.cs.firmware == Firmwares.ArduCopter2)
@@ -1202,11 +1202,11 @@ namespace MissionPlanner
             // decide if this is a connect or disconnect
             if (comPort.BaseStream.IsOpen)
             {
-                doDisconnect();
+                doDisconnect(comPort);
             }
             else
             {
-                doConnect();
+                doConnect(comPort, _connectionControl.CMB_serialport.Text, _connectionControl.CMB_baudrate.Text);
             }
         }
 
@@ -1763,7 +1763,6 @@ namespace MissionPlanner
 
             DateTime speechcustomtime = DateTime.Now;
 
-            DateTime speechbatterytime = DateTime.Now;
             DateTime speechlowspeedtime = DateTime.Now;
 
             DateTime linkqualitytime = DateTime.Now;
@@ -1785,7 +1784,8 @@ namespace MissionPlanner
                     UpdateConnectIcon();
 
                     // 30 seconds interval speech options
-                    if (speechEnable && speechEngine != null && (DateTime.Now - speechcustomtime).TotalSeconds > 30 && (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen))
+                    if (speechEnable && speechEngine != null && (DateTime.Now - speechcustomtime).TotalSeconds > 30 &&
+                        (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen))
                     {
                         if (MainV2.speechEngine.State == SynthesizerState.Ready)
                         {
@@ -1796,31 +1796,32 @@ namespace MissionPlanner
 
                             speechcustomtime = DateTime.Now;
                         }
-                    }
 
-                    // speech for battery alerts
-                    if (speechEnable && speechEngine != null && (DateTime.Now - speechbatterytime).TotalSeconds > 30 && (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen))
-                    {
+                        // speech for battery alerts
                         //speechbatteryvolt
                         float warnvolt = 0;
                         float.TryParse(MainV2.getConfig("speechbatteryvolt"), out warnvolt);
                         float warnpercent = 0;
                         float.TryParse(MainV2.getConfig("speechbatterypercent"), out warnpercent);
 
-                        if (MainV2.getConfig("speechbatteryenabled") == "True" && MainV2.comPort.MAV.cs.battery_voltage <= warnvolt && MainV2.comPort.MAV.cs.battery_voltage >= 5.0)
+                        if (MainV2.getConfig("speechbatteryenabled") == "True" &&
+                            MainV2.comPort.MAV.cs.battery_voltage <= warnvolt &&
+                            MainV2.comPort.MAV.cs.battery_voltage >= 5.0)
                         {
                             if (MainV2.speechEngine.State == SynthesizerState.Ready)
                             {
                                 MainV2.speechEngine.SpeakAsync(Common.speechConversion(MainV2.getConfig("speechbattery")));
-                                speechbatterytime = DateTime.Now;
                             }
                         }
-                        else if (MainV2.getConfig("speechbatteryenabled") == "True" && (MainV2.comPort.MAV.cs.battery_remaining) < warnpercent && MainV2.comPort.MAV.cs.battery_voltage >= 5.0 && MainV2.comPort.MAV.cs.battery_remaining != 0.0)
+                        else if (MainV2.getConfig("speechbatteryenabled") == "True" &&
+                                 (MainV2.comPort.MAV.cs.battery_remaining) < warnpercent &&
+                                 MainV2.comPort.MAV.cs.battery_voltage >= 5.0 &&
+                                 MainV2.comPort.MAV.cs.battery_remaining != 0.0)
                         {
                             if (MainV2.speechEngine.State == SynthesizerState.Ready)
                             {
-                                MainV2.speechEngine.SpeakAsync(Common.speechConversion(MainV2.getConfig("speechbattery")));
-                                speechbatterytime = DateTime.Now;
+                                MainV2.speechEngine.SpeakAsync(
+                                    Common.speechConversion(MainV2.getConfig("speechbattery")));
                             }
                         }
                     }
@@ -1882,6 +1883,7 @@ namespace MissionPlanner
 
                         try
                         {
+                            // say the latest high priority message
                             if (MainV2.speechEngine.State == SynthesizerState.Ready && lastmessagehigh != MainV2.comPort.MAV.cs.messageHigh)
                             {
                                 MainV2.speechEngine.SpeakAsync(MainV2.comPort.MAV.cs.messageHigh);
@@ -1892,7 +1894,7 @@ namespace MissionPlanner
                     }
 
                     // attenuate the link qualty over time
-                    if ((DateTime.Now - comPort.lastvalidpacket).TotalSeconds >= 1)
+                    if ((DateTime.Now - MainV2.comPort.MAV.lastvalidpacket).TotalSeconds >= 1)
                     {
                         if (linkqualitytime.Second != DateTime.Now.Second)
                         {
@@ -1905,7 +1907,7 @@ namespace MissionPlanner
                     }
 
                     // data loss warning - wait min of 10 seconds, ignore first 30 seconds of connect, repeat at 5 seconds interval
-                    if ((DateTime.Now - comPort.lastvalidpacket).TotalSeconds > 10
+                    if ((DateTime.Now - MainV2.comPort.MAV.lastvalidpacket).TotalSeconds > 10
                         && (DateTime.Now - connecttime).TotalSeconds > 30
                         && (DateTime.Now - nodatawarning).TotalSeconds > 5
                         && (MainV2.comPort.logreadmode || comPort.BaseStream.IsOpen)
@@ -1915,7 +1917,7 @@ namespace MissionPlanner
                         {
                             if (MainV2.speechEngine.State == SynthesizerState.Ready)
                             {
-                                MainV2.speechEngine.SpeakAsync("WARNING No Data for " + (int)(DateTime.Now - comPort.lastvalidpacket).TotalSeconds + " Seconds");
+                                MainV2.speechEngine.SpeakAsync("WARNING No Data for " + (int)(DateTime.Now - MainV2.comPort.MAV.lastvalidpacket).TotalSeconds + " Seconds");
                                 nodatawarning = DateTime.Now;
                             }
                         }
@@ -1963,10 +1965,10 @@ namespace MissionPlanner
                         {
                             type = (byte)MAVLink.MAV_TYPE.GCS,
                             autopilot = (byte)MAVLink.MAV_AUTOPILOT.INVALID,
-                            mavlink_version = 3,
+                            mavlink_version = 3// MAVLink.MAVLINK_VERSION
                         };
 
-                        foreach (var port in MainV2.Comports)
+                        foreach (var port in Comports)
                         {
                             try
                             {
@@ -1977,7 +1979,7 @@ namespace MissionPlanner
                                 log.Error(ex);
                                 // close the bad port
                                 port.Close();
-                                // refresh the screen is needed
+                                // refresh the screen if needed
                                 if (port == MainV2.comPort)
                                 {
                                     // refresh config window if needed
@@ -2013,44 +2015,23 @@ namespace MissionPlanner
                         }
 
                         System.Threading.Thread.Sleep(100);
-                        //continue;
                     }
 
-                    // actualy read the packets
-                    while (comPort.BaseStream.IsOpen && comPort.BaseStream.BytesToRead > minbytes && comPort.giveComport == false)
-                    {
-                        try
-                        {
-                            comPort.readPacket();
-                        }
-                        catch (Exception ex) { log.Error(ex); }
-                    }
-
-                    // update currentstate of sysids on main port
-                    foreach (var sysid in comPort.sysidseen)
-                    {
-                        try
-                        {
-                            comPort.MAVlist[sysid].cs.UpdateCurrentSettings(null, false, comPort, comPort.MAVlist[sysid]);
-                        }
-                        catch (Exception ex) { log.Error(ex); }
-                    }
-
-                    // read the other interfaces
+                    // read the interfaces
                     foreach (var port in Comports)
                     {
-                        // skip primary interface
-                        if (port == comPort)
-                            continue;
-
                         if (!port.BaseStream.IsOpen)
                         {
+                            // skip primary interface
+                            if (port == comPort)
+                                continue;
+
                             // modify array and drop out
                             Comports.Remove(port);
                             break;
                         }
 
-                        while (port.BaseStream.IsOpen && port.BaseStream.BytesToRead > minbytes)
+                        while (port.BaseStream.IsOpen && port.BaseStream.BytesToRead > minbytes && port.giveComport == false)
                         {
                             try
                             {
@@ -2095,7 +2076,6 @@ namespace MissionPlanner
             try
             {
                 AutoHideMenu(bool.Parse(config["menu_autohide"].ToString()));
-
             }
             catch { }
 
@@ -2144,7 +2124,6 @@ namespace MissionPlanner
             // setup http server
             try
             {
-
                 httpthread = new Thread(new httpserver().listernforclients)
                 {
                     Name = "motion jpg stream-network kml",
@@ -2300,7 +2279,7 @@ namespace MissionPlanner
             {
                 if (getConfig("almanac_date") != DateTime.Now.ToShortDateString())
                 {
-                    Common.getFilefromNet("http://alp.u-blox.com/current_1d.alp", "current_d1.alp");
+                    Common.getFilefromNet("http://alp.u-blox.com/current_1d.alp", Application.StartupPath + Path.DirectorySeparatorChar + "current_d1.alp");
                     config["almanac_date"] = DateTime.Now.ToShortDateString();
                 }
             }
@@ -2908,6 +2887,11 @@ namespace MissionPlanner
         private void readonlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MainV2.comPort.ReadOnly = readonlyToolStripMenuItem.Checked;
+        }
+
+        private void connectionOptionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new ConnectionOptions().Show(this);
         }
 
 

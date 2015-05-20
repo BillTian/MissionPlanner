@@ -19,15 +19,23 @@ namespace MissionPlanner
         private static readonly ILog log =
         LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        internal static SerialPort comPort = new SerialPort();
+        internal static ICommsSerial comPort = new SerialPort();
         private System.Threading.Thread t12;
         private static bool threadrun = false;
+
+        static TcpListener listener;
+        // Thread signal. 
+        public static ManualResetEvent tcpClientConnected = new ManualResetEvent(false);
 
         public SerialInjectGPS()
         {
             InitializeComponent();
 
             CMB_serialport.Items.AddRange(SerialPort.GetPortNames());
+            CMB_serialport.Items.Add("UDP Host - 14550");
+            CMB_serialport.Items.Add("UDP Client");
+            CMB_serialport.Items.Add("TCP Client");
+            CMB_serialport.Items.Add("NTRIP");
 
             if (threadrun)
             {
@@ -49,7 +57,26 @@ namespace MissionPlanner
             {
                 try
                 {
-                    comPort.PortName = CMB_serialport.Text;
+                    switch (CMB_serialport.Text)
+                    {
+                        case "NTRIP":
+                            comPort = new CommsNTRIP();
+                            CMB_baudrate.Text = "0";
+                            break;
+                        case "TCP Client":
+                            comPort = new TcpSerial();
+                            break;
+                        case "UDP Host - 14550":
+                            comPort = new UdpSerial();
+                            break;
+                        case "UDP Client":
+                            comPort = new UdpSerialConnect();
+                            break;
+                        default:
+                            comPort = new SerialPort();
+                            comPort.PortName = CMB_serialport.Text;
+                            break;
+                    }
                 }
                 catch
                 {
@@ -78,9 +105,11 @@ namespace MissionPlanner
                 t12 = new System.Threading.Thread(new System.Threading.ThreadStart(mainloop))
                 {
                     IsBackground = true,
-                    Name = "Nmea output"
+                    Name = "injectgps"
                 };
                 t12.Start();
+
+                BUT_connect.Text = Strings.Stop;
             }
         }
 
